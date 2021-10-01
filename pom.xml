@@ -41,8 +41,6 @@
     <dependencyManagement>
         <dependencies>
 
-
-
             <!-- Lombok 组件-->
             <dependency>
                 <groupId>org.projectlombok</groupId>
