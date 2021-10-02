@@ -18,6 +18,7 @@
         <module>calf-cloud-gateway</module>
         <module>calf-cloud-provider</module>
         <module>calf-cloud-eureka</module>
+        <module>calf-cloud-provider-api</module>
     </modules>
     <!--配置参数-->
     <properties>
@@ -27,7 +28,7 @@
         <spring-boot.version>2.3.12.RELEASE</spring-boot.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
         <druid.version>1.2.6</druid.version>
-        <mysql-con-java.version>5.1.49</mysql-con-java.version>
+        <mysql-con-java.version>8.0.13</mysql-con-java.version>
         <mybatis-plus.version>3.4.3</mybatis-plus.version>
         <commons-collections4.version>4.4</commons-collections4.version>
         <pagehelper.version>1.2.10</pagehelper.version>
@@ -49,12 +50,13 @@
             </dependency>
 
 
-            <!-- 数据库相关开始-->
+            <!-- 数据库相关 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
             </dependency>
+
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
