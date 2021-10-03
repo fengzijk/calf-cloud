@@ -31,7 +31,7 @@ public class UserInfoController {
 
 
     @GetMapping("listUserInfo")
-    @ApiOperation(value = "获取用户（护士）列表", httpMethod = "POST")
+    @ApiOperation(value = "获取用户列表", httpMethod = "POST")
     public String listUserInfo() {
         return "sucess";
     }
