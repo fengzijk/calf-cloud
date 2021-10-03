@@ -5,18 +5,20 @@
  *   @Author:    fengzijk
  *   @Email: guozhifengvip@163.com
  *   @Version    V1.0
- *   @Date:   2021年10月03日 19时17分
+ *   @Date:   2021年10月04日 00时27分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
  *   Date                  Author        Version        Discription
  *   -----------------------------------------------------------------------------------
- *  2021-10-03 19:17:35    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2021-10-04 00:27:27    fengzijk         1.0         Why & What is modified: 改原因描述>
  *
  *
  */
 
-package com.calf.cloud.comon.core.base.web;
+package com.calf.cloud.common.starter.autoconfig.response;
 
+import com.calf.cloud.common.starter.autoconfig.response.annotation.IgnoreGlobalResponse;
+import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -37,7 +39,17 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  */
 @RestControllerAdvice
 @Slf4j
-public class GlobalResponseControllerAdvice implements ResponseBodyAdvice<ResponseEntity<?>> {
+public class GlobalResponseHandler implements ResponseBodyAdvice<ResponseEntity<?>> {
+
+
+    private GlobalResponseProperties globalResponseProperties;
+
+    /**
+     * 通过构造器将默认过滤配置注入
+     */
+    public GlobalResponseHandler(GlobalResponseProperties globalResponseProperties) {
+        this.globalResponseProperties = globalResponseProperties;
+    }
 
 //    /**
 //     * 拦截MethodArgumentNotValidException异常，针对body参数的表单注解（如：@NotEmpty）校验拦截
@@ -155,7 +167,7 @@ public class GlobalResponseControllerAdvice implements ResponseBodyAdvice<Respon
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
-        return false;
+        return this.filter(methodParameter);
     }
 
     @Override
@@ -166,4 +178,40 @@ public class GlobalResponseControllerAdvice implements ResponseBodyAdvice<Respon
         return null;
 
     }
+
+
+    /**
+     * 自定义规则拦截器
+     * 过滤: 1.检查过滤包路径
+     * 2.检查类过滤列表
+     * 3.检查忽略注解是否存在于类上
+     * 4.检查注解是否存在于方法上
+     *
+     * @param methodParameter 方法参数
+     * @return java.lang.Boolean
+     * @author : guozhifeng
+     * @date : 2021/10/4 0:30
+     */
+    private Boolean filter(MethodParameter methodParameter) {
+        Class<?> declaringClass = methodParameter.getDeclaringClass();
+        //检查过滤包路径
+        long count = globalResponseProperties.getAdviceFilterPackage().stream().filter(a -> declaringClass.getName().contains(a)).count();
+        if (count > 0) {
+            return false;
+        }
+        //检查<类>过滤列表
+        if (globalResponseProperties.getAdviceFilterClass().contains(declaringClass.getName())) {
+            return false;
+        }
+        //检查忽略注解是否存在于类上
+        if (methodParameter.getDeclaringClass().isAnnotationPresent(IgnoreGlobalResponse.class)) {
+            return false;
+        }
+        //检查注解是否存在于方法上
+        if (Objects.nonNull(methodParameter.getMethod()) && methodParameter.getMethod().isAnnotationPresent(IgnoreGlobalResponse.class)) {
+            return false;
+        }
+        return true;
+    }
+
 }

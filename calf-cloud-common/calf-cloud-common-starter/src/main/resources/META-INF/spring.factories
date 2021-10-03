@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\com.calf.cloud.common.starter.autoconfig.swagger.SwaggerAutoConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\com.calf.cloud.common.starter.autoconfig.swagger.SwaggerAutoConfig,\com.calf.cloud.common.starter.autoconfig.response.GlobalResponseAutoConfig
