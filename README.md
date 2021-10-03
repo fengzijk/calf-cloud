@@ -1,7 +1,7 @@
 # calf-cloud
 
-![SpringBoot](https://img.shields.io/badge/SpringBoot-2.4.6-brightgreen.svg)
-![SpringCloud](https://img.shields.io/badge/SpringCloud-2020.0.3-brightgreen.svg)
+![SpringBoot](https://img.shields.io/badge/SpringBoot-2.4.6-lightBlue.svg)
+![SpringCloud](https://img.shields.io/badge/SpringCloud-2020.0.3-lightBlue.svg)
 ![JAVA](https://img.shields.io/badge/JAVA-1.8+-brightgreen.svg)
 ![Maven](https://img.shields.io/badge/Maven-3.0+-green.svg)
 ![badge](https://img.shields.io/badge/buil-passing-green.svg)
