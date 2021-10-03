@@ -58,20 +58,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 @Slf4j
 public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
 
-    private final String STRING_CLASS_NAME_PATH = "java.lang.String";
-
 
     @Autowired
     private GlobalResponseProperties globalResponseProperties;
 
-    /**
-     * 拦截MethodArgumentNotValidException异常，针对body参数的表单注解（如：@NotEmpty）校验拦截
-     *
-     * @param e 错误信息
-     * @return org.springframework.http.ResponseEntity<?>
-     * @author : guozhifeng
-     * @date : 2021/10/3 19:23
-     */
 
     /**
      * 拦截MethodArgumentNotValidException异常，针对body参数的表单注解（如：@NotEmpty）校验拦截
@@ -245,10 +235,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
             return false;
         }
         //检查注解是否存在于方法上
-        if (Objects.nonNull(methodParameter.getMethod()) && methodParameter.getMethod().isAnnotationPresent(IgnoreGlobalResponse.class)) {
-            return false;
-        }
-        return true;
+        return !Objects.nonNull(methodParameter.getMethod()) || !methodParameter.getMethod().isAnnotationPresent(IgnoreGlobalResponse.class);
     }
 
 }
