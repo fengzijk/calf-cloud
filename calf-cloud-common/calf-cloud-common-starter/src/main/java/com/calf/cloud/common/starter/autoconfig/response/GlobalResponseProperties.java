@@ -37,6 +37,12 @@ public class GlobalResponseProperties {
      */
     public static final String PREFIX = "global-response";
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    private Boolean enabled = Boolean.TRUE;
+
     /**
      * 统一返回过滤包
      */

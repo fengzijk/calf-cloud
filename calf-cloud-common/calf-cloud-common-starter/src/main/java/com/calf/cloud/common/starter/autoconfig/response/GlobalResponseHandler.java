@@ -18,14 +18,29 @@
 package com.calf.cloud.common.starter.autoconfig.response;
 
 import com.calf.cloud.common.starter.autoconfig.response.annotation.IgnoreGlobalResponse;
+import com.calf.cloud.common.starter.autoconfig.response.exception.BusinessException;
+import com.calf.cloud.common.starter.autoconfig.response.json.JsonUtil;
+import java.util.List;
 import java.util.Objects;
+import javax.xml.bind.ValidationException;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
+import org.springframework.util.CollectionUtils;
+import org.springframework.validation.BindException;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.HttpMediaTypeNotSupportedException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
@@ -39,131 +54,130 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  */
 @RestControllerAdvice
 @Slf4j
-public class GlobalResponseHandler implements ResponseBodyAdvice<ResponseEntity<?>> {
+public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
+
+    private final String STRING_CLASS_NAME_PATH = "java.lang.String";
 
 
+    @Autowired
     private GlobalResponseProperties globalResponseProperties;
 
     /**
-     * 通过构造器将默认过滤配置注入
+     * 拦截MethodArgumentNotValidException异常，针对body参数的表单注解（如：@NotEmpty）校验拦截
+     *
+     * @param e 错误信息
+     * @return org.springframework.http.ResponseEntity<?>
+     * @author : guozhifeng
+     * @date : 2021/10/3 19:23
      */
-    public GlobalResponseHandler(GlobalResponseProperties globalResponseProperties) {
-        this.globalResponseProperties = globalResponseProperties;
+
+    /**
+     * 拦截MethodArgumentNotValidException异常，针对body参数的表单注解（如：@NotEmpty）校验拦截
+     *
+     * @param e 错误信息
+     * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<?>
+     * @author : guozhifeng
+     * @date : 2021/10/4 2:21
+     */
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    public ResponseResult<?> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
+        log.warn("MethodArgumentNotValidException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
+
+        // 实体参数注解 ，只返回第一个提示
+        List<ObjectError> objectErrors = e.getBindingResult().getAllErrors();
+        if (!CollectionUtils.isEmpty(objectErrors) && objectErrors.size() > 0) {
+            return ResponseResult.fail(objectErrors.get(0).getDefaultMessage());
+        }
+
+        return ResponseResult.fail(null);
     }
 
-//    /**
-//     * 拦截MethodArgumentNotValidException异常，针对body参数的表单注解（如：@NotEmpty）校验拦截
-//     *
-//     * @param e 错误信息
-//     * @return org.springframework.http.ResponseEntity<?>
-//     * @author : guozhifeng
-//     * @date : 2021/10/3 19:23
-//     */
-//    @ExceptionHandler(value = MethodArgumentNotValidException.class)
-//    public ResponseEntity<?> methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
-//        log.warn("MethodArgumentNotValidException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
-//
-//        // 实体参数注解 ，只返回第一个提示
-//        List<ObjectError> objectErrors = e.getBindingResult().getAllErrors();
-//        if (!CollectionUtils.isEmpty(objectErrors) && objectErrors.size() > 0) {
-//            return new ResponseEntity<>().badValidated(objectErrors.get(0).getDefaultMessage());
-//        }
-//
-//        return new ResponseEntity<>().badValidated();
-//    }
-//
-//
-//    /**
-//     * 拦截BindException异常，针对form参数的表单注解（如：@NotEmpty）校验拦截
-//     *
-//     * @param e 错误信息
-//     * @return org.springframework.http.ResponseEntity<?>
-//     * @author : guozhifeng
-//     * @date : 2021/10/3 19:24
-//     */
-//    @ExceptionHandler(value = BindException.class)
-//    @ResponseStatus(HttpStatus.OK)
-//    public ResponseEntity<?> bindExceptionHandler(BindException e) {
-//        log.warn("BindException,message={},Exception={}", e.getMessage(),
-//          ExceptionUtils.getStackTrace(e));
-//
-//        // 实体参数注解校验提示格式 只返回第一个提示
-//        List<ObjectError> objectErrors = e.getBindingResult().getAllErrors();
-//        if (!CollectionUtils.isEmpty(objectErrors) && objectErrors.size() > 0) {
-//            return new ResponseEntity<>().badValidated(objectErrors.get(0).getDefaultMessage());
-//        }
-//
-//        return new ResponseEntity<>().badValidated();
-//    }
-//
-//
-//    /**
-//     * 拦截ValidationException异常
-//     *
-//     * @param e 错误信息
-//     * @return org.springframework.http.ResponseEntity<?>
-//     * @author : guozhifeng
-//     * @date : 2021/10/3 19:28
-//     */
-//    @ExceptionHandler(value = ValidationException.class)
-//    public ResponseEntity<?> validationExceptionHandler(ValidationException e) {
-//        log.warn("ValidationException,message={},Exception={}", e.getMessage(),
-//          ExceptionUtils.getStackTrace(e));
-//        return new ResponseEntity<>().badValidated(e.getMessage());
-//    }
-//
-//    /**
-//     * HTTP方法异常调用
-//     *
-//     * @param e 错误信息
-//     * @return org.springframework.http.ResponseEntity<?>
-//     * @author : guozhifeng
-//     * @date : 2021/10/3 19:28
-//     */
-//    @ExceptionHandler(value = {HttpRequestMethodNotSupportedException.class, HttpMediaTypeNotSupportedException.class})
-//    public ResponseEntity<?> httpRequestMethodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException e) {
-//        log.warn("方法调用方式异常,message={},Exception={}", e.getMessage(),
-//          ExceptionUtils.getStackTrace(e));
-//        return new ResponseEntity<>().systemError("method_not_supported#方法调用方式异常，Get、Post请求不匹配，或Form、Body参数不匹配");
-//    }
-//
-//
-//    /**
-//     * 拦截MissingServletRequestParameterException异常
-//     *
-//     * @param e
-//     * @return
-//     */
-//    @ExceptionHandler(value = MissingServletRequestParameterException.class)
-//    public ResponseEntity<?> missingServletRequestParameterExceptionHandler(MissingServletRequestParameterException e) {
-//        log
-//          .warn("MissingServletRequestParameterException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
-//        return new ResponseEntity<>().badValidated("missing_servlet_request_parameter_exception#缺少参数");
-//
-//    }
-//
-//
-//    /**
-//     * 拦截自定义的BusinessException异常
-//     *
-//     * @param e 错误信息
-//     * @return org.springframework.http.ResponseEntity<?>
-//     * @author : guozhifeng
-//     * @date : 2021/10/3 19:29
-//     */
-//    @ExceptionHandler(value = BusinessException.class)
-//    public ResponseEntity<?> daoExceptionHandler(BusinessException e) {
-//        log.error("DaoException,message={},Exception={}", e.getMessage(),
-//          ExceptionUtils.getStackTrace(e));
-//        return new ResponseEntity<>().badRequest(e.getMessage());
-//
-//    }
-//
-//
-//    @Override
-//    public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
-//        return false;
-//    }
+
+    /**
+     * 拦截BindException异常，针对form参数的表单注解（如：@NotEmpty）校验拦截
+     *
+     * @param e 错误信息
+     * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<?>
+     * @author : guozhifeng
+     * @date : 2021/10/4 2:22
+     */
+    @ExceptionHandler(value = BindException.class)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseResult<?> bindExceptionHandler(BindException e) {
+        log.warn("BindException,message={},Exception={}", e.getMessage(),
+          ExceptionUtils.getStackTrace(e));
+
+        // 实体参数注解校验提示格式 只返回第一个提示
+        List<ObjectError> objectErrors = e.getBindingResult().getAllErrors();
+        if (!CollectionUtils.isEmpty(objectErrors) && objectErrors.size() > 0) {
+            ResponseResult.fail(objectErrors.get(0).getDefaultMessage());
+        }
+
+        return ResponseResult.fail(null);
+    }
+
+
+    /**
+     * 拦截ValidationException异常
+     *
+     * @param e 错误信息
+     * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<?>
+     * @author : guozhifeng
+     * @date : 2021/10/4 2:22
+     */
+    @ExceptionHandler(value = ValidationException.class)
+    public ResponseResult<?> validationExceptionHandler(ValidationException e) {
+        log.warn("ValidationException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
+        return ResponseResult.fail(e.getMessage());
+    }
+
+
+    /**
+     * HTTP方法异常调用
+     *
+     * @param e 错误信息
+     * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<?>
+     * @author : guozhifeng
+     * @date : 2021/10/4 2:20
+     */
+    @ExceptionHandler(value = {HttpRequestMethodNotSupportedException.class, HttpMediaTypeNotSupportedException.class})
+    public ResponseResult<?> httpRequestMethodNotSupportedExceptionHandler(HttpRequestMethodNotSupportedException e) {
+        log.warn("方法调用方式异常,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
+        return ResponseResult.fail("方法调用方式异常，Get、Post请求不匹配，或Form、Body参数不匹配");
+    }
+
+
+    /**
+     * 拦截MissingServletRequestParameterException异常
+     *
+     * @param e 错误信息
+     * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<?>
+     * @author : guozhifeng
+     * @date : 2021/10/4 2:23
+     */
+    @ExceptionHandler(value = MissingServletRequestParameterException.class)
+    public ResponseResult<?> missingServletRequestParameterExceptionHandler(MissingServletRequestParameterException e) {
+        log.warn("MissingServletRequestParameterException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
+        return ResponseResult.fail("缺少参数");
+
+    }
+
+
+    /**
+     * 拦截自定义的BusinessException异常
+     *
+     * @param e 错误信息
+     * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<?>
+     * @author : guozhifeng
+     * @date : 2021/10/4 2:20
+     */
+    @ExceptionHandler(value = BusinessException.class)
+    public ResponseResult<?> daoExceptionHandler(BusinessException e) {
+        log.error("DaoException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
+        return ResponseResult.fail(e.getMessage());
+
+    }
+
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
@@ -171,12 +185,18 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<ResponseEntity<
     }
 
     @Override
-    public ResponseEntity<?> beforeBodyWrite(ResponseEntity<?> responseEntity, MethodParameter methodParameter, MediaType mediaType,
-      Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-//        String msg = responseEntity.getStatusMessage();
-//        responseEntity.setStatusMessage(lang.getText(msg));
-        return null;
+    public Object beforeBodyWrite(Object obj, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass,
+      ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
+        //o is null -> return response
+        if (obj == null) {
+            return JsonUtil.tojson(ResponseResult.success(null));
+        }
+        //当 obj 返回类型为ResultMsg(统一封装返回对象),则直接返回
+        if (obj instanceof ResponseResult) {
+            return obj;
+        }
 
+        return JsonUtil.tojson(ResponseResult.success(obj));
     }
 
 

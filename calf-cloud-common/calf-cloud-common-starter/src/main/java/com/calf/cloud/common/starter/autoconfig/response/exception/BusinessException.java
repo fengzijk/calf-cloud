@@ -15,7 +15,7 @@
  *
  */
 
-package com.calf.cloud.comon.core.base.exception;
+package com.calf.cloud.common.starter.autoconfig.response.exception;
 
 /**
  * -------------------------------------------------
@@ -25,6 +25,7 @@ package com.calf.cloud.comon.core.base.exception;
  * @date : 2021/10/3 19:17
  * --------------------------------------------------
  */
+
 public class BusinessException extends RuntimeException {
 
     private int code;

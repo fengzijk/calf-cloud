@@ -16,6 +16,7 @@
  */
 package com.calf.cloud.user;
 
+import com.calf.cloud.common.starter.autoconfig.response.annotation.EnableGlobalResponse;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,6 +38,7 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
 @EnableDiscoveryClient
 @SpringBootApplication
 @MapperScan("com.calf.cloud.user.mapper")
+@EnableGlobalResponse
 public class ProviderUserApplication {
 
     public static void main(String[] args) {
