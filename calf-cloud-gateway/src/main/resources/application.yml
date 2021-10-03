@@ -48,7 +48,7 @@ eureka:
       defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${eureka.instance.port}/eureka/
     registryFetchIntervalSeconds: 5 #eureka client 获取注册信息列表并缓存到本地，之后只会增量获取信息，获取注册信息的操作是一个异步任务，默认每隔30秒执行一次
   instance:
-    port: 9080
+    port: 8055
     hostname: 127.0.0.1
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}

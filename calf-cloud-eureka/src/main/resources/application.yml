@@ -1,6 +1,6 @@
 #运行的端口号
 server:
-  port: 9080
+  port: 8055
 #logback配置，开发模式日志级别为 INFO
 logging:
   level:

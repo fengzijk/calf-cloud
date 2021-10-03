@@ -94,30 +94,11 @@ public class UserInfoEntity extends BaseEntity implements Serializable {
      */
     @TableField("open_id")
     private String openId;
-
-    /**
-     * 学历编码
-     */
-    @TableField("degree_code")
-    private Boolean degreeCode;
-
-    /**
-     * 学历名称
-     */
-    @TableField("degree_name")
-    private String degreeName;
-
     /**
      * 用户绑定微信的昵称，不可修改，用户换绑页面展示
      */
     @TableField("wx_nickname")
-    private String wxNickame;
-
-    /**
-     * 是否毕业(0:未毕业 1:毕业)
-     */
-    @TableField("graduation_flag")
-    private Boolean graduationFlag;
+    private String wxNickname;
 
     /**
      * 出生日期
