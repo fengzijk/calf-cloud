@@ -33,7 +33,7 @@ spring:
         - id: calf-cloud-user
           uri: lb://CALF-CLOUD-USER
           predicates:
-            - Path=/userService/**
+            - Path=/user/**
           filters:
             - StripPrefix=1
 
@@ -64,3 +64,9 @@ management:
   endpoint:
     health:
       show-details: ALWAYS
+
+springfox:
+  documentation:
+    open-api:
+      v3:
+        path: /${spring.application.name}/v3/api-docs

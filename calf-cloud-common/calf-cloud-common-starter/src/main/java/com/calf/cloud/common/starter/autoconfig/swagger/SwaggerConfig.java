@@ -82,7 +82,7 @@ public class SwaggerConfig {
           .select()
           .apis(RequestHandlerSelectors.any())
           //过滤某个路径
-          .paths(PathSelectors.any())
+          .paths(PathSelectors.regex("/error").negate())
           .build()
           //协议
           .protocols(newHashSet("https", "http"))
