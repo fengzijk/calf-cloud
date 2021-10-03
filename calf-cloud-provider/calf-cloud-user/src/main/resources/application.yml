@@ -14,8 +14,12 @@ spring:
       password: "admin"
   profiles:
     active: @env@
-
-
+  #404 处理
+  mvc:
+    throw-exception-if-no-handler-found: true
+  web:
+    resources:
+      add-mappings: false
 
   # jackson 配置
   jackson:
@@ -104,4 +108,5 @@ global-response:
   adviceFilterPackage:
     - springfox.documentation
     - org.springframework
+
 

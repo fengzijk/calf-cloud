@@ -42,6 +42,7 @@ import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
@@ -52,6 +53,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @date : 2021/10/3 19:15
  * --------------------------------------------------
  */
+@SuppressWarnings("NullableProblems")
 @RestControllerAdvice
 @Slf4j
 public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
@@ -102,7 +104,6 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      * @date : 2021/10/4 2:22
      */
     @ExceptionHandler(value = BindException.class)
-    @ResponseStatus(HttpStatus.OK)
     public ResponseResult<?> bindExceptionHandler(BindException e) {
         log.warn("BindException,message={},Exception={}", e.getMessage(),
           ExceptionUtils.getStackTrace(e));
@@ -116,6 +117,21 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
         return ResponseResult.fail(null);
     }
 
+
+    /**
+     * 404异常处理 拦截NoHandlerFoundException异常，针对form参数的表单注解（如：@NotEmpty）校验拦截
+     *
+     * @param e 错误信息
+     * @return java.lang.Object
+     * @author : guozhifeng
+     * @date : 2021/10/4 4:04
+     */
+    @ExceptionHandler(NoHandlerFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public Object notFountHandler(NoHandlerFoundException e) {
+        log.warn("NoHandlerFoundException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
+        return ResponseResult.fail(e.getMessage());
+    }
 
     /**
      * 拦截ValidationException异常
@@ -179,6 +195,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
     }
 
 
+    @SuppressWarnings("NullableProblems")
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
         return this.filter(methodParameter);

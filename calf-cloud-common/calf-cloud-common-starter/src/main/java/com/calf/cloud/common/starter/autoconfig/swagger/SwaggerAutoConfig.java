@@ -22,16 +22,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Objects;
 import java.util.Set;
-import java.util.function.Predicate;
 import javax.annotation.Resource;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
-import springfox.documentation.RequestHandler;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -67,16 +64,9 @@ public class SwaggerAutoConfig {
     @Resource
     private SwaggerProperties swaggerProperties;
 
+    @SuppressWarnings("unchecked")
     @Bean
     public Docket api() {
-
-        Predicate<RequestHandler> selector = null;
-        if (Objects.nonNull(swaggerProperties.getBasePackage()) && swaggerProperties.getBasePackage().size() > 0) {
-            swaggerProperties.getBasePackage().forEach(a -> {
-                Predicate<RequestHandler> predicate = RequestHandlerSelectors.basePackage(a);
-                selector.or(predicate);
-            });
-        }
         Docket docket = new Docket(DocumentationType.OAS_30)
           //资源
           .globalResponses(HttpMethod.GET, new ArrayList<>())
@@ -169,4 +159,28 @@ public class SwaggerAutoConfig {
         }
         return null;
     }
+
+
+//    /**
+//     * API接口路径选择
+//     *
+//     * @param basePackage 路径
+//     * @return java.util.function.Predicate
+//     * @author : guozhifeng
+//     * @date : 2021/10/4 3:17
+//     */
+//    @SuppressWarnings({"rawtypes", "Guava"})
+//    private Predicate paths(List<String> basePackage) {
+//        // base-path处理 当没有配置任何path的时候，解析
+//        if (basePackage.isEmpty()) {
+//            basePackage.add("/**");
+//        }
+//        List<com.google.common.base.Predicate<String>> basePathList = new ArrayList<>();
+//        for (String path : basePackage) {
+//            basePathList.add(PathSelectors.ant(path));
+//        }
+//        return Predicates.or(basePathList);
+//    }
+
+
 }

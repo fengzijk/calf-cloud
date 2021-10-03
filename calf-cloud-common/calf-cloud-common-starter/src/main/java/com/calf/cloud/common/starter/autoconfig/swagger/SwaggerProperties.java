@@ -17,6 +17,7 @@
 
 package com.calf.cloud.common.starter.autoconfig.swagger;
 
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -46,7 +47,7 @@ public class SwaggerProperties {
     /**
      * 文档扫描包路径
      */
-    private List<String> basePackage;
+    private List<String> basePackage=new ArrayList<>();
 
     /**
      * title 如: 用户模块系统接口详情

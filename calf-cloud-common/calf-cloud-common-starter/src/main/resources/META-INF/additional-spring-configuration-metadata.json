@@ -7,7 +7,7 @@
     },
     {
       "name": "swagger.basePackage",
-      "type": "java.lang.String",
+      "type": "java.util.List<java.lang.String>",
       "description": "文档扫描包路径."
     },
     {
@@ -44,7 +44,6 @@
       "name": "global-response.adviceFilterPackage",
       "type": "java.util.List<java.lang.String>",
       "description": "统一返回过滤包集合."
-
     },
     {
       "name": "global-response.adviceFilterClass",
