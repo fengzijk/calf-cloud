@@ -19,6 +19,7 @@
         <module>calf-cloud-provider</module>
         <module>calf-cloud-eureka</module>
         <module>calf-cloud-provider-api</module>
+        <module>calf-cloud-base-dal</module>
     </modules>
     <!--配置参数-->
     <properties>

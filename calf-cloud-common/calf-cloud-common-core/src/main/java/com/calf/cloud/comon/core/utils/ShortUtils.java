@@ -107,3 +107,4 @@ public class ShortUtils {
         int j = random.nextInt(4);
         return aResult[j];
     }
+}
