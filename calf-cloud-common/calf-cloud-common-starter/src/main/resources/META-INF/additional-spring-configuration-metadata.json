@@ -8,19 +8,19 @@
     {
       "name": "swagger.basePackage",
       "type": "java.lang.String",
-      "description": "文档扫描包路径。"
+      "description": "文档扫描包路径."
     },
     {
       "name": "swagger.title",
       "type": "java.lang.String",
       "defaultValue": "平台系统接口详情",
-      "description": "title 如: 用户模块系统接口详情。"
+      "description": "title 如: 用户模块系统接口详情."
     },
     {
       "name": "swagger.description",
       "type": "java.lang.String",
       "defaultValue": "在线文档",
-      "description": "服务文件介绍。"
+      "description": "服务文件介绍."
     },
     {
       "name": "swagger.termsOfServiceUrl",
@@ -35,27 +35,21 @@
       "description": "版本."
     },
     {
-      "name": "swagger.title",
-      "type": "java.lang.String",
-      "defaultValue": "平台系统接口详情",
-      "description": "title 如: 用户模块系统接口详情。"
-    },
-    {
       "name": "swagger.requestParameter",
       "type": "java.lang.Boolean",
       "defaultValue": "全局参数",
-      "description": "全局 token"
+      "description": "全局 token."
     },
     {
       "name": "global-response.adviceFilterPackage",
       "type": "java.util.List<java.lang.String>",
-      "description": "统一返回过滤包集合",
+      "description": "统一返回过滤包集合.",
       "deprecation": "统一返回过滤的包名称"
     },
     {
       "name": "global-response.adviceFilterClass",
       "type": "java.util.List<java.lang.String>",
-      "description": "统一返回过滤包类名称",
+      "description": "统一返回过滤包类名称.",
       "deprecation": "统一返回过滤的类名称"
     }
   ]
