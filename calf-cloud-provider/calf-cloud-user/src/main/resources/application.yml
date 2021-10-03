@@ -97,6 +97,11 @@ springfox:
     enabled: true
 
 swagger:
-  enable : true
-  title: kljkh
+  enable: true
+  title: 郭志峰文档管理-用户模块
+
+global-response:
+  adviceFilterPackage:
+    - springfox.documentation
+    - org.springframework
 

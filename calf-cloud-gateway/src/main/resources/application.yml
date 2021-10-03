@@ -69,4 +69,9 @@ springfox:
     enabled: true
 
 swagger:
- enabled : true
+  enabled: true
+
+global-response:
+  adviceFilterPackage:
+    - springfox.documentation
+    - org.springframework
