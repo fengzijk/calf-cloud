@@ -21,6 +21,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 
 
 /**
@@ -31,6 +32,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @date : 2021/10/3 0:16
  * --------------------------------------------------
  */
+@EnableOpenApi
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication

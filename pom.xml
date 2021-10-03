@@ -37,6 +37,7 @@
         <lombok.version>1.18.20</lombok.version>
         <commons.version>3.12.0</commons.version>
         <modelmapper.version>2.4.4</modelmapper.version>
+        <swagger.version>3.0.0</swagger.version>
     </properties>
 
 
@@ -100,13 +101,8 @@
 
             <dependency>
                 <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger2</artifactId>
-                <version>2.9.2</version>
-            </dependency>
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-swagger-ui</artifactId>
-                <version>2.9.2</version>
+                <artifactId>springfox-boot-starter</artifactId>
+                <version>${swagger.version}</version>
             </dependency>
 
             <dependency>

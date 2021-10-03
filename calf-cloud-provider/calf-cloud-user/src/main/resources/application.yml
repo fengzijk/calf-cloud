@@ -92,3 +92,9 @@ feign:
       default:
         connect-timeout: 10000 # 单位毫秒
         read-timeout: 3600000 # 单位毫秒，兼容报表查询等，设置为60分钟
+springfox:
+  documentation:
+    enabled: true
+
+swagger:
+  enable : true
