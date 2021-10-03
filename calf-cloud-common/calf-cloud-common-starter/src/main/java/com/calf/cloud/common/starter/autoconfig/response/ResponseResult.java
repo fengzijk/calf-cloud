@@ -38,7 +38,7 @@ public class ResponseResult<T> implements Serializable {
     private int code;
     private String msg;
     private T data;
-    private Long timestamp;
+    private Long timestamp = System.currentTimeMillis();
     private boolean success;
 
     public boolean isSuccess() {
@@ -59,8 +59,7 @@ public class ResponseResult<T> implements Serializable {
         return new ResponseResult<T>()
           .setCode(ResponseStatusEnum.OK.getCode())
           .setMsg(ResponseStatusEnum.OK.getMsg())
-          .setData(data)
-          .setTimestamp(System.currentTimeMillis());
+          .setData(data);
     }
 
     /**
@@ -71,11 +70,10 @@ public class ResponseResult<T> implements Serializable {
      * @author : guozhifeng
      * @date : 2021/10/4 2:11
      */
-    public static <T> ResponseResult<T> fail(T data,ResponseStatusEnum responseStatusEnum) {
+    public static <T> ResponseResult<T> fail(T data, ResponseStatusEnum responseStatusEnum) {
         return new ResponseResult<T>()
           .setCode(responseStatusEnum.getCode())
           .setMsg(responseStatusEnum.getMsg())
-          .setTimestamp(System.currentTimeMillis())
           .setData(data);
     }
 
@@ -92,7 +90,6 @@ public class ResponseResult<T> implements Serializable {
         return new ResponseResult<T>()
           .setCode(ResponseStatusEnum.BAD_REQUEST.getCode())
           .setMsg(ResponseStatusEnum.BAD_REQUEST.getMsg())
-          .setTimestamp(System.currentTimeMillis())
           .setData(data);
     }
 
