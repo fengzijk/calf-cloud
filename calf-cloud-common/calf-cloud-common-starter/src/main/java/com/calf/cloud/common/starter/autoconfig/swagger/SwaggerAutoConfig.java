@@ -22,12 +22,15 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import java.util.function.Predicate;
+import javax.annotation.Resource;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import springfox.documentation.RequestHandler;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -55,20 +58,23 @@ import springfox.documentation.spring.web.plugins.Docket;
  * --------------------------------------------------
  */
 @Configuration
-@ConditionalOnProperty(prefix = "swagger.enable", value = "true", havingValue = "true")
-public class SwaggerConfig {
+@EnableConfigurationProperties(SwaggerProperties.class)
+public class SwaggerAutoConfig {
 
-    @Value("${swagger.enable:true}")
-    private Boolean enable;
 
-    /**
-     * 全局通用参数
-     */
-    @Value("${swagger.globalParameters}")
-    private boolean globalParameters;
+    @Resource
+    private SwaggerProperties swaggerProperties;
 
     @Bean
     public Docket api() {
+
+        Predicate<RequestHandler> selector = null;
+        if (Objects.nonNull(swaggerProperties.getBasePackage()) && swaggerProperties.getBasePackage().size() > 0) {
+            swaggerProperties.getBasePackage().forEach(a -> {
+                Predicate<RequestHandler> predicate = RequestHandlerSelectors.basePackage(a);
+                selector.or(predicate);
+            });
+        }
         Docket docket = new Docket(DocumentationType.OAS_30)
           //资源
           .globalResponses(HttpMethod.GET, new ArrayList<>())
@@ -76,7 +82,7 @@ public class SwaggerConfig {
           .globalResponses(HttpMethod.POST, new ArrayList<>())
           .globalResponses(HttpMethod.DELETE, new ArrayList<>())
           //是否启动
-          .enable(enable)
+          .enable(swaggerProperties.getEnabled())
           //头部信息
           .apiInfo(apiInfo())
           .select()
@@ -90,7 +96,7 @@ public class SwaggerConfig {
           .securityContexts(securityContexts());
 
         // 设置全局参数
-        if (globalParameters) {
+        if (swaggerProperties.getRequestParameter()) {
             docket.globalRequestParameters(globalRequestParameters());
         }
 
@@ -125,10 +131,10 @@ public class SwaggerConfig {
      */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-          .title("接口文档")
-          .description("@author fengzijk")
-          .contact(new Contact("Fengzijk", null, "guozhifengvip@163.com"))
-          .version("1.0")
+          .title(swaggerProperties.getTitle())
+          .description(swaggerProperties.getDescription())
+          .contact(new Contact(swaggerProperties.getAuthor(), null, swaggerProperties.getEmail()))
+          .version(swaggerProperties.getVersion())
           .build();
     }
 

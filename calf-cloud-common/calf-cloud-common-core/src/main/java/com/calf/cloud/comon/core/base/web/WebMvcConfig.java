@@ -15,10 +15,9 @@
  *
  */
 
-package com.calf.cloud.common.starter.autoconfig.web;
+package com.calf.cloud.comon.core.base.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.xml.internal.ws.api.client.ServiceInterceptor;
 import java.util.List;
 import javax.annotation.Resource;
 import org.springframework.context.annotation.Configuration;
@@ -28,13 +27,19 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
+/**
+ * -------------------------------------------------
+ * <pre>过滤</pre>
+ *
+ * @author : guozhifeng
+ * @date : 2021/10/3 21:01
+ * --------------------------------------------------
+ */
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
 
     @Resource
     private ObjectMapper objectMapper;
-    @Resource
-    private ServiceInterceptor serviceInterceptor;
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {

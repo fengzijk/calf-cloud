@@ -98,4 +98,5 @@ springfox:
 
 swagger:
   enable : true
+  title: kljkh
 

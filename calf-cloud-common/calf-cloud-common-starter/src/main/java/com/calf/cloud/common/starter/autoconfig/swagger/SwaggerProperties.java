@@ -17,8 +17,8 @@
 
 package com.calf.cloud.common.starter.autoconfig.swagger;
 
+import java.util.List;
 import lombok.Data;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -31,12 +31,45 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  */
 
 @Data
-@ConfigurationProperties(prefix = "springfox.documentation.enable")
-@ConditionalOnProperty(prefix = "springfox.documentation", value = "true", havingValue = "true")
+@ConfigurationProperties(prefix = SwaggerProperties.PREFIX)
 public class SwaggerProperties {
 
+    public static final String PREFIX = "swagger";
     /**
      * 全局通用参数
      */
-    private String globalParameters;
+    private Boolean requestParameter = Boolean.FALSE;
+
+
+    private Boolean enabled = Boolean.TRUE;
+
+    /**
+     * 文档扫描包路径
+     */
+    private List<String> basePackage;
+
+    /**
+     * title 如: 用户模块系统接口详情
+     */
+    private String title = "平台系统接口详情";
+
+    /**
+     * 服务文件介绍
+     */
+    private String description = "在线文档 @author fengzijk";
+
+    /**
+     * 服务条款网址
+     */
+    private String termsOfServiceUrl = "https://www.baidu.com/";
+
+    /**
+     * 版本
+     */
+    private String version = "V1.0";
+
+
+    private String author = "Fengzijk";
+
+    private String email = "guozhifengvip@163.com";
 }
