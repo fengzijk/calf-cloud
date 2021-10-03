@@ -42,7 +42,7 @@ public class ResponseResult<T> implements Serializable {
     private boolean success;
 
     public boolean isSuccess() {
-        this.success = this.code == 20000;
+        this.success = this.code == 200;
         return success;
     }
 
@@ -62,6 +62,23 @@ public class ResponseResult<T> implements Serializable {
           .setData(data)
           .setTimestamp(System.currentTimeMillis());
     }
+
+    /**
+     * 返回失败数据
+     *
+     * @param data 数据
+     * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<T>
+     * @author : guozhifeng
+     * @date : 2021/10/4 2:11
+     */
+    public static <T> ResponseResult<T> fail(T data,ResponseStatusEnum responseStatusEnum) {
+        return new ResponseResult<T>()
+          .setCode(responseStatusEnum.getCode())
+          .setMsg(responseStatusEnum.getMsg())
+          .setTimestamp(System.currentTimeMillis())
+          .setData(data);
+    }
+
 
     /**
      * 返回失败数据
@@ -102,17 +119,21 @@ public class ResponseResult<T> implements Serializable {
         /**
          * 请求成功
          */
-        OK(20000, "请求成功"),
+        OK(200, "请求成功"),
 
         /**
          * 请求失败
          */
-        BAD_REQUEST(20400, "请求失败"),
+        BAD_REQUEST(400, "请求失败"),
 
+        /**
+         * 请求失败
+         */
+        NO_HANDLER(404, "资源不存在"),
         /**
          * 系统内部错误
          */
-        SYSTEM_ERROR(20500, "系统内部错误");
+        SYSTEM_ERROR(500, "系统内部错误");
 
 
         private Integer code;

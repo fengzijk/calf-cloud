@@ -17,6 +17,7 @@
 
 package com.calf.cloud.common.starter.autoconfig.response;
 
+import com.calf.cloud.common.starter.autoconfig.response.ResponseResult.ResponseStatusEnum;
 import com.calf.cloud.common.starter.autoconfig.response.annotation.IgnoreGlobalResponse;
 import com.calf.cloud.common.starter.autoconfig.response.exception.BusinessException;
 import com.calf.cloud.common.starter.autoconfig.response.json.JsonUtil;
@@ -120,7 +121,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public Object notFountHandler(NoHandlerFoundException e) {
         log.warn("NoHandlerFoundException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
-        return ResponseResult.fail(e.getMessage());
+        return ResponseResult.fail(e.getMessage(), ResponseStatusEnum.NO_HANDLER);
     }
 
     /**
