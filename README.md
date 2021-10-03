@@ -8,7 +8,9 @@
 ![badge](https://img.shields.io/badge/buil-passing-green.svg)
 
 # 项目介绍
-## 🔥🔥🔥一款经过自己多年经验搭建的Springcloud 微服务框架 所有喜欢的朋友都可以拿去 开箱即用🔥🔥🔥
+calf-cloud是自己在工作中总结积累搭建的基于Spring Cloud微服务化开发平台的后端Java服务的开发脚手架。
+ 代码简洁，架构清晰，适合学习和直接项目中使用。 核心技术采用Spring Boot 2.4.6、Spring Cloud (2020.0.4)以及eureka 相关核心组件,目前在进一步完善中
+ 后续会推出SpringCloudAlibaba版本
 ## 架构图
 --- 更新中
 
