@@ -16,8 +16,8 @@ calf-cloud是自己在工作中总结积累搭建的基于Spring Cloud微服务�
 ### 项目结构
 --- 更新中
 
-## 1. swagger 
-### 1.1 swagger配置
+ ## 1.0 swagger 
+- ### 1.1 swagger配置与效果图
 ```yml
 swagger:
   enable: true
@@ -32,17 +32,22 @@ swagger:
    - com.calf.cloud.user.controller
 
 ```
-### 1.2 swagger效果图
 ![image](https://user-images.githubusercontent.com/12505138/135797722-add829a4-4a74-49cc-a39c-6625211920d2.png)
 
 
 
-# 全局异常及统一返回结果
-## 配置
+## 2.0 全局异常及统一返回结果
+- ### 2.0.1 配置
+```yml
+# 全局处理结果过滤swagger以及系统包路径
+global-response:
+  adviceFilterPackage:
+    - springfox.documentation
+    - org.springframework
+```
 
 
-
-## 异常示例 
+- ### 2.0.2 返回异常示例 
 
 ```json
 {
@@ -55,7 +60,7 @@ swagger:
 ```
 ![image](https://user-images.githubusercontent.com/12505138/135798117-0f004b1c-34f6-40a7-a427-0c77707cf14c.png)
 
-## 返回结果示例
+- ### 2.0.3 返回结果示例
 ```java
     @GetMapping("listUserInfo")
     @ApiOperation(value = "获取用户列表", httpMethod = "GET")
