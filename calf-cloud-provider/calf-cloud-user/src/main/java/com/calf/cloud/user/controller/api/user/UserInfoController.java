@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * -------------------------------------------------
  * <pre>用户信息接口</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/3 18:08
  * --------------------------------------------------
  */

@@ -22,7 +22,7 @@ package com.calf.cloud.comon.core.base.dto;
  * -------------------------------------------------
  * <pre>用户基础信息封装</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/3 11:23
  * --------------------------------------------------
  */

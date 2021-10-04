@@ -24,7 +24,7 @@ import java.util.Random;
  * -------------------------------------------------
  * <pre>短参数生成</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/3 1:57
  * --------------------------------------------------
  */
@@ -33,7 +33,7 @@ public class ShortUtils {
 
     private static String[] shortParam(String param) {
         // 可以自定义生成 MD5 加密字符传前的混合 KEY
-        String key = "guozhifeng";
+        String key = "fengzijk";
         // 要使用生成 URL 的字符
         String[] chars = new String[]{"a", "b", "c", "d", "e", "f", "g", "h",
           "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",

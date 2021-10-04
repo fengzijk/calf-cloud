@@ -36,7 +36,7 @@ import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
  * -------------------------------------------------
  * <pre>redis操作封装</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/3 1:02
  * --------------------------------------------------
  */
@@ -53,7 +53,7 @@ public class RedisAdapter {
      *
      * @param key 键
      * @param value 值
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:11
      */
     public void set(String key, Object value) {
@@ -65,7 +65,7 @@ public class RedisAdapter {
      *
      * @param key 键
      * @return boolean
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:11
      */
     public boolean hasKey(String key) {
@@ -82,7 +82,7 @@ public class RedisAdapter {
      *
      * @param key 键
      * @return java.lang.Object
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:12
      */
     public Object get(String key) {
@@ -95,7 +95,7 @@ public class RedisAdapter {
      *
      * @param key 键
      * @return java.lang.String
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:12
      */
     public String getString(String key) {
@@ -109,7 +109,7 @@ public class RedisAdapter {
      * @param key 键
      * @param value 值
      * @param time 过期时间,毫秒单位
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:14
      */
     public void setForExpiresMilliSeconds(String key, Object value, long time) {
@@ -122,7 +122,7 @@ public class RedisAdapter {
      *
      * @param key 键
      * @param value 值
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:14
      */
     public void setForExpiresMinutes(String key, Object value, long time) {
@@ -136,7 +136,7 @@ public class RedisAdapter {
      * @param key 键
      * @param value 值
      * @param time 过期时间,分钟单位
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:22
      */
     public void setForCustomTime(String key, Object value, long time, TimeUnit type) {
@@ -150,7 +150,7 @@ public class RedisAdapter {
      * @param key 键
      * @param value 值
      * @return java.lang.String
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:25
      */
     public String getAndSet(String key, Object value) {
@@ -162,7 +162,7 @@ public class RedisAdapter {
      * 批量添加 key-value (重复的键会覆盖)
      *
      * @param keyAndValue 键值对Map
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:26
      */
 
@@ -175,7 +175,7 @@ public class RedisAdapter {
      * 批量添加 key-value 只有在键不存在时,才添加 map 中只要有一个key存在,则全部不添加
      *
      * @param keyAndValue 键值对Map
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:27
      */
     public void batchSetIfAbsent(Map<String, Object> keyAndValue) {
@@ -193,7 +193,7 @@ public class RedisAdapter {
      * @param key 键
      * @param number 数字
      * @return java.lang.Long
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:29
      */
     public Long increment(String key, long number) {
@@ -208,7 +208,7 @@ public class RedisAdapter {
      * @param key 键
      * @param number 数字
      * @return java.lang.Double
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:29
      */
     public Double increment(String key, double number) {
@@ -223,7 +223,7 @@ public class RedisAdapter {
      * @param time 时间
      * @param type 时间类型 TimeUnit
      * @return java.lang.Boolean
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:31
      */
     public Boolean expire(String key, long time, TimeUnit type) {
@@ -237,7 +237,7 @@ public class RedisAdapter {
      *
      * @param key 键
      * @return boolean
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:33
      */
     @SuppressWarnings("ConstantConditions")
@@ -255,7 +255,7 @@ public class RedisAdapter {
      *
      * @param key 键
      * @return java.lang.Long
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:38
      */
     public Long getExpire(String key) {
@@ -268,7 +268,7 @@ public class RedisAdapter {
      *
      * @param key 键
      * @param newKey 新key
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:39
      */
     public void rename(String key, String newKey) {
@@ -281,7 +281,7 @@ public class RedisAdapter {
      *
      * @param key 键
      * @return boolean
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:40
      */
     @SuppressWarnings("ConstantConditions")

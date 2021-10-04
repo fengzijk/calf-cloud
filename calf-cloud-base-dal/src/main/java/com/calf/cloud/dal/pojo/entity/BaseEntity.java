@@ -28,7 +28,7 @@ import lombok.experimental.Accessors;
 /**
 *-------------------------------------------------
 * <pre>数据库基础字段:</pre>
-* @author : guozhifeng
+* @author : fengzijk
 * @date : 2021/10/3 11:05
 *--------------------------------------------------
 */

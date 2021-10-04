@@ -90,7 +90,7 @@ public class IpUtils {
      * ip           所验证的IP号码
      *
      * @return boolean
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:44
      */
     public static boolean ipExistsInRange(String ip, String ipSection) {
@@ -152,7 +152,7 @@ public class IpUtils {
      * @param ip1 ip1
      * @param ip2 ip2
      * @return int
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:46
      */
     public static int compareIpV4s(String ip1, String ip2) {

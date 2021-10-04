@@ -102,11 +102,21 @@ springfox:
 
 swagger:
   enable: true
-  title: 郭志峰文档管理-用户模块
+  title: 文档管理-用户模块
+  version: V0.0.1
+  description: 用户模块-文档管理
+  author: fengzijk
+  email: guozhifengvip@gmail.com
+  requestParameter: true
+  termsOfServiceUrl: http//:fengzijk.com
+  basePackage:
+   - com.calf.cloud.user.controller
+
 
 global-response:
   adviceFilterPackage:
     - springfox.documentation
     - org.springframework
+
 
 

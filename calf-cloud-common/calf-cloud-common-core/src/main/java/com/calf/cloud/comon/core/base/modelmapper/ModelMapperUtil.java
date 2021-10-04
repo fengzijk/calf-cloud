@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
 /**
 *-------------------------------------------------
 * <pre>bean拷贝</pre>
-* @author : guozhifeng
+* @author : fengzijk
 * @date : 2021/10/3 1:54
 *--------------------------------------------------
 */

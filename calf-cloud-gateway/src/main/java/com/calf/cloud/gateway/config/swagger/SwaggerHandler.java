@@ -34,7 +34,7 @@ import springfox.documentation.swagger.web.UiConfigurationBuilder;
  * -------------------------------------------------
  * Swagger 配置 gateway
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/3 18:05
  * --------------------------------------------------
  */

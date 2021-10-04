@@ -26,7 +26,7 @@ import lombok.experimental.Accessors;
  * -------------------------------------------------
  * <pre>统一返回结果</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/4 1:01
  * --------------------------------------------------
  */
@@ -52,7 +52,7 @@ public class ResponseResult<T> implements Serializable {
      *
      * @param data 数据
      * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<T>
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/4 2:08
      */
     public static <T> ResponseResult<T> success(T data) {
@@ -67,7 +67,7 @@ public class ResponseResult<T> implements Serializable {
      *
      * @param data 数据
      * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<T>
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/4 2:11
      */
     public static <T> ResponseResult<T> fail(T data, ResponseStatusEnum responseStatusEnum) {
@@ -83,7 +83,7 @@ public class ResponseResult<T> implements Serializable {
      *
      * @param data 数据
      * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<T>
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/4 2:11
      */
     public static <T> ResponseResult<T> fail(T data) {
@@ -99,7 +99,7 @@ public class ResponseResult<T> implements Serializable {
      *
      * @param result 返回结果
      * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<T>
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/4 2:13
      */
     public static <T> ResponseResult<T> result(T result) {

@@ -23,7 +23,7 @@ import com.calf.cloud.comon.core.utils.IpUtils;
  * -------------------------------------------------
  * <pre>雪花算法生成id</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/3 2:04
  * --------------------------------------------------
  */

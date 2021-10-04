@@ -50,7 +50,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * -------------------------------------------------
  * <pre>全局异常处理</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/3 19:15
  * --------------------------------------------------
  */
@@ -69,7 +69,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      *
      * @param e 错误信息
      * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<?>
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/4 2:21
      */
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
@@ -91,7 +91,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      *
      * @param e 错误信息
      * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<?>
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/4 2:22
      */
     @ExceptionHandler(value = BindException.class)
@@ -114,7 +114,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      *
      * @param e 错误信息
      * @return java.lang.Object
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/4 4:04
      */
     @ExceptionHandler(NoHandlerFoundException.class)
@@ -129,7 +129,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      *
      * @param e 错误信息
      * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<?>
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/4 2:22
      */
     @ExceptionHandler(value = ValidationException.class)
@@ -144,7 +144,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      *
      * @param e 错误信息
      * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<?>
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/4 2:20
      */
     @ExceptionHandler(value = {HttpRequestMethodNotSupportedException.class, HttpMediaTypeNotSupportedException.class})
@@ -159,7 +159,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      *
      * @param e 错误信息
      * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<?>
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/4 2:23
      */
     @ExceptionHandler(value = MissingServletRequestParameterException.class)
@@ -175,7 +175,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      *
      * @param e 错误信息
      * @return com.calf.cloud.common.starter.autoconfig.response.ResponseResult<?>
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/4 2:20
      */
     @ExceptionHandler(value = BusinessException.class)
@@ -217,7 +217,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      *
      * @param methodParameter 方法参数
      * @return java.lang.Boolean
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/4 0:30
      */
     private Boolean filter(MethodParameter methodParameter) {

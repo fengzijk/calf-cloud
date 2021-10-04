@@ -32,7 +32,7 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
  * -------------------------------------------------
  * <pre>实现 Swagger的配置</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/3 16:27
  * --------------------------------------------------
  */

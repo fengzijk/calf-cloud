@@ -27,7 +27,7 @@ import org.springframework.web.client.RestTemplate;
  * -------------------------------------------------
  * <pre>RestTemplateConfig</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/3 19:11
  * --------------------------------------------------
  */

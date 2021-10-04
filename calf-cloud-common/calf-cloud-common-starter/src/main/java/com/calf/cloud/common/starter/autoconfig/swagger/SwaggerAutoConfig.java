@@ -51,7 +51,7 @@ import springfox.documentation.spring.web.plugins.Docket;
  * -------------------------------------------------
  * <pre>swagger 配置</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/3 16:39
  * --------------------------------------------------
  */
@@ -166,7 +166,7 @@ public class SwaggerAutoConfig {
 //     *
 //     * @param basePackage 路径
 //     * @return java.util.function.Predicate
-//     * @author : guozhifeng
+//     * @author : fengzijk
 //     * @date : 2021/10/4 3:17
 //     */
 //    @SuppressWarnings({"rawtypes", "Guava"})

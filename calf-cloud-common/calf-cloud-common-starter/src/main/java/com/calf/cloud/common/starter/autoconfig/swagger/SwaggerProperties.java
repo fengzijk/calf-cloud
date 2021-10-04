@@ -26,7 +26,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * -------------------------------------------------
  * <pre>swagger配置属性</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/3 16:54
  * --------------------------------------------------
  */

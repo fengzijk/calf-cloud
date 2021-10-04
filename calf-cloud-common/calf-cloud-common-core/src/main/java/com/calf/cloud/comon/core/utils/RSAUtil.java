@@ -50,7 +50,7 @@ import sun.misc.BASE64Encoder;
  * 非对称加密算法可以用来对对称加密的密钥加密，这样保证密钥的安全也就保证了数据的安全
  * </pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/3 1:49
  * --------------------------------------------------
  */
@@ -270,7 +270,7 @@ public class RSAUtil {
      * @param privateKey 私钥
      * @param str 需要加密的字符串
      * @return java.lang.String 返回加密后的字符串
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:51
      */
     public static String encryptByPrivateKey(String str, String privateKey) throws Exception {
@@ -287,7 +287,7 @@ public class RSAUtil {
      *
      * @param str 需要加密的字符串
      * @return java.lang.String 返回加密后的字符串
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:51
      */
     public static String encryptByPublicKey(String str, String publicKey) throws Exception {
@@ -301,7 +301,7 @@ public class RSAUtil {
      * @param publicKey 公钥
      * @param str 加密后的字符串
      * @return java.lang.String 返回解密后的字符串
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/3 1:51
      */
     public static String decryptByPublicKey(String str, String publicKey) throws Exception {
