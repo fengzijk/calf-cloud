@@ -36,6 +36,7 @@
         <guava.version>17.0</guava.version>
         <lombok.version>1.18.20</lombok.version>
         <commons.version>3.12.0</commons.version>
+        <commons-codec.version>1.15</commons-codec.version>
         <modelmapper.version>2.4.4</modelmapper.version>
         <swagger.version>3.0.0</swagger.version>
         <guava.version>30.0-jre</guava.version>
@@ -92,6 +93,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>commons-codec</groupId>
+                <artifactId>commons-codec</artifactId>
+                <version>${commons-codec.version}</version>
             </dependency>
 
             <dependency>

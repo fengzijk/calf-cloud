@@ -17,8 +17,9 @@
 
 package com.calf.cloud.comon.core.utils;
 
-import java.security.MessageDigest;
 import java.util.Random;
+import org.apache.commons.codec.digest.DigestUtils;
+
 
 /**
  * -------------------------------------------------
@@ -44,7 +45,7 @@ public class ShortUtils {
 
         };
         // 对传入网址进行 MD5 加密
-        String hex = md5ByHex(key + param);
+        String hex = DigestUtils.sha1Hex(key + param);
 
         String[] resUrl = new String[4];
         for (int i = 0; i < 4; i++) {
@@ -69,37 +70,8 @@ public class ShortUtils {
         return resUrl;
     }
 
-    /**
-     * MD5加密(32位大写)
-     *
-     * @param src
-     * @return
-     */
-    private static String md5ByHex(String src) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] b = src.getBytes();
-            md.reset();
-            md.update(b);
-            byte[] hash = md.digest();
-            StringBuilder hs = new StringBuilder();
-            String stmp = "";
-            for (byte value : hash) {
-                stmp = Integer.toHexString(value & 0xFF);
-                if (stmp.length() == 1) {
-                    hs.append("0").append(stmp);
-                } else {
-                    hs.append(stmp);
-                }
-            }
-            return hs.toString().toUpperCase();
-        } catch (Exception e) {
-            return "";
-        }
-    }
 
-
-    public static String getShortsSence(String param) {
+    public static String getShortOutStr(String param) {
         //将产生4组6位字符串
         String[] aResult = shortParam(param);
         Random random = new Random();
