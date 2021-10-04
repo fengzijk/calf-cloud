@@ -32,7 +32,7 @@ swagger:
    - com.calf.cloud.user.controller
 
 ```
-![image](https://user-images.githubusercontent.com/12505138/135797722-add829a4-4a74-49cc-a39c-6625211920d2.png)
+![image](https://user-images.githubusercontent.com/12505138/135800612-d3852951-707d-41ec-bbbb-3595d117d4f5.png)
 
 
 
