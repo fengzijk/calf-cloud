@@ -2,7 +2,8 @@
 
 ![SpringBoot](https://img.shields.io/badge/SpringBoot-2.4.6-lightBlue.svg)
 ![SpringCloud](https://img.shields.io/badge/SpringCloud-2020.0.3-lightBlue.svg)
-![MybatusPlus](https://img.shields.io/badge/mybatis-plus-lightBlue.svg)
+![MybatusPlus](https://img.shields.io/badge/mybatis--plus-3.4.5-orange)
+![Redission](https://img.shields.io/badge/redission-3.16.3-orange)
 ![JAVA](https://img.shields.io/badge/JAVA-1.8+-brightgreen.svg)
 ![Maven](https://img.shields.io/badge/Maven-3.0+-green.svg)
 ![badge](https://img.shields.io/badge/buil-passing-green.svg)
