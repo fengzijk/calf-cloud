@@ -22,6 +22,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
@@ -34,8 +35,23 @@ import lombok.experimental.Accessors;
  */
 @Getter
 @Setter
+@ToString
 @Accessors(chain = true)
 public class BaseManagerVO implements Serializable {
+
+    /**
+     * 主键id
+     */
+    @ApiModelProperty(value = "主键id")
+    private Long id;
+
+
+    /**
+     * 用户id
+     */
+    @ApiModelProperty(value = "用户Id")
+    private Long userId;
+
 
     /**
      * 账号
@@ -77,7 +93,7 @@ public class BaseManagerVO implements Serializable {
      * 手机
      */
     @ApiModelProperty(value = "手机")
-    private String telephone;
+    private String mobile;
 
     /**
      * 生日
@@ -107,7 +123,7 @@ public class BaseManagerVO implements Serializable {
      * 状态
      */
     @ApiModelProperty(value = "状态")
-    private String status;
+    private Integer status;
 
     /**
      * 删除标识

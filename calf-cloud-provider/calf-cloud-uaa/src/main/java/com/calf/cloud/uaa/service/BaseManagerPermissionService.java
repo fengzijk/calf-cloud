@@ -18,7 +18,6 @@
 package com.calf.cloud.uaa.service;
 
 
-
 /**
  * 角色权限表 服务类
  *
@@ -26,7 +25,6 @@ package com.calf.cloud.uaa.service;
  * @date 2021-10-05
  */
 public interface BaseManagerPermissionService {
-    
 
-        
+
 }

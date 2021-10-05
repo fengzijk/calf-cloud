@@ -20,9 +20,15 @@ package com.calf.cloud.uaa.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.calf.cloud.common.core.base.modelmapper.ModelMapperUtil;
 import com.calf.cloud.uaa.mapper.UserInfoMapper;
 import com.calf.cloud.uaa.pojo.entity.UserInfoEntity;
+import com.calf.cloud.uaa.pojo.vo.BaseManagerVO;
+import com.calf.cloud.uaa.pojo.vo.UserInfoVO;
+import com.calf.cloud.uaa.service.BaseManagerService;
 import com.calf.cloud.uaa.service.UserService;
+import java.util.Objects;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -36,10 +42,20 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserInfoMapper, UserInfoEntity> implements UserService {
 
+    @Autowired
+    private BaseManagerService baseManagerService;
+
     @Override
-    public UserInfoEntity getUserByUserName(String username) {
+    public UserInfoVO getUserByUserName(String username) {
         LambdaQueryWrapper<UserInfoEntity> lambda3 = Wrappers.lambdaQuery();
-        lambda3.ne(UserInfoEntity::getUsername, username);
-        return super.baseMapper.selectOne(lambda3);
+        lambda3.eq(UserInfoEntity::getUsername, username);
+        UserInfoEntity entity = super.baseMapper.selectOne(lambda3);
+        UserInfoVO userInfoVO = ModelMapperUtil.map(entity, UserInfoVO.class);
+        if (Objects.nonNull(entity)) {
+            BaseManagerVO managerVO = baseManagerService.selectByUserId(entity.getId());
+            userInfoVO.setBaseManagervo(managerVO);
+        }
+
+        return userInfoVO;
     }
 }

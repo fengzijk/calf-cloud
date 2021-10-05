@@ -19,6 +19,12 @@ import lombok.experimental.Accessors;
 @TableName("base_manager")
 public class BaseManagerEntity extends BaseEntity {
 
+
+    /**
+     * 用户id
+     */
+    @TableField("user_id")
+    private Long userId;
     /**
      * 账号
      */

@@ -17,9 +17,13 @@
 
 package com.calf.cloud.uaa.service.impl;
 
+import com.calf.cloud.common.core.enums.user.LoginTypeEnum;
+import com.calf.cloud.starter.response.exception.BusinessException;
+import com.calf.cloud.uaa.handle.user.UserConversionHandle;
 import com.calf.cloud.uaa.pojo.vo.UserInfoVO;
 import com.calf.cloud.uaa.service.UaaUserDetailsService;
 import com.calf.cloud.uaa.service.UserService;
+import java.util.Objects;
 import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -34,16 +38,18 @@ public class UserDetailsServiceImpl implements UaaUserDetailsService {
     @Resource
     private UserService userService;
 
+    @Resource
+    private UserConversionHandle userConversionHandle;
+
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-//        UserInfoVO userInfo = userService.getUserByUserName(userName);
-//        if (Objects.isNull(userInfo)) {
-//            throw new BusinessException("该用户：" + userName + "不存在");
-//        }
-//        userInfo.set(Oauth2Constant.LOGIN_USERNAME_TYPE);
-//        userInfo.setUserName(userName);
-//        return getUserDetails(userInfo);
-        return null;
+        UserInfoVO userInfo = userService.getUserByUserName(userName);
+        if (Objects.isNull(userInfo)) {
+            throw new BusinessException("该用户：" + userName + "不存在");
+        }
+        userInfo.setLoginType(LoginTypeEnum.USER_NAME.getCode());
+        userInfo.setUsername(userName);
+        return userConversionHandle.userCoversUserDetailsVO(userInfo);
     }
 
     @Override
@@ -51,9 +57,5 @@ public class UserDetailsServiceImpl implements UaaUserDetailsService {
         return null;
     }
 
-
-    private UserDetails getUserDetails(UserInfoVO userInfoVO) {
-        return null;
-    }
 
 }

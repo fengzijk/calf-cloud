@@ -61,11 +61,15 @@ public class UserInfoVO implements Serializable {
      * 登录类型　1：用户名密码登录　2：手机号登录　3：社交登录
      */
     @ApiModelProperty(value = "登录类型")
-    private int type;
+    private int loginType;
 
     /**
      * 用户名
      */
     @ApiModelProperty(value = "用户名")
     private String username;
+
+    private Long id;
+
+    private Integer status = 1;
 }

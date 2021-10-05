@@ -17,7 +17,7 @@
 
 package com.calf.cloud.uaa.service;
 
-import com.calf.cloud.uaa.pojo.entity.UserInfoEntity;
+import com.calf.cloud.uaa.pojo.vo.UserInfoVO;
 
 /**
  * -------------------------------------------------
@@ -29,5 +29,5 @@ import com.calf.cloud.uaa.pojo.entity.UserInfoEntity;
  */
 public interface UserService {
 
-    UserInfoEntity getUserByUserName(String userName);
+    UserInfoVO getUserByUserName(String userName);
 }

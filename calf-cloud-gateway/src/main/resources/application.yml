@@ -30,10 +30,10 @@ spring:
             allowedOrigins: "*"
             allowedMethods: "*"
       routes:
-        - id: calf-cloud-user
-          uri: lb://CALF-CLOUD-USER
+        - id: calf-cloud-uaa
+          uri: lb://CALF-CLOUD-UAA
           predicates:
-            - Path=/user/**
+            - Path=/uaa/**
           filters:
             - StripPrefix=1
 

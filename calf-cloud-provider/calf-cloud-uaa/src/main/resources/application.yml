@@ -29,7 +29,7 @@ spring:
 
   # 数据库配置
   datasource:
-    url: jdbc:mysql://192.168.2.11:3306/psmp?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
+    url: jdbc:mysql://192.168.2.11:3306/calf_user?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -60,13 +60,16 @@ mybatis-plus:
   mapper-locations:
     - classpath:mapper/*.xml
   # 实体扫描，多个package用逗号或者分号分隔
-  type-aliases-package: com.calf.cloud.user.pojo.entity
+  type-aliases-package: com.calf.cloud.uaa.pojo.entity
   global-config:
     # 逻辑删除配置
     db-config:
       logic-delete-value: 0
       logic-not-delete-value: 1
     banner: false
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 
 
 
@@ -122,3 +125,8 @@ calf-cloud:
   redis:
     enabled: true
     redissonLockEnable: true
+  security:
+    enable: true
+    ignore:
+      urls:
+        - /v3/api-docs/**
