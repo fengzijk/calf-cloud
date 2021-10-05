@@ -18,6 +18,7 @@
         <module>calf-cloud-starter-swagger</module>
         <module>calf-cloud-starter-auth</module>
         <module>calf-cloud-starter-redis</module>
+        <module>calf-cloud-starter-security</module>
     </modules>
 
     <dependencies>

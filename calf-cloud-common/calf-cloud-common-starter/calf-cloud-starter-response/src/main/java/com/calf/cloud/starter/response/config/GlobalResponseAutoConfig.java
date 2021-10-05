@@ -34,7 +34,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(GlobalResponseProperties.class)
-@ConditionalOnProperty(value = "global-response.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(value = GlobalResponseProperties.PREFIX+".enabled", havingValue = "true", matchIfMissing = true)
 public class GlobalResponseAutoConfig {
 
     @Bean

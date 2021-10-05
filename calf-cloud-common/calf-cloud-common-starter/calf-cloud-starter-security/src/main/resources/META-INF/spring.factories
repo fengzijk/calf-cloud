@@ -1,0 +1,4 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.calf.starter.security.config.IgnoreUrlPropertiesConfig,\
+  com.calf.starter.security.service.PermissionService,\
+  com.calf.starter.security.config.SecurityConfig
