@@ -26,7 +26,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
  * -------------------------------------------------
  * <pre>Auth用户</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/5 14:52
  * --------------------------------------------------
  */
@@ -38,7 +38,7 @@ public class AuthUser {
      * 获取Authentication
      *
      * @return org.springframework.security.core.Authentication
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/5 14:49
      */
     private Authentication getAuthentication() {
@@ -50,7 +50,7 @@ public class AuthUser {
      * 获取用户
      *
      * @return com.calf.cloud.common.core.base.dto.BaseUserInfoDTO
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/5 14:51
      */
     public BaseUserInfoDTO getUser() {
@@ -64,7 +64,7 @@ public class AuthUser {
      *
      * @param authentication 用户认证
      * @return com.calf.cloud.common.core.base.dto.BaseUserInfoDTO 登录用户
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/5 14:49
      */
     public BaseUserInfoDTO getUser(Authentication authentication) {
@@ -80,7 +80,7 @@ public class AuthUser {
      * 获取用户名称
      *
      * @return java.lang.String
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/5 14:51
      */
     public String getUsername() {

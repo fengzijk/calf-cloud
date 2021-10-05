@@ -12,7 +12,7 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <modules>
-        <module>calf-cloud-user</module>
+        <module>calf-cloud-uaa</module>
         <module>calf-cloud-message</module>
     </modules>
     <dependencies>
@@ -45,16 +45,5 @@
             <artifactId>springfox-boot-starter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.fengzijk</groupId>
-            <artifactId>calf-cloud-common-starter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-starter-web</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
     </dependencies>
 </project>

@@ -28,7 +28,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import jodd.util.StringUtil;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -39,12 +38,14 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+@Configuration
 @EnableConfigurationProperties(RedisProperties.class)
 @ConditionalOnProperty(value = RedisProperties.PREFIX + ".enabled", havingValue = "true", matchIfMissing = true)
 public class RedisAutoConfig {
@@ -86,8 +87,8 @@ public class RedisAutoConfig {
     @ConditionalOnProperty(value = RedisProperties.PREFIX + ".enabled", havingValue = "true", matchIfMissing = true)
     RedissonClient redissonSingle(@Value("${spring.redis.host}") String host,
       @Value("${spring.redis.port}") int port,
-      @Value("${spring.redis.password") String password,
-      @Value("${spring.redis.database") int database
+//      @Value("${spring.redis.password}") String password,
+      @Value("${spring.redis.database}") String database
     ) {
         Config config = new Config();
         SingleServerConfig serverConfig = config.useSingleServer()
@@ -96,19 +97,19 @@ public class RedisAutoConfig {
           .setConnectionPoolSize(32)
           .setConnectionMinimumIdleSize(8);
 
-        if (StringUtil.isNotBlank(password)) {
-            serverConfig.setPassword(password);
-        }
+//        if (StringUtil.isNotBlank(password)) {
+//            serverConfig.setPassword(password);
+//        }
 
-        serverConfig.setDatabase(database);
+        serverConfig.setDatabase(Integer.parseInt(database));
 
         return Redisson.create(config);
 
     }
 
-    @Bean
+    @Bean(name = "redisAdapter")
     @ConditionalOnBean(name = "redisTemplate")
-    public RedisAdapter redisService() {
+    public RedisAdapter redisAdapter() {
         return new RedisAdapter();
     }
 
@@ -116,7 +117,7 @@ public class RedisAutoConfig {
     /**
      *  装配locker类，并将实例注入到RedissonLockUtil中
      * @return com.calf.cloud.starter.redis.redisson.DistributedLocker
-     * @author : guozhifeng
+     * @author : fengzijk
      * @date : 2021/10/5 13:07
      */
     @Bean

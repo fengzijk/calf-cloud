@@ -35,7 +35,7 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
  * -------------------------------------------------
  * <pre>资源配置</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/5 15:13
  * --------------------------------------------------
  */

@@ -25,7 +25,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * -------------------------------------------------
  * <pre>权限配置文件</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/5 12:35
  * --------------------------------------------------
  */

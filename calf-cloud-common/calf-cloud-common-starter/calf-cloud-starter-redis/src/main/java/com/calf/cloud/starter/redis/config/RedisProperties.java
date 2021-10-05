@@ -26,7 +26,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * -------------------------------------------------
  * <pre>redis配置</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/5 13:12
  * --------------------------------------------------
  */

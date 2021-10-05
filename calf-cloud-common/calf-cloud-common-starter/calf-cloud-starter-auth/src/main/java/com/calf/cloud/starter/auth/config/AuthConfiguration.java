@@ -27,7 +27,7 @@ import org.springframework.context.annotation.Configuration;
  * -------------------------------------------------
  * <pre>权限自动配置</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/5 14:37
  * --------------------------------------------------
  */

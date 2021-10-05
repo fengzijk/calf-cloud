@@ -30,7 +30,7 @@ import org.springframework.security.oauth2.provider.expression.OAuth2MethodSecur
  * -------------------------------------------------
  * <pre>安全配置</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/5 15:15
  * --------------------------------------------------
  */

@@ -81,6 +81,34 @@ public class ResponseResult<T> implements Serializable {
     /**
      * 返回失败数据
      *
+     * @param responseStatusEnum 数据
+     * @return com.calf.cloud.starter.response.ResponseResult<T>
+     * @author : fengzijk
+     * @date : 2021/10/4 2:11
+     */
+    public static <T> ResponseResult<T> fail(ResponseStatusEnum responseStatusEnum) {
+        return new ResponseResult<T>()
+          .setCode(responseStatusEnum.getCode())
+          .setMsg(responseStatusEnum.getMsg());
+    }
+
+    /**
+     * 返回失败数据
+     *
+     * @return com.calf.cloud.starter.response.ResponseResult<T>
+     * @author : fengzijk
+     * @date : 2021/10/4 2:11
+     */
+    public static <T> ResponseResult<T> fail(int code, String msg) {
+        return new ResponseResult<T>()
+          .setCode(code)
+          .setMsg(msg);
+    }
+
+
+    /**
+     * 返回失败数据
+     *
      * @param data 数据
      * @return com.calf.cloud.starter.response.ResponseResult<T>
      * @author : fengzijk
@@ -110,60 +138,7 @@ public class ResponseResult<T> implements Serializable {
     }
 
 
-    @Getter
-    public enum ResponseStatusEnum {
 
-        /**
-         * 请求成功
-         */
-        OK(200, "请求成功"),
-
-        /**
-         * 请求失败
-         */
-        BAD_REQUEST(400, "请求失败"),
-
-        /**
-         * 请求失败
-         */
-        NO_HANDLER(404, "资源不存在"),
-        /**
-         * 系统内部错误
-         */
-        SYSTEM_ERROR(500, "系统内部错误");
-
-
-        private Integer code;
-        private String msg;
-
-        ResponseStatusEnum(Integer code, String name) {
-            this.code = code;
-            this.msg = name;
-        }
-
-
-        public static String getMsgByCode(Integer code) {
-            if (code != null) {
-                for (ResponseStatusEnum e : values()) {
-                    if (e.getCode().equals(code)) {
-                        return e.getMsg();
-                    }
-                }
-            }
-            return null;
-        }
-
-        public static ResponseStatusEnum getByCode(Integer code) {
-            if (code != null) {
-                for (ResponseStatusEnum e : values()) {
-                    if (e.getCode().equals(code)) {
-                        return e;
-                    }
-                }
-            }
-            return null;
-        }
-    }
 
 
 }

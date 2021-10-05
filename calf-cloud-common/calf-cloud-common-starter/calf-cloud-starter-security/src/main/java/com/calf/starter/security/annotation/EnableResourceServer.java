@@ -30,7 +30,7 @@ import org.springframework.context.annotation.Import;
  * -------------------------------------------------
  * <pre>资源服务注解:</pre>
  *
- * @author : guozhifeng
+ * @author : fengzijk
  * @date : 2021/10/5 15:32
  * --------------------------------------------------
  */
