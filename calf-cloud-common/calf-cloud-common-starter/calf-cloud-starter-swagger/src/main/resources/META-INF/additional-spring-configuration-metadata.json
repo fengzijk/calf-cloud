@@ -1,0 +1,44 @@
+{
+  "properties": [
+    {
+      "name": "calf-cloud.swagger.enable",
+      "type": "java.lang.Boolean",
+      "description": "Description for swagger.enable."
+    },
+    {
+      "name": "calf-cloud.swagger.basePackage",
+      "type": "java.util.List<java.lang.String>",
+      "description": "文档扫描包路径."
+    },
+    {
+      "name": "calf-cloud.swagger.title",
+      "type": "java.lang.String",
+      "defaultValue": "平台系统接口详情",
+      "description": "title 如: 用户模块系统接口详情."
+    },
+    {
+      "name": "calf-cloud.swagger.description",
+      "type": "java.lang.String",
+      "defaultValue": "在线文档",
+      "description": "服务文件介绍."
+    },
+    {
+      "name": "calf-cloud.swagger.termsOfServiceUrl",
+      "type": "java.lang.String",
+      "defaultValue": "https://www.baidu.com/",
+      "description": "服务条款网址."
+    },
+    {
+      "name": "calf-cloud.swagger.version",
+      "type": "java.lang.String",
+      "defaultValue": "V1.0",
+      "description": "版本."
+    },
+    {
+      "name": "calf-cloud.swagger.requestParameter",
+      "type": "java.lang.Boolean",
+      "defaultValue": "全局参数",
+      "description": "全局 token."
+    }
+  ]
+}

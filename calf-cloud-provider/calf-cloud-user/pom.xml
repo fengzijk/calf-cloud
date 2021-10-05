@@ -50,6 +50,27 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.fengzijk</groupId>
+            <artifactId>calf-cloud-starter-response</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fengzijk</groupId>
+            <artifactId>calf-cloud-starter-swagger</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fengzijk</groupId>
+            <artifactId>calf-cloud-starter-redis</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
+
 
     </dependencies>
 

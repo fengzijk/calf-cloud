@@ -16,7 +16,7 @@
  */
 package com.calf.cloud.user;
 
-import com.calf.cloud.common.starter.autoconfig.response.annotation.EnableGlobalResponse;
+import com.calf.cloud.starter.response.annotation.EnableGlobalResponse;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

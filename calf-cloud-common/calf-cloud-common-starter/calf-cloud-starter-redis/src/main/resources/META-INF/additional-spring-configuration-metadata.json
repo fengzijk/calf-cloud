@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "calf-cloud.redis.enabled",
+      "type": "java.lang.Boolean",
+      "description": "Description for redis.enable."
+    },
+    {
+      "name": "calf-cloud.redis.redissonLockEnable",
+      "type": "java.lang.Boolean",
+      "description": "是否开启分布式锁."
+    }
+  ]
+}
