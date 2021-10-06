@@ -102,7 +102,7 @@ public class Oauth2Constant {
     /**
      * 自定义client表名
      */
-    public static final String CLIENT_TABLE = "USER_sys_client";
+    public static final String CLIENT_TABLE = "base_manager_client";
 
     public static final String ENCRYPT = "{USER}";
 

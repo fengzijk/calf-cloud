@@ -116,7 +116,7 @@ calf-cloud:
     requestParameter: true
     termsOfServiceUrl: http//:fengzijk.com
     basePackage:
-      - com.calf.cloud.user.controller
+      - com.calf.cloud.uaa.controller
 
   global-response:
     adviceFilterClass:
@@ -130,3 +130,9 @@ calf-cloud:
     ignore:
       urls:
         - /v3/api-docs/**
+        - /swagger**
+        - /swagger-ui/**
+        - /webjars/**
+        - swagger-ui.html
+  auth:
+    enabled: true

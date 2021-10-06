@@ -19,6 +19,7 @@
 package com.calf.cloud.uaa.controller.api.user;
 
 
+import com.calf.cloud.starter.auth.annotation.PermissionAuth;
 import com.calf.cloud.uaa.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -48,6 +49,7 @@ public class UserInfoController {
     private UserService userService;
 
 
+    @PermissionAuth
     @GetMapping("listUserInfo")
     @ApiOperation(value = "获取用户列表", httpMethod = "POST")
     public String listUserInfo() {

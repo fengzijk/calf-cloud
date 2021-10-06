@@ -82,7 +82,7 @@ public class ClientDetailsServiceImpl extends JdbcClientDetailsService {
 
         try {
             clientDetails = super.loadClientByClientId(clientId);
-            if (Objects.isNull(clientDetails)) {
+            if (Objects.nonNull(clientDetails)) {
                 redisTemplate.opsForValue().set(clientKey(clientId), clientDetails);
                 log.debug("Cache clientId:{}, clientDetails:{}", clientId, clientDetails);
             }

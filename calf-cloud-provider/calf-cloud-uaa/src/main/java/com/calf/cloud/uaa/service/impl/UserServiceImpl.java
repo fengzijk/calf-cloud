@@ -27,6 +27,7 @@ import com.calf.cloud.uaa.pojo.vo.BaseManagerVO;
 import com.calf.cloud.uaa.pojo.vo.UserInfoVO;
 import com.calf.cloud.uaa.service.BaseManagerService;
 import com.calf.cloud.uaa.service.UserService;
+import java.util.Arrays;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,7 @@ public class UserServiceImpl extends ServiceImpl<UserInfoMapper, UserInfoEntity>
         if (Objects.nonNull(entity)) {
             BaseManagerVO managerVO = baseManagerService.selectByUserId(entity.getId());
             userInfoVO.setBaseManagervo(managerVO);
+            userInfoVO.setRoleIds(Arrays.asList("ADMIN"));
         }
 
         return userInfoVO;

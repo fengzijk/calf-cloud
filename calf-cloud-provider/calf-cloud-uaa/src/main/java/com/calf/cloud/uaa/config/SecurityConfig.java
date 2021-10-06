@@ -30,14 +30,17 @@ import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.security.web.firewall.StrictHttpFirewall;
 
 @Order(3)
 @EnableWebSecurity
@@ -48,19 +51,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
     }
+
 
 
 
 
     @Resource
     private SmsCodeAuthenticationSecurityConfig smsCodeAuthenticationSecurityConfig;
-    /**
-     * 必须要定义，否则不支持grant_type=password模式
-     *
-     * @return AuthenticationManager
-     */
+
     @Bean
     @Override
     @SneakyThrows
@@ -96,11 +96,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
           .authorizeRequests();
         ignoreUrlPropsConfig.getUrls().forEach(url -> config.antMatchers(url).permitAll());
         ignoreUrlPropsConfig.getIgnoreSecurity().forEach(url -> config.antMatchers(url).permitAll());
-        config.anyRequest() .authenticated().and().csrf().disable();
+        config.anyRequest().authenticated().and().csrf().disable();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
+    }
+
+
+    @Bean
+    public HttpFirewall allowUrlEncodedSlashHttpFirewall() {
+        StrictHttpFirewall firewall = new StrictHttpFirewall();
+        //此处开启不让检测‘/’符号
+        firewall.setAllowUrlEncodedSlash(true);
+        firewall.setAllowSemicolon(true);
+        return firewall;
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.httpFirewall(allowUrlEncodedSlashHttpFirewall());
+        super.configure(web);
     }
 }

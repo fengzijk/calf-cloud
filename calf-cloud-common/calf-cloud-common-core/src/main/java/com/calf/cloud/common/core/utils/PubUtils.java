@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
+import org.springframework.util.CollectionUtils;
 
 public class PubUtils {
 
@@ -42,6 +43,9 @@ public class PubUtils {
 
 
     public static String[] toStrArray(List<String> list) {
+        if (CollectionUtils.isEmpty(list)) {
+            list.add("ADMIN");
+        }
         String[] arr = new String[list.size()];
 
         return list.toArray(arr);
