@@ -17,7 +17,7 @@
 
 package com.calf.cloud.uaa.service.impl;
 
-import com.calf.cloud.common.core.constant.Oauth2Constant;
+import com.calf.cloud.common.core.constant.BaseConstant;
 import java.util.Objects;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -67,7 +67,7 @@ public class ClientDetailsServiceImpl extends JdbcClientDetailsService {
         if (Objects.isNull(clientDetails)) {
             clientDetails = getCacheClient(clientId);
         }
-        clientDetails.getAuthorizedGrantTypes().add(Oauth2Constant.CLIENT_CREDENTIALS);
+        clientDetails.getAuthorizedGrantTypes().add(BaseConstant.CLIENT_CREDENTIALS);
         return clientDetails;
     }
 
@@ -93,6 +93,6 @@ public class ClientDetailsServiceImpl extends JdbcClientDetailsService {
     }
 
     private String clientKey(String clientId) {
-        return Oauth2Constant.CLIENT_TABLE + ":" + clientId;
+        return BaseConstant.CLIENT_TABLE + ":" + clientId;
     }
 }

@@ -97,7 +97,7 @@ public class DateUtil {
      * @author : fengzijk
      * @date : 2019/5/7 17:04
      */
-    public static LocalDateTime convertDateToLDT(Date date) {
+    public static LocalDateTime convertDateToLocalDateTime(Date date) {
         return LocalDateTime.ofInstant(date.toInstant(), ZoneId.systemDefault());
     }
 

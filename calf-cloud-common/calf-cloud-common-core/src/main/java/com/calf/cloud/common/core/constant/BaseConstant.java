@@ -17,7 +17,7 @@
 
 package com.calf.cloud.common.core.constant;
 
-public class Oauth2Constant {
+public class BaseConstant {
 
 
     public static final String ALL = "/**";

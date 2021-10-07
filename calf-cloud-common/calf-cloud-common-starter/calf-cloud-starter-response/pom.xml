@@ -11,6 +11,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>calf-cloud-starter-response</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-core</artifactId>
+        </dependency>
+    </dependencies>
 
 
 </project>

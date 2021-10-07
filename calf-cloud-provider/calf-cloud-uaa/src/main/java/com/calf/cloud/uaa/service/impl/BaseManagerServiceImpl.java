@@ -6,9 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.calf.cloud.common.core.base.modelmapper.ModelMapperUtil;
 import com.calf.cloud.uaa.mapper.BaseManagerMapper;
 import com.calf.cloud.uaa.pojo.entity.BaseManagerEntity;
-import com.calf.cloud.uaa.pojo.entity.UserInfoEntity;
 import com.calf.cloud.uaa.pojo.vo.BaseManagerVO;
-import com.calf.cloud.uaa.pojo.vo.UserInfoVO;
 import com.calf.cloud.uaa.service.BaseManagerService;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +20,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class BaseManagerServiceImpl extends ServiceImpl<BaseManagerMapper, BaseManagerEntity> implements BaseManagerService {
 
+
+    @Override
     public BaseManagerVO selectByUserId(Long userId) {
         LambdaQueryWrapper<BaseManagerEntity> lambda3 = Wrappers.lambdaQuery();
         lambda3.eq(BaseManagerEntity::getUserId, userId);

@@ -20,13 +20,21 @@ package com.calf.cloud.uaa.controller.api.user;
 
 
 import com.calf.cloud.starter.auth.annotation.PermissionAuth;
+import com.calf.cloud.starter.response.exception.BusinessException;
+import com.calf.cloud.uaa.pojo.entity.UserInfoEntity;
 import com.calf.cloud.uaa.service.UserService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,12 +55,39 @@ public class UserInfoController {
 
     @Autowired
     private UserService userService;
-
+    @Autowired
+    private  PasswordEncoder passwordEncoder;
 
     @PermissionAuth
     @GetMapping("listUserInfo")
     @ApiOperation(value = "获取用户列表", httpMethod = "POST")
     public String listUserInfo() {
         return "sucess";
+    }
+
+
+    /**
+     * 设置用户密码
+     *
+     * @param user 用户信息
+     * @return Result
+     */
+    @PostMapping("/set-password")
+    @ApiOperation(value = "用户密码设置", notes = "用户密码设置")
+    @ApiImplicitParams({
+      @ApiImplicitParam(name = "id", required = true, value = "用户ID", paramType = "form"),
+      @ApiImplicitParam(name = "password", required = true, value = "密码", paramType = "form")
+    })
+    public Boolean setPassword(@RequestBody UserInfoEntity user) {
+        String pwd = null;
+        if (StringUtils.isNotBlank(user.getPassword())) {
+            pwd = passwordEncoder.encode(user.getPassword());
+            log.info(pwd);
+        }
+        user.setPassword(pwd);
+        if (user.getId() == null) {
+            throw new BusinessException("请求ID不能为空");
+        }
+        return true;
     }
 }

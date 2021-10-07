@@ -19,7 +19,7 @@ package com.calf.cloud.uaa.handle;
 
 import com.calf.cloud.starter.response.ResponseResult;
 import com.calf.cloud.starter.response.ResponseStatusEnum;
-import com.calf.cloud.starter.response.util.ResponseUtil;
+import com.calf.cloud.starter.response.util.ResponseResultUtil;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -80,7 +80,7 @@ public class UaaAuthenticationFailureHandler implements AuthenticationFailureHan
             log.error(String.format("[登录失败] - [%s]其他错误", username), exception);
             result = ResponseResult.fail(ResponseStatusEnum.USER_LOGIN_FAIL);
         }
-        ResponseUtil.responseWriter(response, MediaType.APPLICATION_JSON_VALUE, HttpStatus.UNAUTHORIZED.value(), result);
+        ResponseResultUtil.responseWriter(response, MediaType.APPLICATION_JSON_VALUE, HttpStatus.UNAUTHORIZED.value(), result);
 
     }
 }

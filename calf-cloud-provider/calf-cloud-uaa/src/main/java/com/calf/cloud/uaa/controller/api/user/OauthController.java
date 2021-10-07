@@ -17,6 +17,7 @@
 
 package com.calf.cloud.uaa.controller.api.user;
 
+import com.calf.cloud.starter.response.json.JsonUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -31,7 +32,6 @@ import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,33 +47,38 @@ public class OauthController {
 
 
     @GetMapping("/token")
-    @ApiOperation(value = "用户登录Get", notes = "用户登录Get")
+    @ApiOperation(value = "用户GET方式登录", notes = "用户登录Get")
     public Map<String, Object> getAccessToken(Principal principal, @RequestParam Map<String, String> parameters)
       throws HttpRequestMethodNotSupportedException {
-        return custom(tokenEndpoint.getAccessToken(principal, parameters).getBody());
+        return customJwt(tokenEndpoint.getAccessToken(principal, parameters).getBody());
     }
 
 
     @PostMapping("/token")
-    @ApiOperation(value = "用户登录Post", notes = "用户登录Post")
+    @ApiOperation(value = "用户POST方式登录", notes = "用户登录Post")
     @ApiImplicitParams({
       @ApiImplicitParam(name = "grant_type", required = true, value = "授权类型", paramType = "query"),
       @ApiImplicitParam(name = "username", value = "用户名", paramType = "query"),
       @ApiImplicitParam(name = "password", value = "密码", paramType = "query"),
       @ApiImplicitParam(name = "scope", required = true, value = "使用范围", paramType = "query"),
     })
-    public Map<String, Object> postAccessToken(Principal principal, @RequestBody Map<String, String> parameters)
+    public Map<String, Object> postAccessToken(Principal principal, @RequestParam Map<String, String> parameters)
       throws HttpRequestMethodNotSupportedException {
-        return custom(tokenEndpoint.postAccessToken(principal, parameters).getBody());
+        Map<String, Object> custom = customJwt(tokenEndpoint.postAccessToken(principal, parameters).getBody());
+        System.out.println(JsonUtil.tojson(custom));
+        return custom;
     }
+
 
     /**
      * 自定义返回格式
      *
-     * @param accessToken 　Token
-     * @return Result
+     * @param accessToken token
+     * @return java.util.Map<java.lang.String, java.lang.Object>
+     * @author : guozhifeng
+     * @date : 2021/10/7 11:50
      */
-    private Map<String, Object> custom(OAuth2AccessToken accessToken) {
+    private Map<String, Object> customJwt(OAuth2AccessToken accessToken) {
         DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) accessToken;
         Map<String, Object> data = new LinkedHashMap<>(token.getAdditionalInformation());
         data.put("accessToken", token.getValue());

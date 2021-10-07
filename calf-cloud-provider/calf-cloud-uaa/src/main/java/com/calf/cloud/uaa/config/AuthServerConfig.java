@@ -17,12 +17,13 @@
 
 package com.calf.cloud.uaa.config;
 
-import com.calf.cloud.common.core.base.dto.BaseUserInfoDTO;
-import com.calf.cloud.common.core.constant.Oauth2Constant;
+import com.calf.cloud.common.core.constant.BaseConstant;
 import com.calf.cloud.starter.redis.adpter.RedisAdapter;
+import com.calf.cloud.uaa.pojo.vo.UserDetailsVo;
 import com.calf.cloud.uaa.service.impl.ClientDetailsServiceImpl;
 import com.calf.cloud.uaa.service.impl.SingleLoginTokenServices;
 import com.calf.cloud.uaa.token.granter.CaptchaTokenGranter;
+import com.calf.starter.security.properties.SecurityProperties;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -71,6 +72,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private SecurityProperties securityProperties;
 
     @Autowired
     private RedisAdapter redisAdapter;
@@ -127,15 +131,15 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clientService.setSelectClientDetailsSql(Oauth2Constant.SELECT_CLIENT_DETAIL_SQL);
-        clientService.setFindClientDetailsSql(Oauth2Constant.FIND_CLIENT_DETAIL_SQL);
+        clientService.setSelectClientDetailsSql(BaseConstant.SELECT_CLIENT_DETAIL_SQL);
+        clientService.setFindClientDetailsSql(BaseConstant.FIND_CLIENT_DETAIL_SQL);
         clients.withClientDetails(clientService);
     }
 
     @Bean
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey(Oauth2Constant.SIGN_KEY);
+        jwtAccessTokenConverter.setSigningKey(BaseConstant.SIGN_KEY);
         return jwtAccessTokenConverter;
     }
 
@@ -195,13 +199,13 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
                 return oAuth2AccessToken;
             }
             // 获取当前登录的用户
-            BaseUserInfoDTO user = (BaseUserInfoDTO) oAuth2Authentication.getUserAuthentication().getPrincipal();
+            UserDetailsVo user = (UserDetailsVo) oAuth2Authentication.getUserAuthentication().getPrincipal();
 
             // 如果用户不为空 则把id放入jwt token中
             if (user != null) {
-                additionMessage.put(Oauth2Constant.USER_ID, String.valueOf(user.getUserId()));
-                additionMessage.put(Oauth2Constant.USER_NAME, user.getUserName());
-                additionMessage.put(Oauth2Constant.USER_AVATAR, user.getAvatar());
+                additionMessage.put(BaseConstant.USER_ID, String.valueOf(user.getId()));
+                additionMessage.put(BaseConstant.USER_NAME, user.getUsername());
+                additionMessage.put(BaseConstant.USER_AVATAR, user.getAvatar());
             }
             ((DefaultOAuth2AccessToken) oAuth2AccessToken).setAdditionalInformation(additionMessage);
             return oAuth2AccessToken;

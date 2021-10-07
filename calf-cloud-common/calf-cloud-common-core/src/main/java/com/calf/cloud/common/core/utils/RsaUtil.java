@@ -54,7 +54,8 @@ import sun.misc.BASE64Encoder;
  * @date : 2021/10/3 1:49
  * --------------------------------------------------
  */
-public class RSAUtil {
+@SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
+public class RsaUtil {
 
     public static final String KEY_ALGORITHM = "RSA";
     public static final String SIGNATURE_ALGORITHM = "MD5withRSA";
@@ -256,9 +257,7 @@ public class RSAUtil {
         return signature.verify(decryptBASE64(sign));
     }
 
-
     /**
-
      * @author: fengzijk
      * @email :guozhifengvip@gmail.com
      * @date: 2019/7/2 14:34

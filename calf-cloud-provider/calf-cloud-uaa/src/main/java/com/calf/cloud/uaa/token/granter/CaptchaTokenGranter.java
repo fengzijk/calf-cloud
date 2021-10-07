@@ -18,7 +18,7 @@
 package com.calf.cloud.uaa.token.granter;
 
 
-import com.calf.cloud.common.core.constant.Oauth2Constant;
+import com.calf.cloud.common.core.constant.BaseConstant;
 import com.calf.cloud.common.core.utils.RequestUtil;
 import com.calf.cloud.starter.redis.adpter.RedisAdapter;
 import java.util.LinkedHashMap;
@@ -43,6 +43,14 @@ import org.springframework.security.oauth2.provider.TokenRequest;
 import org.springframework.security.oauth2.provider.token.AbstractTokenGranter;
 import org.springframework.security.oauth2.provider.token.AuthorizationServerTokenServices;
 
+/**
+ * -------------------------------------------------
+ * <pre>验证码 CaptchaTokenGranter</pre>
+ *
+ * @author : guozhifeng
+ * @date : 2021/10/7 11:51
+ * --------------------------------------------------
+ */
 public class CaptchaTokenGranter extends AbstractTokenGranter {
 
     private static final String GRANT_TYPE = "captcha";
@@ -66,6 +74,7 @@ public class CaptchaTokenGranter extends AbstractTokenGranter {
         this.authenticationManager = authenticationManager;
     }
 
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
     @Override
     protected OAuth2Authentication getOAuth2Authentication(ClientDetails client, TokenRequest tokenRequest) {
         HttpServletRequest request = RequestUtil.getHttpServletRequest();
@@ -74,9 +83,9 @@ public class CaptchaTokenGranter extends AbstractTokenGranter {
             throw new OAuth2Exception("请求参数不存在！");
         }
         // 增加验证码判断
-        String key = request.getHeader(Oauth2Constant.CAPTCHA_HEADER_KEY);
-        String code = request.getHeader(Oauth2Constant.CAPTCHA_HEADER_CODE);
-        Object codeFromRedis = redisAdapter.get(Oauth2Constant.CAPTCHA_KEY + key);
+        String key = request.getHeader(BaseConstant.CAPTCHA_HEADER_KEY);
+        String code = request.getHeader(BaseConstant.CAPTCHA_HEADER_CODE);
+        Object codeFromRedis = redisAdapter.get(BaseConstant.CAPTCHA_KEY + key);
 
         if (StringUtils.isBlank(code)) {
             throw new UserDeniedAuthorizationException("请输入验证码");
@@ -88,7 +97,7 @@ public class CaptchaTokenGranter extends AbstractTokenGranter {
             throw new UserDeniedAuthorizationException("验证码不正确");
         }
 
-        redisAdapter.delete(Oauth2Constant.CAPTCHA_KEY + key);
+        redisAdapter.delete(BaseConstant.CAPTCHA_KEY + key);
 
         Map<String, String> parameters = new LinkedHashMap<String, String>(tokenRequest.getRequestParameters());
         String username = parameters.get("username");
@@ -110,8 +119,8 @@ public class CaptchaTokenGranter extends AbstractTokenGranter {
             throw new InvalidGrantException("Could not authenticate user: " + username);
         }
 
-        OAuth2Request storedOAuth2Request = getRequestFactory().createOAuth2Request(client, tokenRequest);
-        return new OAuth2Authentication(storedOAuth2Request, userAuth);
+        OAuth2Request storedOauth2Request = getRequestFactory().createOAuth2Request(client, tokenRequest);
+        return new OAuth2Authentication(storedOauth2Request, userAuth);
     }
 
 }

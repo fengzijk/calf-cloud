@@ -18,7 +18,7 @@
 
 package com.calf.cloud.uaa.handle.auth.sms;
 
-import com.calf.cloud.common.core.constant.Oauth2Constant;
+import com.calf.cloud.common.core.constant.BaseConstant;
 import java.util.Objects;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,12 +44,12 @@ public class SmsCodeAuthenticationFilter extends AbstractAuthenticationProcessin
     /**
      * 请求中的参数
      */
-    private String mobileParameter = Oauth2Constant.DEFAULT_PARAMETER_NAME_MOBILE;
+    private String mobileParameter = BaseConstant.DEFAULT_PARAMETER_NAME_MOBILE;
 
     private boolean postOnly = true;
 
     public SmsCodeAuthenticationFilter() {
-        super(new AntPathRequestMatcher(Oauth2Constant.OAUTH_MOBILE, "POST"));
+        super(new AntPathRequestMatcher(BaseConstant.OAUTH_MOBILE, "POST"));
     }
 
     @Override

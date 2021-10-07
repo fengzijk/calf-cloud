@@ -1,7 +1,7 @@
 package com.calf.cloud.uaa.token.granter;
 
 
-import com.calf.cloud.common.core.constant.Oauth2Constant;
+import com.calf.cloud.common.core.constant.BaseConstant;
 import com.calf.cloud.starter.redis.adpter.RedisAdapter;
 import com.calf.cloud.uaa.handle.auth.sms.SmsCodeAuthenticationToken;
 import java.util.LinkedHashMap;
@@ -53,6 +53,7 @@ public class SmsCodeTokenGranter extends AbstractTokenGranter {
         this.authenticationManager = authenticationManager;
     }
 
+    @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
     @Override
     protected OAuth2Authentication getOAuth2Authentication(ClientDetails client, TokenRequest tokenRequest) {
         Map<String, String> parameters = new LinkedHashMap<>(tokenRequest.getRequestParameters());
@@ -66,7 +67,7 @@ public class SmsCodeTokenGranter extends AbstractTokenGranter {
         String codeFromRedis = null;
         // 从Redis里读取存储的验证码信息
         try {
-            codeFromRedis = redisAdapter.get(Oauth2Constant.SMS_CODE_KEY + mobile).toString();
+            codeFromRedis = redisAdapter.get(BaseConstant.SMS_CODE_KEY + mobile).toString();
         } catch (Exception e) {
             throw new UserDeniedAuthorizationException("验证码不存在！");
         }
@@ -79,7 +80,7 @@ public class SmsCodeTokenGranter extends AbstractTokenGranter {
             throw new UserDeniedAuthorizationException("验证码不正确！");
         }
 
-        redisAdapter.delete(Oauth2Constant.SMS_CODE_KEY + mobile);
+        redisAdapter.delete(BaseConstant.SMS_CODE_KEY + mobile);
 
         Authentication userAuth = new SmsCodeAuthenticationToken(mobile);
         ((AbstractAuthenticationToken) userAuth).setDetails(parameters);
@@ -95,7 +96,7 @@ public class SmsCodeTokenGranter extends AbstractTokenGranter {
             throw new InvalidGrantException("Could not authenticate user: " + mobile);
         }
 
-        OAuth2Request storedOAuth2Request = getRequestFactory().createOAuth2Request(client, tokenRequest);
-        return new OAuth2Authentication(storedOAuth2Request, userAuth);
+        OAuth2Request storedOauth2Request = getRequestFactory().createOAuth2Request(client, tokenRequest);
+        return new OAuth2Authentication(storedOauth2Request, userAuth);
     }
 }

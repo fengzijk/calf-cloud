@@ -134,5 +134,6 @@ calf-cloud:
         - /swagger-ui/**
         - /webjars/**
         - swagger-ui.html
+        - /app/**
   auth:
     enabled: true

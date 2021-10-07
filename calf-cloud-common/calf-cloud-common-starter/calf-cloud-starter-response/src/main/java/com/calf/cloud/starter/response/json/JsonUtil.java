@@ -30,7 +30,9 @@ import java.text.SimpleDateFormat;
 public class JsonUtil {
 
     private static ObjectMapper mapper = new ObjectMapper();
-    // 日起格式化
+    /**
+     * 日起格式化
+     */
     private static final String STANDARD_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
     static {

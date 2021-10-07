@@ -40,6 +40,7 @@
         <swagger.version>3.0.0</swagger.version>
         <redisson.version>3.10.5</redisson.version>
         <guava.version>30.0-jre</guava.version>
+        <jsonweb.version>0.9.1</jsonweb.version>
     </properties>
 
 
@@ -141,6 +142,12 @@
                 <version>${redisson.version}</version>
             </dependency>
 
+
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jsonweb.version}</version>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>
