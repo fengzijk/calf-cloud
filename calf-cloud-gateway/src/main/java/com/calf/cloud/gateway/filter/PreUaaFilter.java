@@ -22,7 +22,6 @@ import com.calf.cloud.common.core.utils.JwtSecurityUtil;
 import com.calf.cloud.common.core.utils.JwtTokenUtil;
 import com.calf.cloud.gateway.constant.FilterOrderConstant;
 import com.calf.cloud.starter.redis.adpter.RedisAdapter;
-import com.calf.cloud.starter.response.util.ResponseResultUtil;
 import com.calf.starter.security.config.IgnoreUrlPropertiesConfig;
 import io.jsonwebtoken.Claims;
 import jodd.util.StringPool;
@@ -31,7 +30,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.core.Ordered;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
@@ -119,7 +117,7 @@ public class PreUaaFilter implements GlobalFilter, Ordered {
     }
 
     private Mono<Void> unauthorized(ServerHttpResponse resp, String msg) {
-        return ResponseResultUtil.webFluxResponseWriter(resp, HttpStatus.UNAUTHORIZED, msg);
+        return null;
     }
 
     @Override

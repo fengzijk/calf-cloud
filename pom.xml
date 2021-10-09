@@ -2,154 +2,57 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.6</version>
-    </parent>
-
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.fengzijk</groupId>
     <artifactId>calf-cloud</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <modules>
-        <module>calf-cloud-common</module>
+        <module>calf-cloud-core</module>
         <module>calf-cloud-gateway</module>
         <module>calf-cloud-provider</module>
         <module>calf-cloud-eureka</module>
-        <module>calf-cloud-provider-api</module>
-        <module>calf-cloud-base-dal</module>
     </modules>
     <!--配置参数-->
     <properties>
+        <calf-cloud.core.version>1.0.0</calf-cloud.core.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <spring-cloud.version>2020.0.3</spring-cloud.version>
-        <druid.version>1.2.6</druid.version>
-        <mysql-con-java.version>8.0.13</mysql-con-java.version>
-        <mybatis-plus.version>3.4.3</mybatis-plus.version>
-        <commons-collections4.version>4.4</commons-collections4.version>
-        <pagehelper.version>1.2.10</pagehelper.version>
-        <guava.version>17.0</guava.version>
-        <lombok.version>1.18.20</lombok.version>
-        <commons.version>3.12.0</commons.version>
-        <commons-codec.version>1.15</commons-codec.version>
-        <modelmapper.version>2.4.4</modelmapper.version>
-        <swagger.version>3.0.0</swagger.version>
-        <redisson.version>3.10.5</redisson.version>
-        <guava.version>30.0-jre</guava.version>
-        <jsonweb.version>0.9.1</jsonweb.version>
+        <spring.boot.version>2.4.6</spring.boot.version>
+
+
+        <maven.plugin.version>3.8.1</maven.plugin.version>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
+        <maven-assembly-plugin.version>3.1.0</maven-assembly-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven-dockerfile-plugin.version>1.4.10</maven-dockerfile-plugin.version>
+
+
+        <docker-maven-plugin.version>1.2.1</docker-maven-plugin.version>
+        <docker.baseImage>openjdk:8-jre-alpine</docker.baseImage>
+        <docker.volumes>/tmp</docker.volumes>
+        <docker.image.prefix>192.168.2.11:8080/calf-cloud</docker.image.prefix>
+        <docker.java.security.egd>-Djava.security.egd=file:/dev/./urandom</docker.java.security.egd>
+        <docker.java.opts>-Xms128m -Xmx128m</docker.java.opts>
+
     </properties>
 
 
     <dependencyManagement>
         <dependencies>
-
-            <!-- Lombok 组件-->
             <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-            </dependency>
-
-
-            <!-- 数据库相关 -->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>mysql</groupId>
-                <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-con-java.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.baomidou</groupId>
-                <artifactId>mybatis-plus-boot-starter</artifactId>
-                <version>${mybatis-plus.version}</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-oauth2</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-security</artifactId>
-            </dependency>
-
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper.version}</version>
-            </dependency>
-
-            <!--Spring Cloud 版本序列配置-->
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-dependencies</artifactId>
-                <version>${spring-cloud.version}</version>
+                <groupId>com.fengzijk</groupId>
+                <artifactId>claf-cloud-dependencies</artifactId>
+                <version>${calf-cloud.core.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-codec</groupId>
-                <artifactId>commons-codec</artifactId>
-                <version>${commons-codec.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections4</artifactId>
-                <version>${commons-collections4.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>io.springfox</groupId>
-                <artifactId>springfox-boot-starter</artifactId>
-                <version>${swagger.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.modelmapper</groupId>
-                <artifactId>modelmapper</artifactId>
-                <version>${modelmapper.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>${guava.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.redisson</groupId>
-                <artifactId>redisson</artifactId>
-                <version>${redisson.version}</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>io.jsonwebtoken</groupId>
-                <artifactId>jjwt</artifactId>
-                <version>${jsonweb.version}</version>
-            </dependency>
         </dependencies>
-
     </dependencyManagement>
 
     <profiles>
@@ -187,28 +90,105 @@
     </profiles>
     <!--环境配置-->
     <build>
+    <resources>
+        <resource>
+            <directory>src/main/resources</directory>
+        </resource>
+        <resource>
+            <directory>src/main/java</directory>
+            <includes>
+                <include>**/*.xml</include>
+            </includes>
+        </resource>
+    </resources>
+    <pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.boot.version}</version>
                 <configuration>
                     <fork>true</fork>
-                    <addResources>true</addResources>
+                    <finalName>${project.build.finalName}</finalName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>${docker-maven-plugin.version}</version>
+                <configuration>
+                    <imageName>${docker.image.prefix}/${project.artifactId}</imageName>
+                    <imageTags>
+                        <imageTag>${project.version}</imageTag>
+                        <imageTag>latest</imageTag>
+                    </imageTags>
+                    <forceTags>true</forceTags>
+                    <baseImage>${docker.baseImage}</baseImage>
+                    <volumes>${docker.volumes}</volumes>
+                    <env>
+                        <JAVA_OPTS>${docker.java.opts}</JAVA_OPTS>
+                    </env>
+                    <entryPoint>["sh","-c","java $JAVA_OPTS ${docker.java.security.egd} -jar /${project.build.finalName}.jar"]</entryPoint>
+                    <resources>
+                        <resource>
+                            <targetPath>/</targetPath>
+                            <directory>${project.build.directory}</directory>
+                            <include>${project.build.finalName}.jar</include>
+                        </resource>
+                    </resources>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <!--suppress UnresolvedMavenProperty -->
+                                <copy overwrite="true"
+                                  tofile="${session.executionRootDirectory}/target/${project.artifactId}.jar"
+                                  file="${project.build.directory}/${project.artifactId}.jar" />
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
-        <resources>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.xml</include>
-                </includes>
-            </resource>
-            <resource>
-                <directory>src/main/resources</directory>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
-    </build>
-
+    </pluginManagement>
+    <plugins>
+        <plugin>
+            <groupId>com.spotify</groupId>
+            <artifactId>docker-maven-plugin</artifactId>
+            <version>${docker-maven-plugin.version}</version>
+        </plugin>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+        <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>${maven.plugin.version}</version>
+            <configuration>
+                <source>${java.version}</source>
+                <target>${java.version}</target>
+                <encoding>UTF-8</encoding>
+                <compilerArgs>
+                    <arg>-parameters</arg>
+                </compilerArgs>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 </project>

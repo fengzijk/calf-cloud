@@ -23,7 +23,6 @@ import com.calf.cloud.uaa.pojo.vo.UserDetailsVo;
 import com.calf.cloud.uaa.service.impl.ClientDetailsServiceImpl;
 import com.calf.cloud.uaa.service.impl.SingleLoginTokenServices;
 import com.calf.cloud.uaa.token.granter.CaptchaTokenGranter;
-import com.calf.starter.security.properties.SecurityProperties;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -73,15 +72,13 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @Autowired
-    private SecurityProperties securityProperties;
 
     @Autowired
     private RedisAdapter redisAdapter;
 
 
-    @Value("${calf-cloud.uaa.isSingleLogin:false}")
-    private boolean isSingleLogin = false;
+    @Value("${calf-cloud.uaa.singleLoginFlag:false}")
+    private boolean singleLoginFlag = false;
 
 
     /**
@@ -173,7 +170,7 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
      * @return DefaultTokenServices
      */
     private DefaultTokenServices createDefaultTokenServices() {
-        DefaultTokenServices tokenServices = new SingleLoginTokenServices(isSingleLogin);
+        DefaultTokenServices tokenServices = new SingleLoginTokenServices(singleLoginFlag);
         tokenServices.setTokenStore(redisTokenStore());
         // 支持刷新Token
         tokenServices.setSupportRefreshToken(Boolean.TRUE);
