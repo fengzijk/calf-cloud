@@ -50,7 +50,11 @@ public class IgnoreUrlPropertiesConfig {
       "/doc.html",
       "/webjars/**",
       "**/favicon.ico",
-      "/swagger-resources/**"
+      "/swagger-resources/**",
+      "/swagger**/**",
+      "/v3/**",
+      "/doc.html"
+
     };
 
     private List<String> urls = new ArrayList<>();

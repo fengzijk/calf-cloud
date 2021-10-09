@@ -1,8 +1,8 @@
 server:
-  port: 8081
+  port: 8083
 logging:
   level:
-    root: INFO
+    root: info
 
 
 spring:
@@ -27,14 +27,6 @@ spring:
     default-property-inclusion: NON_NULL
     time-zone: GMT+8
 
-  # 数据库配置
-  datasource:
-    url: jdbc:mysql://192.168.2.11:3306/calf_user?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false
-    username: root
-    password: 123456
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    # 使用druid数据源
-    type: com.alibaba.druid.pool.DruidDataSource
 
   #redis 配置
   redis:
@@ -55,20 +47,7 @@ spring:
       auto-index-creation: true
 
 
-mybatis-plus:
-  # 配置扫描xml
-  mapper-locations:
-    - classpath:mapper/*.xml
-  # 实体扫描，多个package用逗号或者分号分隔
-  type-aliases-package: com.calf.cloud.uaa.pojo.entity
-  global-config:
-    # 逻辑删除配置
-    db-config:
-      logic-delete-value: 0
-      logic-not-delete-value: 1
-    banner: false
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 
 
 
@@ -117,24 +96,3 @@ calf-cloud:
     termsOfServiceUrl: http//:fengzijk.com
     basePackage:
       - com.calf.cloud.uaa.controller
-
-  global-response:
-    adviceFilterClass:
-      - springfox.documentation
-      - springfox
-      - org.springframework
-  redis:
-    enabled: true
-    redissonLockEnable: true
-  security:
-    enable: true
-    ignore:
-      urls:
-        - /v3/api-docs/**
-        - /swagger**
-        - /swagger-ui/**
-        - /webjars/**
-        - swagger-ui.html
-        - /app/**
-  auth:
-    enabled: true

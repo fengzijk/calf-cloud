@@ -16,8 +16,6 @@
  */
 
 package com.calf.cloud.uaa.controller.api.user;
-
-import com.calf.cloud.starter.response.json.JsonUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
@@ -65,7 +63,6 @@ public class OauthController {
     public Map<String, Object> postAccessToken(Principal principal, @RequestParam Map<String, String> parameters)
       throws HttpRequestMethodNotSupportedException {
         Map<String, Object> custom = customJwt(tokenEndpoint.postAccessToken(principal, parameters).getBody());
-        System.out.println(JsonUtil.tojson(custom));
         return custom;
     }
 

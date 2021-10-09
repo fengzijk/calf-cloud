@@ -16,7 +16,6 @@
  */
 package com.calf.cloud.uaa;
 
-import com.calf.cloud.starter.response.annotation.EnableGlobalResponse;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -38,7 +37,7 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
 @EnableDiscoveryClient
 @SpringBootApplication
 @MapperScan("com.calf.cloud.uaa.mapper")
-@EnableGlobalResponse
+//@EnableGlobalResponse
 public class ProviderUaaApplication {
 
     public static void main(String[] args) {
