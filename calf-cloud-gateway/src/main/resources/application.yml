@@ -36,7 +36,18 @@ spring:
             - Path=/uaa/**
           filters:
             - StripPrefix=1
-
+  #redis 配置
+  redis:
+    host: 192.168.2.11
+    port: 6444
+    timeout: 3000ms
+    database: 0
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+        max-wait: -1ms
 
 
 

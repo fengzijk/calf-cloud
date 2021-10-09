@@ -12,7 +12,6 @@ spring:
   application:
     name: @pom.artifactId@
   profiles:
-    #安全管理开始
     active: @env@
   security:
     user:
