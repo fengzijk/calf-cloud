@@ -24,8 +24,6 @@ import com.calf.cloud.starter.response.exception.BusinessException;
 import com.calf.cloud.uaa.pojo.entity.UserInfoEntity;
 import com.calf.cloud.uaa.service.UserService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -56,11 +54,10 @@ public class UserInfoController {
     @Autowired
     private UserService userService;
     @Autowired
-    private  PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @PermissionAuth
     @GetMapping("listUserInfo")
-    @ApiOperation(value = "获取用户列表", httpMethod = "POST")
     public String listUserInfo() {
         return "sucess";
     }
@@ -74,10 +71,6 @@ public class UserInfoController {
      */
     @PostMapping("/set-password")
     @ApiOperation(value = "用户密码设置", notes = "用户密码设置")
-    @ApiImplicitParams({
-      @ApiImplicitParam(name = "id", required = true, value = "用户ID", paramType = "form"),
-      @ApiImplicitParam(name = "password", required = true, value = "密码", paramType = "form")
-    })
     public Boolean setPassword(@RequestBody UserInfoEntity user) {
         String pwd = null;
         if (StringUtils.isNotBlank(user.getPassword())) {

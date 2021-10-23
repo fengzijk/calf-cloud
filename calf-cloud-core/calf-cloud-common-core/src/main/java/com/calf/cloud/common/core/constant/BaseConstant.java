@@ -137,7 +137,7 @@ public class BaseConstant {
     public static final String USER_PERMISSION_PREFIX = "USER.permission.";
 
     /**
-     * 字段描述开始：用户ID
+     * 用户ID
      */
     public static final String USER_ID = "userId";
 

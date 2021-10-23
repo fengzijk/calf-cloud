@@ -102,7 +102,6 @@ public class CaptchaTokenGranter extends AbstractTokenGranter {
         Map<String, String> parameters = new LinkedHashMap<String, String>(tokenRequest.getRequestParameters());
         String username = parameters.get("username");
         String password = parameters.get("password");
-        // Protect from downstream leaks of password
         parameters.remove("password");
 
         Authentication userAuth = new UsernamePasswordAuthenticationToken(username, password);
@@ -110,11 +109,8 @@ public class CaptchaTokenGranter extends AbstractTokenGranter {
         try {
             userAuth = authenticationManager.authenticate(userAuth);
         } catch (AccountStatusException | BadCredentialsException ase) {
-            //covers expired, locked, disabled cases (mentioned in section 5.2, draft 31)
             throw new InvalidGrantException(ase.getMessage());
         }
-        // If the username/password are wrong the spec says we should send 400/invalid grant
-
         if (userAuth == null || !userAuth.isAuthenticated()) {
             throw new InvalidGrantException("Could not authenticate user: " + username);
         }

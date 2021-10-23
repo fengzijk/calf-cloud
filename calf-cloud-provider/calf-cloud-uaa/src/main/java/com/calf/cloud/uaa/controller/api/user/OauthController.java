@@ -16,14 +16,11 @@
  */
 
 package com.calf.cloud.uaa.controller.api.user;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+
 import java.security.Principal;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import lombok.AllArgsConstructor;
+import javax.annotation.Resource;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.endpoint.TokenEndpoint;
@@ -35,40 +32,44 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
+/**
+ * -------------------------------------------------
+ * <pre>Oauth</pre>
+ *
+ * @author : guozhifeng
+ * @date : 2021/10/23 12:51
+ * --------------------------------------------------
+ */
 @RestController
 @RequestMapping("/oauth")
-@AllArgsConstructor
-@Api(tags = "Oauth2管理")
 public class OauthController {
 
-    private final TokenEndpoint tokenEndpoint;
+    @Resource
+    private TokenEndpoint tokenEndpoint;
 
 
+    /**
+     * get 方式获取Token
+     */
     @GetMapping("/token")
-    @ApiOperation(value = "用户GET方式登录", notes = "用户登录Get")
     public Map<String, Object> getAccessToken(Principal principal, @RequestParam Map<String, String> parameters)
       throws HttpRequestMethodNotSupportedException {
         return customJwt(tokenEndpoint.getAccessToken(principal, parameters).getBody());
     }
 
 
+    /**
+     * post 方式获取token
+     */
     @PostMapping("/token")
-    @ApiOperation(value = "用户POST方式登录", notes = "用户登录Post")
-    @ApiImplicitParams({
-      @ApiImplicitParam(name = "grant_type", required = true, value = "授权类型", paramType = "query"),
-      @ApiImplicitParam(name = "username", value = "用户名", paramType = "query"),
-      @ApiImplicitParam(name = "password", value = "密码", paramType = "query"),
-      @ApiImplicitParam(name = "scope", required = true, value = "使用范围", paramType = "query"),
-    })
     public Map<String, Object> postAccessToken(Principal principal, @RequestParam Map<String, String> parameters)
       throws HttpRequestMethodNotSupportedException {
-        Map<String, Object> custom = customJwt(tokenEndpoint.postAccessToken(principal, parameters).getBody());
-        return custom;
+        return customJwt(tokenEndpoint.postAccessToken(principal, parameters).getBody());
     }
 
 
     /**
-     * 自定义返回格式
+     * 自定义返Token回格式
      *
      * @param accessToken token
      * @return java.util.Map<java.lang.String, java.lang.Object>

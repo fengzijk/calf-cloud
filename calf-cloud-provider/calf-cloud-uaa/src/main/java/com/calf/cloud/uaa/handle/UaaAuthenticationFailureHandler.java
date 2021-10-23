@@ -21,7 +21,6 @@ import com.calf.cloud.starter.response.ResponseResult;
 import com.calf.cloud.starter.response.ResponseStatusEnum;
 import com.calf.cloud.starter.response.util.ResponseResultUtil;
 import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +41,7 @@ public class UaaAuthenticationFailureHandler implements AuthenticationFailureHan
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception)
-      throws IOException, ServletException {
+      throws IOException {
         ResponseResult<?> result = null;
         String username = request.getParameter("username");
         if (exception instanceof AccountExpiredException) {

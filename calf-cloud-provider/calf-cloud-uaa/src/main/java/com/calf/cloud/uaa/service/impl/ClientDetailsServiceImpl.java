@@ -18,6 +18,7 @@
 package com.calf.cloud.uaa.service.impl;
 
 import com.calf.cloud.common.core.constant.BaseConstant;
+import com.calf.cloud.starter.redis.adpter.RedisAdapter;
 import java.util.Objects;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -25,7 +26,6 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.oauth2.common.exceptions.InvalidClientException;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
@@ -40,7 +40,7 @@ public class ClientDetailsServiceImpl extends JdbcClientDetailsService {
     private DataSource dataSource;
 
     @Resource
-    private RedisTemplate<String, Object> redisTemplate;
+    RedisAdapter redisAdapter;
 
     public ClientDetailsServiceImpl(DataSource dataSource) {
         super(dataSource);
@@ -50,7 +50,7 @@ public class ClientDetailsServiceImpl extends JdbcClientDetailsService {
     @Primary
     public ClientDetailsServiceImpl clientDetailService() {
         ClientDetailsServiceImpl clientDetailsService = new ClientDetailsServiceImpl(dataSource);
-        clientDetailsService.setRedisTemplate(redisTemplate);
+        clientDetailsService.setRedisAdapter(redisAdapter);
         return clientDetailsService;
     }
 
@@ -63,7 +63,7 @@ public class ClientDetailsServiceImpl extends JdbcClientDetailsService {
      */
     @Override
     public ClientDetails loadClientByClientId(String clientId) throws InvalidClientException {
-        ClientDetails clientDetails = (ClientDetails) redisTemplate.opsForValue().get(clientKey(clientId));
+        ClientDetails clientDetails = (ClientDetails) redisAdapter.get(clientKey(clientId));
         if (Objects.isNull(clientDetails)) {
             clientDetails = getCacheClient(clientId);
         }
@@ -83,7 +83,7 @@ public class ClientDetailsServiceImpl extends JdbcClientDetailsService {
         try {
             clientDetails = super.loadClientByClientId(clientId);
             if (Objects.nonNull(clientDetails)) {
-                redisTemplate.opsForValue().set(clientKey(clientId), clientDetails);
+                redisAdapter.set(clientKey(clientId), clientDetails);
                 log.debug("Cache clientId:{}, clientDetails:{}", clientId, clientDetails);
             }
         } catch (Exception e) {
