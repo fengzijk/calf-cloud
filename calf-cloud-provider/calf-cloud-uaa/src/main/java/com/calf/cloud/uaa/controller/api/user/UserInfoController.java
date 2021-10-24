@@ -20,7 +20,6 @@ package com.calf.cloud.uaa.controller.api.user;
 
 
 import com.calf.cloud.starter.auth.annotation.PermissionAuth;
-import com.calf.cloud.starter.response.exception.BusinessException;
 import com.calf.cloud.uaa.pojo.entity.UserInfoEntity;
 import com.calf.cloud.uaa.service.UserService;
 import io.swagger.annotations.Api;
@@ -79,7 +78,7 @@ public class UserInfoController {
         }
         user.setPassword(pwd);
         if (user.getId() == null) {
-            throw new BusinessException("请求ID不能为空");
+           // throw new BusinessException("请求ID不能为空");
         }
         return true;
     }

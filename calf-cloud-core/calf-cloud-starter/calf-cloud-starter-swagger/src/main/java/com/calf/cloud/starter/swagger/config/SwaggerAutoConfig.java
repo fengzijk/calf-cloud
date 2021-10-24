@@ -18,18 +18,28 @@
 package com.calf.cloud.starter.swagger.config;
 
 import com.calf.cloud.starter.swagger.properties.SwaggerProperties;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import javax.annotation.Resource;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import springfox.documentation.annotations.ApiIgnore;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -59,11 +69,36 @@ import springfox.documentation.spring.web.plugins.Docket;
 @Configuration
 @EnableConfigurationProperties(SwaggerProperties.class)
 @ConditionalOnProperty(value = "springfox.documentation.enabled", havingValue = "true", matchIfMissing = true)
-public class SwaggerAutoConfig {
+public class SwaggerAutoConfig implements WebMvcConfigurer {
 
 
     @Resource
     private SwaggerProperties swaggerProperties;
+
+
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/js/");
+        registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
+        registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+        registry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:/static/");
+    }
+
+
+    /**
+     * Swagger忽略的参数类型
+     */
+    private final Class[] ignoredParameterTypes = new Class[]{
+      ServletRequest.class,
+      ServletResponse.class,
+      HttpServletRequest.class,
+      HttpServletResponse.class,
+      HttpSession.class,
+      ApiIgnore.class,
+      Principal.class,
+      Map.class
+    };
 
     @SuppressWarnings("unchecked")
     @Bean
@@ -85,7 +120,7 @@ public class SwaggerAutoConfig {
           .build()
           //协议
           .protocols(newHashSet("https", "http"))
-          .securitySchemes(securitySchemes())
+          .securitySchemes(securitySchemes()).ignoredParameterTypes(ignoredParameterTypes)
           .securityContexts(securityContexts());
 
         // 设置全局参数
@@ -138,20 +173,6 @@ public class SwaggerAutoConfig {
         return Collections.singletonList(new ApiKey("BASE_TOKEN", "token", "header"));
     }
 
-    /**
-     * 授权信息全局应用
-     */
-    private List<SecurityContext> securityContexts() {
-        return Collections.singletonList(
-          SecurityContext.builder()
-            .securityReferences(
-              Collections.singletonList(new SecurityReference("BASE_TOKEN",
-                new AuthorizationScope[]{new AuthorizationScope("global", "")}
-              )))
-            //.forPaths(PathSelectors.any())
-            .build()
-        );
-    }
 
     @SafeVarargs
     private final <T> Set<T> newHashSet(T... ts) {
@@ -161,27 +182,25 @@ public class SwaggerAutoConfig {
         return null;
     }
 
+    /**
+     * 授权信息全局应用
+     */
+    private List<SecurityContext> securityContexts() {
+        List<SecurityContext> securityContexts = new ArrayList<>();
+        securityContexts.add(
+          SecurityContext.builder()
+            .securityReferences(defaultAuth())
+            .forPaths(PathSelectors.regex("^(?!auth).*$"))
+            .build());
+        return securityContexts;
+    }
 
-//    /**
-//     * API接口路径选择
-//     *
-//     * @param basePackage 路径
-//     * @return java.util.function.Predicate
-//     * @author : fengzijk
-//     * @date : 2021/10/4 3:17
-//     */
-//    @SuppressWarnings({"rawtypes", "Guava"})
-//    private Predicate paths(List<String> basePackage) {
-//        // base-path处理 当没有配置任何path的时候，解析
-//        if (basePackage.isEmpty()) {
-//            basePackage.add("/**");
-//        }
-//        List<com.google.common.base.Predicate<String>> basePathList = new ArrayList<>();
-//        for (String path : basePackage) {
-//            basePathList.add(PathSelectors.ant(path));
-//        }
-//        return Predicates.or(basePathList);
-//    }
-
-
+    List<SecurityReference> defaultAuth() {
+        AuthorizationScope authorizationScope = new AuthorizationScope("global", "accessEverything");
+        AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+        authorizationScopes[0] = authorizationScope;
+        List<SecurityReference> securityReferences = new ArrayList<>();
+        securityReferences.add(new SecurityReference("Authorization", authorizationScopes));
+        return securityReferences;
+    }
 }

@@ -123,6 +123,10 @@ calf-cloud:
       - springfox.documentation
       - springfox
       - org.springframework
+    adviceFilterPackage:
+      - springfox.documentation
+      - springfox
+      - org.springframework
   redis:
     enabled: true
     redissonLockEnable: true
@@ -134,7 +138,7 @@ calf-cloud:
         - /swagger**
         - /swagger-ui/**
         - /webjars/**
-        - swagger-ui.html
+        - /swagger-ui.html
         - /app/**
   auth:
     enabled: true
