@@ -41,7 +41,7 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 public class SwaggerProvider implements SwaggerResourcesProvider {
 
 
-    public static final String API_URI = "/v3/api-docs";
+    public static final String API_URI = "/v2/api-docs";
     public static final String PATH = "Path";
 
     private final RouteLocator routeLocator;
@@ -62,7 +62,7 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
         //结合配置的route-路径(Path)，和route过滤，只获取有效的route节点
         gatewayProperties.getRoutes().stream().filter(routeDefinition -> routes.contains(routeDefinition.getId()))
           .forEach(routeDefinition -> routeDefinition.getPredicates().stream()
-            .filter(predicateDefinition -> (PATH).equalsIgnoreCase(predicateDefinition.getName()))
+            .filter(predicateDefinition -> PATH.equalsIgnoreCase(predicateDefinition.getName()))
             .forEach(predicateDefinition -> resources.add(swaggerResource(routeDefinition.getId(),
               predicateDefinition.getArgs().get(NameUtils.GENERATED_NAME_PREFIX + "0")
                 .replace("/**", API_URI)))));

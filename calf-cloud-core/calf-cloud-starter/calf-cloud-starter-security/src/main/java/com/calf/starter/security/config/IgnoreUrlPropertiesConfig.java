@@ -52,7 +52,7 @@ public class IgnoreUrlPropertiesConfig {
       "**/favicon.ico",
       "/swagger-resources/**",
       "/swagger**/**",
-      "/v3/**",
+      "/v2/**",
       "/doc.html"
 
     };
