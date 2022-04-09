@@ -20,7 +20,7 @@ package com.calf.cloud.user.pojo.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.calf.cloud.dal.pojo.entity.BaseEntity;
-import io.swagger.annotations.ApiModel;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,7 +37,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 @TableName("base_manager_api")
-@ApiModel(value = "管理员接口对象", description = "管理员接口表")
+
 public class BaseManagerApiEntity extends BaseEntity {
 
     /**

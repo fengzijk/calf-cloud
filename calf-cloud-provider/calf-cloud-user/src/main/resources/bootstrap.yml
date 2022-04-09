@@ -19,21 +19,9 @@ spring:
           - dataId: calf-cloud-redis.yml
             group:  @nacos.group@
             refresh : false
-
       discovery:
         group: @nacos.group@
         namespace: @nacos.namespace@
-    sentinel:
-      datasource:
-        ds1:
-          nacos:
-            data-id: sentinel
-            data-type: json
-            group-id: @nacos.group@
-            rule-type: degrade
-            server-addr:  @nacos.server.addr@
-      transport:
-        # 本地httpServer端口
-        port: @nacos.sentinel.transport.port@
-        dashboard: @nacos.sentinel.dashboard.addr@
-      eager: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher

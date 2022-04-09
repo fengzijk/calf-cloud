@@ -14,7 +14,7 @@
 
     <modules>
         <module>calf-cloud-starter-response</module>
-        <module>calf-cloud-starter-swagger</module>
+        <module>calf-cloud-starter-springdoc</module>
         <module>calf-cloud-starter-redis</module>
         <module>calf-cloud-starter-database</module>
     </modules>

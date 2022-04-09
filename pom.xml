@@ -73,6 +73,9 @@
                 <!--sentinel 本地启动上报的httpserver端口-->
                 <nacos.sentinel.transport.port>8755</nacos.sentinel.transport.port>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
         <profile>
             <!-- 内测环境（提测版本） -->

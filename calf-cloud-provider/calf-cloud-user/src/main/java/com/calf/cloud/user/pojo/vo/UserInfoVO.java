@@ -18,8 +18,6 @@
 package com.calf.cloud.user.pojo.vo;
 
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.List;
 import lombok.Data;
@@ -34,7 +32,6 @@ import lombok.Data;
  */
 
 @Data
-@ApiModel(value = "用户信息封装")
 public class UserInfoVO implements Serializable {
 
     private static final long serialVersionUID = -7657663783681647907L;
@@ -42,31 +39,27 @@ public class UserInfoVO implements Serializable {
     /**
      * 系统用户信息
      */
-    @ApiModelProperty("系统用户信息")
     private BaseManagerVO baseManagervo;
 
     /**
      * 系统权限标识组
      */
-    @ApiModelProperty("系统权限标识组")
     private List<String> permissions;
 
     /**
      * 系统角色标识组
      */
-    @ApiModelProperty(value = "系统角色标识组")
+
     private List<String> roleIds;
 
     /**
      * 登录类型　1：用户名密码登录　2：手机号登录　3：社交登录
      */
-    @ApiModelProperty(value = "登录类型")
     private int loginType;
 
     /**
      * 用户名
      */
-    @ApiModelProperty(value = "用户名")
     private String username;
 
     private Long id;

@@ -23,7 +23,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.calf.cloud.dal.pojo.entity.BaseEntity;
-import io.swagger.annotations.ApiModel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -40,7 +39,6 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 @TableName("组织机构表")
-@ApiModel(value = "组织机构", description = "组织机构表")
 public class BaseManagerDepartEntity extends BaseEntity {
 
     /**

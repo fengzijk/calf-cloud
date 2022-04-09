@@ -1,0 +1,14 @@
+{
+  "properties": [
+    {
+      "name": "calf-cloud.global-response.adviceFilterPackage",
+      "type": "java.util.List<java.lang.String>",
+      "description": "统一返回过滤包集合."
+    },
+    {
+      "name": "calf-cloud.global-response.adviceFilterClass",
+      "type": "java.util.List<java.lang.String>",
+      "description": "统一返回过滤包类名称."
+    }
+  ]
+}
