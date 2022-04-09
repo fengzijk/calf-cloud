@@ -35,7 +35,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @EnableDiscoveryClient
 @SpringBootApplication
-@MapperScan("com.calf.cloud.uaa.mapper")
+@MapperScan("com.calf.cloud.user.mapper")
 public class ProviderUserApplication {
 
     public static void main(String[] args) {

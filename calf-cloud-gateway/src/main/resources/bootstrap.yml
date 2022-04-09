@@ -16,9 +16,6 @@ spring:
           - dataId: calf-cloud-gateway-self.yml
             group:  @nacos.group@
             refresh : true
-          - dataId: calf-cloud-redis.yml
-            group:  @nacos.group@
-            refresh : false
       discovery:
         group: @nacos.group@
         namespace: @nacos.namespace@

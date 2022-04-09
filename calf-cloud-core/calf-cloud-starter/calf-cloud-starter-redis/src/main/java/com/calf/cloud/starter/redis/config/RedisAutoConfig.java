@@ -45,6 +45,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+/**
+ * @author 郭志峰
+ */
 @Configuration
 @EnableConfigurationProperties(RedisProperties.class)
 @ConditionalOnProperty(value = RedisProperties.PREFIX + ".enabled", havingValue = "true", matchIfMissing = true)
