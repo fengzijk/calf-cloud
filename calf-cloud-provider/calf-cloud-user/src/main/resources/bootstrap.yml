@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: @pom.artifactId@
+  profiles:
+    active: @env@
+  cloud:
+    nacos:
+      server-addr: @nacos.server.addr@
+      config:
+        username: @nacos.username@
+        password: @nacos.password@
+        file-extension: yml
+        group: @nacos.group@
+        namespace: @nacos.namespace@
+        extension-configs:
+          - dataId: calf-cloud-user-self.yml
+            group:  @nacos.group@
+            refresh : true
+          - dataId: calf-cloud-redis.yml
+            group:  @nacos.group@
+            refresh : false
+      discovery:
+        group: @nacos.group@
+        namespace: @nacos.namespace@
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+    sentinel:
+      datasource:
+        ds1:
+          nacos:
+            data-id: sentinel
+            data-type: json
+            group-id: @nacos.group@
+            rule-type: degrade
+            server-addr:  @nacos.server.addr@
+      transport:
+        # 本地httpServer端口
+        port: @nacos.sentinel.transport.port@
+        dashboard: @nacos.sentinel.dashboard.addr@
+      eager: true
