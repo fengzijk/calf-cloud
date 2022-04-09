@@ -19,15 +19,10 @@ spring:
           - dataId: calf-cloud-redis.yml
             group:  @nacos.group@
             refresh : false
+
       discovery:
         group: @nacos.group@
         namespace: @nacos.namespace@
-    gateway:
-      globalcors:
-        corsConfigurations:
-          '[/**]':
-            allowedOrigins: "*"
-            allowedMethods: "*"
     sentinel:
       datasource:
         ds1:

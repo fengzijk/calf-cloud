@@ -14,8 +14,11 @@ spring:
         namespace: @nacos.namespace@
         extension-configs:
           - dataId: calf-cloud-gateway-self.yml
-            group:  @nacos.group@
-            refresh : true
+            group: @nacos.group@
+            refresh: true
+          - dataId: calf-cloud-redis.yml
+              group: @nacos.group@
+              refresh: false
       discovery:
         group: @nacos.group@
         namespace: @nacos.namespace@
@@ -33,9 +36,12 @@ spring:
             data-type: json
             group-id: @nacos.group@
             rule-type: degrade
-            server-addr:  @nacos.server.addr@
+            server-addr: @nacos.server.addr@
       transport:
         # 本地httpServer端口
         port: @nacos.sentinel.transport.port@
         dashboard: @nacos.sentinel.dashboard.addr@
       eager: true
+
+
+nace

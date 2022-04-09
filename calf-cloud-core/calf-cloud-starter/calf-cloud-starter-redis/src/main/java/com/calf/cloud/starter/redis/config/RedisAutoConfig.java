@@ -90,7 +90,7 @@ public class RedisAutoConfig {
     @ConditionalOnProperty(value = RedisProperties.PREFIX + ".enabled", havingValue = "true", matchIfMissing = true)
     RedissonClient redissonSingle(@Value("${spring.redis.host}") String host,
       @Value("${spring.redis.port}") int port,
-//      @Value("${spring.redis.password}") String password,
+   //   @Value("${spring.redis.password}") String password,
       @Value("${spring.redis.database}") String database
     ) {
         Config config = new Config();

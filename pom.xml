@@ -132,9 +132,11 @@
     </profiles>
     <!--环境配置-->
     <build>
+
     <resources>
         <resource>
             <directory>src/main/resources</directory>
+            <filtering>true</filtering>
         </resource>
         <resource>
             <directory>src/main/java</directory>
