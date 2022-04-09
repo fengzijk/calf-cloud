@@ -69,11 +69,20 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
         return resources;
     }
 
+    
+    /**
+     * 功能描述
+     * @param name
+     * @param location
+     * @return springfox.documentation.swagger.web.SwaggerResource
+     * @author : fengzijk
+     * @date : 9/4/2022 上午2:35
+     */
     private SwaggerResource swaggerResource(String name, String location) {
         SwaggerResource swaggerResource = new SwaggerResource();
         swaggerResource.setName(name);
         swaggerResource.setLocation(location);
-        swaggerResource.setSwaggerVersion("3.0");
+        swaggerResource.setSwaggerVersion("2.0");
         return swaggerResource;
     }
 

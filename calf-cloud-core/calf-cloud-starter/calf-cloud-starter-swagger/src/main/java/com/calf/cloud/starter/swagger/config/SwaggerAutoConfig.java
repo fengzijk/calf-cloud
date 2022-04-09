@@ -36,26 +36,26 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import springfox.documentation.annotations.ApiIgnore;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.ParameterBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
-import springfox.documentation.builders.RequestParameterBuilder;
-import springfox.documentation.schema.ScalarType;
+import springfox.documentation.schema.ModelRef;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.ApiKey;
 import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.Contact;
-import springfox.documentation.service.ParameterType;
-import springfox.documentation.service.RequestParameter;
+import springfox.documentation.service.Parameter;
 import springfox.documentation.service.SecurityReference;
 import springfox.documentation.service.SecurityScheme;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 
 
 /**
@@ -67,8 +67,9 @@ import springfox.documentation.spring.web.plugins.Docket;
  * --------------------------------------------------
  */
 @Configuration
+@EnableSwagger2WebMvc
 @EnableConfigurationProperties(SwaggerProperties.class)
-@ConditionalOnProperty(value = "springfox.documentation.enabled", havingValue = "true", matchIfMissing = true)
+@ConditionalOnProperty(value = "calf-cloud.swagger.enabled", havingValue = "true", matchIfMissing = true)
 public class SwaggerAutoConfig implements WebMvcConfigurer {
 
 
@@ -76,13 +77,12 @@ public class SwaggerAutoConfig implements WebMvcConfigurer {
     private SwaggerProperties swaggerProperties;
 
 
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/js/**").addResourceLocations("classpath:/js/");
-        registry.addResourceHandler("doc.html").addResourceLocations("classpath:/META-INF/resources/");
+
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
         registry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
     }
 
 
@@ -103,12 +103,12 @@ public class SwaggerAutoConfig implements WebMvcConfigurer {
     @SuppressWarnings("unchecked")
     @Bean
     public Docket api() {
-        Docket docket = new Docket(DocumentationType.OAS_30)
+        Docket docket = new Docket(DocumentationType.SWAGGER_2)
           //资源
-          .globalResponses(HttpMethod.GET, new ArrayList<>())
-          .globalResponses(HttpMethod.PUT, new ArrayList<>())
-          .globalResponses(HttpMethod.POST, new ArrayList<>())
-          .globalResponses(HttpMethod.DELETE, new ArrayList<>())
+          .globalResponseMessage(RequestMethod.GET, new ArrayList<>())
+          .globalResponseMessage(RequestMethod.PUT, new ArrayList<>())
+          .globalResponseMessage(RequestMethod.POST, new ArrayList<>())
+          .globalResponseMessage(RequestMethod.DELETE, new ArrayList<>())
           //是否启动
           .enable(swaggerProperties.getEnabled())
           //头部信息
@@ -116,7 +116,7 @@ public class SwaggerAutoConfig implements WebMvcConfigurer {
           .select()
           .apis(RequestHandlerSelectors.any())
           //过滤某个路径
-          .paths(PathSelectors.regex("/error").negate())
+          .paths(PathSelectors.regex("/error"))
           .build()
           //协议
           .protocols(newHashSet("https", "http"))
@@ -125,29 +125,20 @@ public class SwaggerAutoConfig implements WebMvcConfigurer {
 
         // 设置全局参数
         if (swaggerProperties.getRequestParameter()) {
-            docket.globalRequestParameters(globalRequestParameters());
+            docket.globalOperationParameters(globalRequestParameters());
         }
 
         return docket;
     }
 
-    private List<RequestParameter> globalRequestParameters() {
+    private List<Parameter> globalRequestParameters() {
 
-        RequestParameterBuilder userId = new RequestParameterBuilder();
-        userId.name("userId")
-          .description("登录用户Id")
-          .in(ParameterType.HEADER)
-          .query(param -> param.model(model -> model.scalarModel(ScalarType.STRING)))
-          .required(false)
-          .build();
+        ParameterBuilder userId = new ParameterBuilder();
 
-        RequestParameterBuilder token = new RequestParameterBuilder();
-        token.name("token")
-          .description("token")
-          .in(ParameterType.HEADER)
-          .query(param -> param.model(model -> model.scalarModel(ScalarType.STRING)))
-          .required(false)
-          .build();
+        userId.name("userId").description("用户Id").modelRef(new ModelRef("string")).parameterType("header").required(false);
+
+        ParameterBuilder token = new ParameterBuilder();
+        token.name("token").description("token").modelRef(new ModelRef("string")).parameterType("header").required(false);
 
         return Arrays.asList(userId.build(), token.build());
 

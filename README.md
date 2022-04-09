@@ -29,7 +29,7 @@ swagger:
   requestParameter: true
   termsOfServiceUrl: http//:fengzijk.com
   basePackage: 
-   - com.calf.cloud.uaa.controller
+   - com.calf.cloud.user.controller
 
 ```
 ![image](https://user-images.githubusercontent.com/12505138/135800612-d3852951-707d-41ec-bbbb-3595d117d4f5.png)

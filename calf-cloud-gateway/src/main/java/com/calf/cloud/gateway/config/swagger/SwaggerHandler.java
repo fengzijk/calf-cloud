@@ -29,7 +29,6 @@ import springfox.documentation.swagger.web.SwaggerResourcesProvider;
 import springfox.documentation.swagger.web.UiConfiguration;
 import springfox.documentation.swagger.web.UiConfigurationBuilder;
 
-
 /**
  * -------------------------------------------------
  * Swagger 配置 gateway

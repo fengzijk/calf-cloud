@@ -12,7 +12,6 @@
     <packaging>pom</packaging>
     <version>1.0.0</version>
     <modules>
-        <module>calf-cloud-uaa</module>
         <module>calf-cloud-message</module>
     </modules>
     <dependencies>
@@ -35,11 +34,6 @@
         </dependency>
 
 
-
-        <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
-        </dependency>
 
     </dependencies>
 </project>

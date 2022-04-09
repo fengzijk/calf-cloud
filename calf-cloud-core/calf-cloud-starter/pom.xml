@@ -15,9 +15,7 @@
     <modules>
         <module>calf-cloud-starter-response</module>
         <module>calf-cloud-starter-swagger</module>
-        <module>calf-cloud-starter-auth</module>
         <module>calf-cloud-starter-redis</module>
-        <module>calf-cloud-starter-security</module>
         <module>calf-cloud-starter-database</module>
     </modules>
 
@@ -27,10 +25,6 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
         </dependency>
     </dependencies>
 

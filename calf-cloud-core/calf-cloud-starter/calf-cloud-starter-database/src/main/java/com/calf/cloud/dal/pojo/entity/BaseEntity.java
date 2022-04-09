@@ -23,7 +23,6 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
-import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.Data;
@@ -48,7 +47,7 @@ public class BaseEntity implements Serializable {
      * 主键id
      */
     @JsonSerialize(using = ToStringSerializer.class)
-    @ApiModelProperty(value = "主键id")
+
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 

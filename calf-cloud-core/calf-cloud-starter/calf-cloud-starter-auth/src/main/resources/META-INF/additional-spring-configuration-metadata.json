@@ -1,9 +1,0 @@
-{
-  "properties": [
-    {
-      "name": "calf-cloud.auth.enabled",
-      "type": "java.lang.Boolean",
-      "description": "是否开启权限验证."
-    }
-  ]
-}
