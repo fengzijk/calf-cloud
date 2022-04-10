@@ -11,9 +11,11 @@
 # 项目介绍
 calf-cloud是自己在工作中总结积累搭建的基于Spring Cloud微服务化开发平台的后端Java服务的开发脚手架。
  代码简洁，架构清晰，适合学习和直接项目中使用。 核心技术采用Spring Boot 2.4.6、Spring Cloud (2020.0.4)以及eureka 相关核心组件,目前在进一步完善中
- 后续会推出
+ 后续会推出 
  
- ## nacos 分支与master分支是SpringCloudAlibaba版本 采用Spring Boot 2.6.6、Spring Cloud (2021.0.1)以及后续会推出SpringCloudAlibaba(2021.0.1.0) nacos（1.4.3）
+ ## nacos 分支与master分支是SpringCloudAlibaba版本
+ 
+ 采用Spring Boot 2.6.6、Spring Cloud (2021.0.1) SpringCloudAlibaba(2021.0.1.0) nacos（1.4.3）
  
 ## 项目架构
 ### 项目结构
