@@ -137,9 +137,5 @@ public class ResponseResult<T> implements Serializable {
     }
 
 
-    public static void main(String[] args) {
-
-    }
-
 
 }

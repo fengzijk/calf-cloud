@@ -45,6 +45,9 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
+/**
+ * @author 郭志峰
+ */
 @Configuration
 @EnableConfigurationProperties(RedisProperties.class)
 @ConditionalOnProperty(value = RedisProperties.PREFIX + ".enabled", havingValue = "true", matchIfMissing = true)
@@ -87,7 +90,7 @@ public class RedisAutoConfig {
     @ConditionalOnProperty(value = RedisProperties.PREFIX + ".enabled", havingValue = "true", matchIfMissing = true)
     RedissonClient redissonSingle(@Value("${spring.redis.host}") String host,
       @Value("${spring.redis.port}") int port,
-//      @Value("${spring.redis.password}") String password,
+   //   @Value("${spring.redis.password}") String password,
       @Value("${spring.redis.database}") String database
     ) {
         Config config = new Config();

@@ -41,7 +41,7 @@ public class GlobalResponseProperties {
         return enabled;
     }
 
-    private Boolean enabled = Boolean.TRUE;
+    private final Boolean enabled = Boolean.TRUE;
 
     /**
      * 统一返回过滤包

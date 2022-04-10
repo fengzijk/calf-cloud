@@ -32,12 +32,11 @@
 
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-
         </dependency>
 
         <dependency>
             <groupId>com.fengzijk</groupId>
-            <artifactId>calf-cloud-starter-swagger</artifactId>
+            <artifactId>calf-cloud-starter-springdoc</artifactId>
         </dependency>
 
     </dependencies>

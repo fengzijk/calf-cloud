@@ -16,11 +16,7 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
-        <!-- eureka 客户端 -->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -33,31 +29,57 @@
             <scope>provided</scope>
         </dependency>
 
+
         <dependency>
-            <groupId>io.springfox</groupId>
-            <artifactId>springfox-boot-starter</artifactId>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
+
+
+
+                 <dependency>
+                     <groupId>org.springframework.cloud</groupId>
+                     <artifactId>spring-cloud-loadbalancer</artifactId>
+               </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.fengzijk</groupId>
-            <artifactId>calf-cloud-starter-security</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.fengzijk</groupId>
             <artifactId>calf-cloud-starter-redis</artifactId>
 
         </dependency>
-        <dependency>
-            <groupId>com.fengzijk</groupId>
-            <artifactId>calf-cloud-starter-auth</artifactId>
-
-        </dependency>
-
         <dependency>
             <groupId>com.fengzijk</groupId>
             <artifactId>calf-cloud-common-core</artifactId>
@@ -68,6 +90,12 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <dependency>
+            <groupId>com.fengzijk</groupId>
+            <artifactId>calf-cloud-starter-springdoc</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

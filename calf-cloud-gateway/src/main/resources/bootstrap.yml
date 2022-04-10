@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: @pom.artifactId@
+  profiles:
+    active: @env@
+  cloud:
+    nacos:
+      server-addr: @nacos.server.addr@
+      config:
+        username: @nacos.username@
+        password: @nacos.password@
+        file-extension: yml
+        group: @nacos.group@
+        namespace: @nacos.namespace@
+        extension-configs:
+          - dataId: calf-cloud-gateway-self.yml
+            group: @nacos.group@
+            refresh: true
+          - dataId: calf-cloud-redis.yml
+            group: @nacos.group@
+            refresh: false
+      discovery:
+        group: @nacos.group@
+        namespace: @nacos.namespace@
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+
+
+
+
+springdoc:
+  swagger-ui:
+    use-root-path: true
+    urls:
+       - name: user
+         url: /user/v3/api-docs/
