@@ -3,19 +3,17 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>calf-cloud-provider</artifactId>
+        <artifactId>calf-cloud-core</artifactId>
         <groupId>com.fengzijk</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>calf-cloud-provider-api</artifactId>
+    <artifactId>calf-cloud-provider-client</artifactId>
     <packaging>pom</packaging>
 
 
     <modules>
-        <module>calf-cloud-provider-user-api</module>
+        <module>calf-cloud-provider-user-client</module>
     </modules>
-
-
 
 </project>

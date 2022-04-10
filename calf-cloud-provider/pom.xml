@@ -13,6 +13,7 @@
     <version>1.0.0</version>
     <modules>
         <module>calf-cloud-message</module>
+        <module>calf-cloud-user</module>
     </modules>
     <dependencies>
 

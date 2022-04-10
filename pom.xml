@@ -11,7 +11,6 @@
         <module>calf-cloud-core</module>
         <module>calf-cloud-gateway</module>
         <module>calf-cloud-provider</module>
-
     </modules>
     <!--配置参数-->
     <properties>
