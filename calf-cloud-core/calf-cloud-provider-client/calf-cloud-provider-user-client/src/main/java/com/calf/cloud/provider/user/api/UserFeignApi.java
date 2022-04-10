@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @FeignClient(value = "calf-cloud-user",fallback = UserFeignApiHystrix.class )
 public interface UserFeignApi {
 
-    @GetMapping("/test/test")
+    @GetMapping(value = "/test/getTest")
     ResponseResult<String> getTest();
 
 

@@ -19,7 +19,8 @@ package com.calf.cloud.message;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
 /**
@@ -30,10 +31,9 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
  * @date : 2021/10/3 0:16
  * --------------------------------------------------
  */
-/*@EnableFeignClients
-@EnableDiscoveryClient*/
+@EnableFeignClients(basePackages = {"com.calf.cloud"})
+@EnableDiscoveryClient
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-    @EnableWebMvc
 public class ProviderMessageApplication {
 
     public static void main(String[] args) {

@@ -15,10 +15,16 @@
  *
  */
 
-package com.calf.cloud.user.controller.api.user;
+package com.calf.cloud.message.controller.api.user;
 
+import com.calf.cloud.provider.user.api.UserFeignApi;
+import com.calf.cloud.starter.response.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.HashMap;
+import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,17 +43,22 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/test")
 @CrossOrigin
-@Tag(name = "test",description = "测试相关")
+@Tag(name = "test", description = "测试相关")
+@Slf4j
 public class TestController {
 
 
-
-
+    @Autowired
+    private UserFeignApi userFeignApi;
 
     @Operation(summary = "测试接口", description = "用户测试接口", method = "POST")
     @GetMapping(value = "/getTest")
     @ResponseBody
-    public String test( ) {
-         return "6666";
+    public Map<String, Object> test() {
+        Map<String, Object> xx = new HashMap<>();
+        ResponseResult<String> apiTest = userFeignApi.getTest();
+        log.info("xxxxxxxxxxxxxxx=============={}", apiTest);
+        xx.put("111", apiTest.getData());
+        return xx;
     }
 }

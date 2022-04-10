@@ -39,6 +39,12 @@
             <artifactId>calf-cloud-starter-springdoc</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.fengzijk</groupId>
+            <artifactId>calf-cloud-provider-user-client</artifactId>
+            <version>1.0.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

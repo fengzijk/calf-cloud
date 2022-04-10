@@ -37,4 +37,6 @@ springdoc:
     use-root-path: true
     urls:
        - name: user
-         url: /user/v3/api-docs/
+         url: /userService/v3/api-docs/
+       - name: message
+         url: /messageService/v3/api-docs/

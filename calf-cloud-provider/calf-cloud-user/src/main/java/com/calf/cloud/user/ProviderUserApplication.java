@@ -41,5 +41,4 @@ public class ProviderUserApplication {
     public static void main(String[] args) {
         SpringApplication.run(ProviderUserApplication.class, args);
     }
-
 }
