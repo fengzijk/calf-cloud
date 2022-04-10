@@ -44,10 +44,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.fengzijk</groupId>
-            <artifactId>calf-cloud-starter-response</artifactId>
-        </dependency>
+
 
         <dependency>
             <groupId>com.fengzijk</groupId>

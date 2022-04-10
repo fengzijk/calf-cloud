@@ -36,3 +36,6 @@ springdoc:
   version: 12.0
   swagger-ui:
     use-root-path: true
+    urls:
+       - name: user
+         url: /v3/api-docs/user

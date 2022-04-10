@@ -28,6 +28,13 @@
             <scope>provided</scope>
         </dependency>
 
+
+
+        <dependency>
+            <groupId>com.fengzijk</groupId>
+            <artifactId>calf-cloud-starter-response</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
