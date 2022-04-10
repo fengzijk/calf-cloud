@@ -1,14 +1,68 @@
 {
   "properties": [
     {
-      "name": "calf-cloud.global-response.adviceFilterPackage",
-      "type": "java.util.List<java.lang.String>",
-      "description": "统一返回过滤包集合."
+      "name": "calf-cloud.springdoc.enable",
+      "type": "java.lang.Boolean",
+      "description": "Description for springdoc.enable."
     },
     {
-      "name": "calf-cloud.global-response.adviceFilterClass",
+      "name": "calf-cloud.springdoc.info.basePackage",
       "type": "java.util.List<java.lang.String>",
-      "description": "统一返回过滤包类名称."
+      "description": "文档扫描包路径."
+    },
+    {
+      "name": "calf-cloud.springdoc.info.title",
+      "type": "java.lang.String",
+      "defaultValue": "平台系统接口详情",
+      "description": "title 如: 用户模块系统接口详情."
+    },
+    {
+      "name": "calf-cloud.springdoc.info.description",
+      "type": "java.lang.String",
+      "defaultValue": "在线文档",
+      "description": "服务文件介绍."
+    },
+    {
+      "name": "calf-cloud.springdoc.info.termsOfServiceUrl",
+      "type": "java.lang.String",
+      "defaultValue": "https://www.baidu.com/",
+      "description": "服务条款网址."
+    },
+    {
+      "name": "calf-cloud.springdoc.info.version",
+      "type": "java.lang.String",
+      "defaultValue": "V1.0",
+      "description": "版本."
+    },
+    {
+      "name": "calf-cloud..springdoc.info.contact.name",
+      "type": "java.lang.Boolean",
+      "defaultValue": "全局参数",
+      "description": "全局 token."
+    }
+    ,    {
+      "name": "calf-cloud.springdoc.info.contact.url",
+      "type": "java.lang.String",
+      "defaultValue": "平台系统接口详情",
+      "description": "title 如: 用户模块系统接口详情."
+    }
+  ,    {
+      "name": "calf-cloud.springdoc.info.contact.email",
+      "type": "java.lang.String",
+      "defaultValue": "平台系统接口详情",
+      "description": "title 如: 用户模块系统接口详情."
+    },
+    {
+      "name": "calf-cloud.springdoc.info.license.name",
+      "type": "java.lang.String",
+      "defaultValue": "平台系统接口详情",
+      "description": "title 如: 用户模块系统接口详情."
+    }
+    ,  {
+      "name": "calf-cloud.springdoc.info.license.url",
+      "type": "java.lang.String",
+      "defaultValue": "平台系统接口详情",
+      "description": "title 如: 用户模块系统接口详情."
     }
   ]
 }

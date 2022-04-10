@@ -21,6 +21,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,25 +36,18 @@ import org.springframework.web.bind.annotation.RestController;
  * --------------------------------------------------
  */
 @RestController
-@RequestMapping("/oauth")
-@Tag(name = "tesr",description = "122222")
-public class OauthController {
+@RequestMapping("/test")
+@CrossOrigin
+@Tag(name = "test",description = "测试相关")
+public class TestController {
 
 
 
-    /**
-     * 自定义返Token回格式
-     *
-     * @param accessToken token
-     * @return java.util.Map<java.lang.String, java.lang.Object>
-     * @author : guozhifeng
-     * @date : 2021/10/7 11:50
-     */
 
-    @Operation(summary = "试题已分配分页列表", description = "试题待分配分页列表lqd", method = "POST")
-    @GetMapping(value = "/yesAssignQuestionListPage")
-    public Map<String, Object> customJwt( ) {
 
+    @Operation(summary = "测试接口", description = "用户测试接口", method = "POST")
+    @GetMapping(value = "/getTest")
+    public Map<String, Object> test( ) {
         return new HashMap<>();
     }
 }

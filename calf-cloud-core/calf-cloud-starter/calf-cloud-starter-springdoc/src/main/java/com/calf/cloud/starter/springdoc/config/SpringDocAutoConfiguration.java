@@ -1,6 +1,6 @@
 package com.calf.cloud.starter.springdoc.config;
 
-import com.calf.cloud.starter.springdoc.properties.SpringDocProperties;
+
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
@@ -20,6 +20,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.CollectionUtils;
+
+import com.calf.cloud.starter.springdoc.properties.SpringDocProperties;
 
 
 /**
