@@ -24,10 +24,7 @@ import lombok.experimental.Accessors;
 @TableName("user_info")
 public class UserInfoEntity extends BaseEntity {
 
-    /**
-     * 主键
-     */
-    private Long id;
+
 
     /**
      * 注册手机号

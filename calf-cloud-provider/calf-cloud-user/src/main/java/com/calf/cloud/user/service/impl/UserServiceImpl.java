@@ -23,7 +23,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.calf.cloud.common.core.base.modelmapper.ModelMapperUtil;
 import com.calf.cloud.user.mapper.UserInfoMapper;
 import com.calf.cloud.user.pojo.entity.UserInfoEntity;
-import com.calf.cloud.user.pojo.vo.BaseManagerVO;
 import com.calf.cloud.user.pojo.vo.UserInfoVO;
 import com.calf.cloud.user.service.BaseManagerService;
 import com.calf.cloud.user.service.UserService;
@@ -53,8 +52,8 @@ public class UserServiceImpl extends ServiceImpl<UserInfoMapper, UserInfoEntity>
         UserInfoEntity entity = super.baseMapper.selectOne(lambda3);
         UserInfoVO userInfoVO = ModelMapperUtil.map(entity, UserInfoVO.class);
         if (Objects.nonNull(entity)) {
-            BaseManagerVO managerVO = baseManagerService.selectByUserId(entity.getId());
-            userInfoVO.setBaseManagervo(managerVO);
+           // BaseManagerVO managerVO = baseManagerService.selectByUserId(entity.getId());
+         //   userInfoVO.setBaseManagervo(managerVO);
             userInfoVO.setRoleIds(Arrays.asList("ADMIN"));
         }
 

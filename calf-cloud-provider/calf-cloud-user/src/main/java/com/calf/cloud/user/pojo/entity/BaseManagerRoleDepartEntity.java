@@ -18,9 +18,7 @@
 package com.calf.cloud.user.pojo.entity;
 
 
-import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.calf.cloud.dal.pojo.entity.BaseEntity;
 import lombok.EqualsAndHashCode;
@@ -41,11 +39,6 @@ import lombok.experimental.Accessors;
 @TableName("base_manager_role_depart")
 public class BaseManagerRoleDepartEntity extends BaseEntity {
 
-    /**
-     * 主键
-     */
-	@TableId(value="id", type= IdType.AUTO)
-	private Long id;
 	
     /**
      * 角色ID
