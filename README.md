@@ -19,20 +19,18 @@ calf-cloud是自己在工作中总结积累搭建的基于Spring Cloud微服务�
  ## 1.0 swagger 
 - ### 1.1 swagger配置与效果图
 ```yml
-swagger:
-  enable: true
-  title: 文档管理-用户模块
-  version: V0.0.1
-  description: 用户模块-文档管理
-  author: fengzijk
-  email: guozhifengvip@gmail.com
-  requestParameter: true
-  termsOfServiceUrl: http//:fengzijk.com
-  basePackage: 
-   - com.calf.cloud.user.controller
+calf-cloud:
+  springdoc:
+    enabled: true
+    info:
+      title: 用户服务
+      contact:
+        name: fengzijk
+        email: guozhifengvip@gmail.com
+      description: 用户服务用来测试
 
 ```
-![image](https://user-images.githubusercontent.com/12505138/135800612-d3852951-707d-41ec-bbbb-3595d117d4f5.png)
+![image](https://user-images.githubusercontent.com/12505138/162611633-2be84381-91c3-4adc-9659-e15d48787781.png)
 
 
 
