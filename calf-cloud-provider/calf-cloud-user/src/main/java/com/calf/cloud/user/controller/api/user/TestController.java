@@ -17,6 +17,7 @@
 
 package com.calf.cloud.user.controller.api.user;
 
+import com.calf.cloud.starter.response.exception.BusinessException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -48,6 +49,6 @@ public class TestController {
     @GetMapping(value = "/getTest")
     @ResponseBody
     public String test( ) {
-         return "6666";
+        throw  new BusinessException(111,"11");
     }
 }

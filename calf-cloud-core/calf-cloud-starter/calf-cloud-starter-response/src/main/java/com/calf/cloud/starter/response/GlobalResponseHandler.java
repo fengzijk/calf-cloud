@@ -180,9 +180,10 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      * @date : 2021/10/4 2:20
      */
     @ExceptionHandler(value = BusinessException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseResult<?> daoExceptionHandler(BusinessException e) {
         log.error("DaoException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
-        return ResponseResult.fail(e.getMessage());
+        return ResponseResult.fail(e.getCode(),e.getMessage());
 
     }
 
@@ -196,6 +197,11 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
     @Override
     public Object beforeBodyWrite(Object obj, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass,
       ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
+
+        if(serverHttpRequest.getHeaders().containsKey(globalResponseProperties.getFeignHeader())){
+            return obj;
+        }
+
         //o is null -> return response
         if (obj == null) {
             return JsonUtil.tojson(ResponseResult.success(null));

@@ -17,7 +17,6 @@
 
 package com.calf.cloud.provider.user.api;
 
-import com.calf.cloud.starter.response.ResponseResult;
 import org.springframework.cloud.openfeign.FallbackFactory;
 
 public class UserFeignApiHystrix implements FallbackFactory<UserFeignApi> {
@@ -26,8 +25,8 @@ public class UserFeignApiHystrix implements FallbackFactory<UserFeignApi> {
     public UserFeignApi create(Throwable cause) {
         return new UserFeignApi() {
             @Override
-            public ResponseResult<String> getTest() {
-                return new ResponseResult<String>().setMsg("用户服务繁忙");
+            public String getTest() {
+                return null;
             }
         };
     }

@@ -18,7 +18,6 @@
 package com.calf.cloud.message.controller.api.user;
 
 import com.calf.cloud.provider.user.api.UserFeignApi;
-import com.calf.cloud.starter.response.ResponseResult;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.util.HashMap;
@@ -56,9 +55,9 @@ public class TestController {
     @ResponseBody
     public Map<String, Object> test() {
         Map<String, Object> xx = new HashMap<>();
-        ResponseResult<String> apiTest = userFeignApi.getTest();
+        String apiTest = userFeignApi.getTest();
         log.info("xxxxxxxxxxxxxxx=============={}", apiTest);
-        xx.put("111", apiTest.getData());
+        xx.put("111", apiTest);
         return xx;
     }
 }

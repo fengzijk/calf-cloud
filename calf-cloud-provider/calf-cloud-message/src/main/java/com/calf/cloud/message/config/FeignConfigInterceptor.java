@@ -50,6 +50,7 @@ public class FeignConfigInterceptor implements RequestInterceptor {
                 }
             }
             requestTemplate.header("Content-Type", MediaType.APPLICATION_JSON_VALUE);
+            requestTemplate.header("Feign-Client", "feign");
         }
     }
 }

@@ -43,6 +43,8 @@ public class GlobalResponseProperties {
 
     private final Boolean enabled = Boolean.TRUE;
 
+    private  String  feignHeader="Feign-Client";
+
     /**
      * 统一返回过滤包
      */
@@ -69,5 +71,12 @@ public class GlobalResponseProperties {
         this.adviceFilterClass = adviceFilterClass;
     }
 
+    public String getFeignHeader() {
+        return feignHeader;
+    }
+
+    public void setFeignHeader(String feignHeader) {
+        this.feignHeader = feignHeader;
+    }
 }
 
