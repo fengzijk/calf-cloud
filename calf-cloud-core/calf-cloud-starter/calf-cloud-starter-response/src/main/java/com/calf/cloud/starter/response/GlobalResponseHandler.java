@@ -20,7 +20,6 @@ package com.calf.cloud.starter.response;
 
 import com.calf.cloud.starter.response.annotation.IgnoreGlobalResponse;
 import com.calf.cloud.starter.response.exception.BusinessException;
-import com.calf.cloud.starter.response.json.JsonUtil;
 import com.calf.cloud.starter.response.properties.GlobalResponseProperties;
 import java.util.List;
 import java.util.Objects;
@@ -197,21 +196,23 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
     @Override
     public Object beforeBodyWrite(Object obj, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass,
       ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
+//
+//        if(serverHttpRequest.getHeaders().containsKey(globalResponseProperties.getFeignHeader())){
+//            return obj;
+//        }
+//
+//        //o is null -> return response
+//        if (obj == null) {
+//            return JsonUtil.tojson(ResponseResult.success(null));
+//        }
+//        //当 obj 返回类型为ResultMsg(统一封装返回对象),则直接返回
+//        if (obj instanceof ResponseResult) {
+//            return obj;
+//        }
+//
+//        return JsonUtil.tojson(ResponseResult.success(obj));
 
-        if(serverHttpRequest.getHeaders().containsKey(globalResponseProperties.getFeignHeader())){
-            return obj;
-        }
-
-        //o is null -> return response
-        if (obj == null) {
-            return JsonUtil.tojson(ResponseResult.success(null));
-        }
-        //当 obj 返回类型为ResultMsg(统一封装返回对象),则直接返回
-        if (obj instanceof ResponseResult) {
-            return obj;
-        }
-
-        return JsonUtil.tojson(ResponseResult.success(obj));
+        return obj;
     }
 
 
