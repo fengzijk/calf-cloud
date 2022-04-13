@@ -18,6 +18,7 @@
 package com.calf.cloud.provider.user.api;
 
 
+import com.calf.cloud.starter.response.ResponseResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 /**
@@ -31,7 +32,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public interface UserFeignApi {
 
     @GetMapping(value = "/test/getTest")
-    String getTest();
+    ResponseResult<String> getTest();
 
 
 }

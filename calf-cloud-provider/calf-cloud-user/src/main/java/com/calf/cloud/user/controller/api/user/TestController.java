@@ -17,13 +17,13 @@
 
 package com.calf.cloud.user.controller.api.user;
 
+import com.calf.cloud.starter.response.ResponseResult;
 import com.calf.cloud.starter.response.exception.BusinessException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -47,8 +47,7 @@ public class TestController {
 
     @Operation(summary = "测试接口", description = "用户测试接口", method = "POST")
     @GetMapping(value = "/getTest")
-    @ResponseBody
-    public String test( ) {
+    public ResponseResult<String> test( ) {
         throw  new BusinessException(111,"11");
     }
 }

@@ -179,7 +179,6 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      * @date : 2021/10/4 2:20
      */
     @ExceptionHandler(value = BusinessException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseResult<?> daoExceptionHandler(BusinessException e) {
         log.error("DaoException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
         return ResponseResult.fail(e.getCode(),e.getMessage());
