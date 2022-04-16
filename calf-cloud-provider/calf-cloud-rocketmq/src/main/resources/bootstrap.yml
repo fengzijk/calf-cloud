@@ -13,7 +13,7 @@ spring:
         group: @nacos.group@
         namespace: @nacos.namespace@
         extension-configs:
-          - dataId: calf-cloud-user-self.yml
+          - dataId: calf-cloud-mq-self.yml
             group:  @nacos.group@
             refresh : true
           - dataId: calf-cloud-redis.yml
@@ -23,14 +23,17 @@ spring:
         group: @nacos.group@
         namespace: @nacos.namespace@
 
-  stream:
-    rocketmq:
-      binder:
-        name-server: 192.168.2.32:9876
 
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+    stream:
+      bindings:
+       output:
+         destination: gzf
+         content-type: application/json
+      rocketmq:
+        binder:
+          group: test
+          name-server: 192.168.2.32:9876
+
 
 
 

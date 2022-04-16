@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 
@@ -16,8 +17,8 @@ import lombok.experimental.Accessors;
 *--------------------------------------------------
 */
 @Data
-@AllArgsConstructor
 @Accessors(chain = true)
+@NoArgsConstructor
 public class SendMqDTO implements Serializable {
     /**
      * 投递MQ的topic

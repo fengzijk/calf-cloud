@@ -18,7 +18,7 @@ import lombok.experimental.Accessors;
 */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@TableName(value = "base_mq_producer_log")
+@TableName(value = "mq_producer_record")
 @Accessors(chain = true)
 public class MqProducerLogEntity extends BaseEntity implements Serializable {
     /**

@@ -8,6 +8,7 @@ import com.calf.cloud.rocketmq.pojo.dto.SaveMqProducerLogDTO;
 import com.calf.cloud.rocketmq.pojo.dto.UpdateMqProducerLogSendFlagDTO;
 import com.calf.cloud.rocketmq.pojo.entity.MqProducerLogEntity;
 import com.calf.cloud.rocketmq.service.MqProducerLogService;
+import java.time.LocalDateTime;
 import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 /**
@@ -25,10 +26,13 @@ public class MqProducerLogServiceImpl extends ServiceImpl<MqProducerLogMapper, M
     @Override
     public Boolean saveMqProducerLog(SaveMqProducerLogDTO saveMqProducerLogDTO) {
         MqProducerLogEntity mqProducerLog = ModelMapperUtil.map(saveMqProducerLogDTO, MqProducerLogEntity.class);
+
         mqProducerLog.setCreateId(0L);
+
         mqProducerLog.setUpdateId(0L);
+        mqProducerLog.setCreateTime(LocalDateTime.now());
+        mqProducerLog.setUpdateTime(LocalDateTime.now());
         int result = mqProducerLogMapper.insert(mqProducerLog);
-        saveMqProducerLogDTO.setId(mqProducerLog.getId());
         return result>0;
     }
 
