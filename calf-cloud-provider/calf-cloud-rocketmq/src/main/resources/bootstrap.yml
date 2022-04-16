@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: @pom.artifactId@
+  profiles:
+    active: @env@
+  cloud:
+    nacos:
+      server-addr: @nacos.server.addr@
+      config:
+        username: @nacos.username@
+        password: @nacos.password@
+        file-extension: yml
+        group: @nacos.group@
+        namespace: @nacos.namespace@
+        extension-configs:
+          - dataId: calf-cloud-user-self.yml
+            group:  @nacos.group@
+            refresh : true
+          - dataId: calf-cloud-redis.yml
+            group:  @nacos.group@
+            refresh : false
+      discovery:
+        group: @nacos.group@
+        namespace: @nacos.namespace@
+
+  stream:
+    rocketmq:
+      binder:
+        name-server: 192.168.2.32:9876
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+
+
+
+

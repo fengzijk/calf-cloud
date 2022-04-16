@@ -4,21 +4,20 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>calf-cloud-provider-client</artifactId>
+        <artifactId>calf-cloud-client</artifactId>
         <groupId>com.fengzijk</groupId>
         <version>1.0.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <artifactId>calf-cloud-provider-mq-client</artifactId>
 
-    <artifactId>calf-cloud-provider-user-client</artifactId>
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.fengzijk</groupId>
-            <artifactId>calf-cloud-starter-response</artifactId>
-            <version>${calf-cloud.core.version}</version>
-        </dependency>
         <!-- Feign是Netflix开发的声明式,模板化的HTTP客户端. -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -31,6 +30,6 @@
             <artifactId>spring-cloud-loadbalancer</artifactId>
         </dependency>
 
-
     </dependencies>
+
 </project>

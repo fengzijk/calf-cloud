@@ -15,7 +15,7 @@
  *  
  */
 
-package com.calf.cloud.user.util;
+package com.calf.cloud.rocketmq.service;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -30,12 +30,12 @@ public class SqlGenerator {
 
    public static void main(String[] args) {
       //实体类所在的package在磁盘上的绝对路径
-      String packageName = "E:/workspaces/self_open/calf-cloud/calf-cloud-provider/calf-cloud-user/src/main/java/com/calf/cloud/user"
+      String packageName = "E:/workspaces/self_open/calf-cloud/calf-cloud-provider/calf-cloud-rocketmq/src/main/java/com/calf/cloud/rocketmq"
         + "/pojo/entity";
       //生成sql的文件夹
       String filePath = "E:/create/";
       //项目中实体类的路径
-      String prefix = "com.calf.cloud.rocketmq.pojo.entity";
+      String prefix = "com.calf.cloud.rocketmq.pojo.entity.";
       String className = "";
 
       StringBuffer sqls = new StringBuffer();

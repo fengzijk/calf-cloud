@@ -14,6 +14,7 @@
     <modules>
         <module>calf-cloud-message</module>
         <module>calf-cloud-user</module>
+        <module>calf-cloud-rocketmq</module>
     </modules>
     <dependencies>
 

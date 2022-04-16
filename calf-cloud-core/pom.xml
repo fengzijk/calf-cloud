@@ -10,6 +10,7 @@
     <modules>
         <module>calf-cloud-common-core</module>
         <module>calf-cloud-starter</module>
+        <module>calf-cloud-client</module>
     </modules>
 
 

@@ -17,6 +17,7 @@
         <module>calf-cloud-starter-springdoc</module>
         <module>calf-cloud-starter-redis</module>
         <module>calf-cloud-starter-database</module>
+        <module>calf-cloud-starter-rocketmq</module>
     </modules>
 
     <dependencies>
