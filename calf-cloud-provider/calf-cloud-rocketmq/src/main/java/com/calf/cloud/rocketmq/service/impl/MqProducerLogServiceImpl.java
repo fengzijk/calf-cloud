@@ -24,7 +24,7 @@ public class MqProducerLogServiceImpl extends ServiceImpl<MqProducerLogMapper, M
     private MqProducerLogMapper mqProducerLogMapper;
 
     @Override
-    public Boolean saveMqProducerLog(SaveMqProducerLogDTO saveMqProducerLogDTO) {
+    public Long  saveMqProducerLog(SaveMqProducerLogDTO saveMqProducerLogDTO) {
         MqProducerLogEntity mqProducerLog = ModelMapperUtil.map(saveMqProducerLogDTO, MqProducerLogEntity.class);
 
         mqProducerLog.setCreateId(0L);
@@ -32,15 +32,17 @@ public class MqProducerLogServiceImpl extends ServiceImpl<MqProducerLogMapper, M
         mqProducerLog.setUpdateId(0L);
         mqProducerLog.setCreateTime(LocalDateTime.now());
         mqProducerLog.setUpdateTime(LocalDateTime.now());
-        int result = mqProducerLogMapper.insert(mqProducerLog);
-        return result>0;
+       mqProducerLogMapper.insert(mqProducerLog);
+        return mqProducerLog.getId();
     }
 
     @Override
     public Boolean updateMqProducerLog(UpdateMqProducerLogSendFlagDTO updateMqProducerLogSendFlagDTO) {
-        MqProducerLogEntity mqProducerLog = ModelMapperUtil.map(updateMqProducerLogSendFlagDTO, MqProducerLogEntity.class);
-        mqProducerLog.setUpdateId(0L);
-        int result = mqProducerLogMapper.updateById (mqProducerLog);
+        MqProducerLogEntity entity = ModelMapperUtil.map(updateMqProducerLogSendFlagDTO, MqProducerLogEntity.class);
+        entity.setId(updateMqProducerLogSendFlagDTO.getId());
+        entity.setUpdateId(0L);
+        entity.setUpdateTime(LocalDateTime.now());
+        int result = mqProducerLogMapper.updateById (entity);
         return result>0;
     }
 }

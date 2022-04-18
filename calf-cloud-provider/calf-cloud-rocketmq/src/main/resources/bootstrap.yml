@@ -25,10 +25,6 @@ spring:
 
 
     stream:
-      bindings:
-       output:
-         destination: gzf
-         content-type: application/json
       rocketmq:
         binder:
           group: test
@@ -37,5 +33,9 @@ spring:
 
 
 
+rocketmq:
+  name-server: 192.168.2.32:9876 #rocketMQ服务的地址
+  producer:
+    group: gzf # 生产者组
 
 

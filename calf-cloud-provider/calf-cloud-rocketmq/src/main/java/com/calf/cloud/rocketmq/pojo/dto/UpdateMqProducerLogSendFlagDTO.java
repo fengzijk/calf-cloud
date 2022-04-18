@@ -10,7 +10,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class UpdateMqProducerLogSendFlagDTO implements Serializable {
     private Long id;
-    private Boolean executeResult;
+    private String executeResult;
     private LocalDateTime executeTime;
     private Boolean sendFlag;
 }

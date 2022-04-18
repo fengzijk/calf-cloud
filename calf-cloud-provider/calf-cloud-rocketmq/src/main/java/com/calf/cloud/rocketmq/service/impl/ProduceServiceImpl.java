@@ -17,7 +17,7 @@
 
 package com.calf.cloud.rocketmq.service.impl;
 
-import com.alibaba.cloud.stream.binder.rocketmq.integration.outbound.RocketMQProducerMessageHandler;
+
 import com.calf.cloud.rocketmq.pojo.dto.MqProducerDataDTO;
 import com.calf.cloud.rocketmq.pojo.dto.SaveMqProducerLogDTO;
 import com.calf.cloud.rocketmq.pojo.dto.UpdateMqProducerLogSendFlagDTO;
@@ -25,18 +25,26 @@ import com.calf.cloud.rocketmq.service.MqProducerLogService;
 import com.calf.cloud.roketmq.enums.TagEnum;
 import com.calf.cloud.starter.response.exception.BusinessException;
 import com.calf.cloud.starter.response.json.JsonUtil;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Objects;
+
 import lombok.extern.slf4j.Slf4j;
-import org.apache.rocketmq.common.message.MessageConst;
+
+import lombok.val;
+import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.client.producer.SendStatus;
+
+import org.apache.rocketmq.common.message.Message;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
+import org.apache.rocketmq.spring.support.RocketMQHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.cloud.stream.messaging.Processor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.MediaType;
 import org.springframework.integration.annotation.ServiceActivator;
-import org.springframework.messaging.Message;
-import org.springframework.messaging.MessageHeaders;
+
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
@@ -49,7 +57,7 @@ import org.springframework.stereotype.Service;
 public class ProduceServiceImpl {
 
     @Autowired
-    StreamBridge streamBridge;
+    private RocketMQTemplate rocketMqTemplate;
     @Autowired
     private MqProducerLogService mqProducerLogService;
 
@@ -62,6 +70,7 @@ public class ProduceServiceImpl {
      */
     public Boolean sendMsgToMq(MqProducerDataDTO dto) {
         long start = System.currentTimeMillis();
+        dto.setTag(TagEnum.HELLO_WORLD);
         log.info("MQ开始生产:{}", dto);
 
         TagEnum tagEnum = dto.getTag();
@@ -74,7 +83,7 @@ public class ProduceServiceImpl {
               .setTopic(dto.getTopic())
               .setRefNo(dto.getRefNo())
               .setMessageData(dto.getMessageData());
-            if (Objects.nonNull(tagEnum)){
+            if (Objects.nonNull(tagEnum)) {
                 saveMqProducerLogDTO
                   .setTag(tagEnum.getTag())
                   .setFromService(tagEnum.getFromService())
@@ -82,21 +91,23 @@ public class ProduceServiceImpl {
                   .setTagName(tagEnum.getDesc());
             }
 
-            mqProducerLogService.saveMqProducerLog(saveMqProducerLogDTO);
+            Long id = mqProducerLogService.saveMqProducerLog(saveMqProducerLogDTO);
+            saveMqProducerLogDTO.setId(id);
         } catch (Exception e) {
             log.error("MQ消息保存失败,异常信息:{}", e.getMessage(), e);
             //一定要保证异常抛出，进而使业务代码回滚
             throw new BusinessException("MQ发送失败");
         }
 
+        SendResult sendResult = sendMq(dto);
 
-        if (Boolean.TRUE.equals(sendMq(dto))) {
+        if (Objects.nonNull(sendResult) && sendResult.getSendStatus().equals(SendStatus.SEND_OK)) {
             //MQ投递成功
             UpdateMqProducerLogSendFlagDTO updateMqProducerLogSendFlagDTO = new UpdateMqProducerLogSendFlagDTO();
             updateMqProducerLogSendFlagDTO.setId(saveMqProducerLogDTO.getId());
             updateMqProducerLogSendFlagDTO.setSendFlag(true);
             updateMqProducerLogSendFlagDTO.setExecuteTime(LocalDateTime.now());
-            updateMqProducerLogSendFlagDTO.setExecuteResult(true);
+            updateMqProducerLogSendFlagDTO.setExecuteResult(JsonUtil.tojson(sendResult));
             mqProducerLogService.updateMqProducerLog(updateMqProducerLogSendFlagDTO);
         }
         log.info("MQ消息生产结束,耗时:{}ms", System.currentTimeMillis() - start);
@@ -109,7 +120,7 @@ public class ProduceServiceImpl {
      * 发送MQ
      * 延迟消费阿里云最长支持40天，如果超过40天，本次MQ不进行投递，由JOB程序进行处理
      */
-    private Boolean sendMq(MqProducerDataDTO mqProducerDataDTO) {
+    private SendResult sendMq(MqProducerDataDTO mqProducerDataDTO) {
 //        //将消息投递阿里云MQ Broker，以下逻辑允许失败，通过Job补偿机制实现
 //        if (Objects.nonNull(mqProducerDataDTO.getSendDateTime())) {
 //            long betweenDays = DateUtil.get(LocalDateTime.now(), mqProducerDataDTO.getSendDateTime());
@@ -119,27 +130,22 @@ public class ProduceServiceImpl {
 //            }
 //        }
 
-        Message<MqProducerDataDTO> message = MessageBuilder.withPayload(mqProducerDataDTO)
-          .setHeader("__KEY", "binder")
-          .setHeader("__TAG", "my-key")
-          .setHeader(MessageConst.PROPERTY_DELAY_TIME_LEVEL, "1").build();
+        Message message = new Message(mqProducerDataDTO.getTopic(), mqProducerDataDTO.getTag().getTag(),
+          mqProducerDataDTO.getMessageData().getBytes(StandardCharsets.UTF_8));
+
         //业务唯一标识
-        mqProducerDataDTO.setRefNo("");
         //延时消息，单位毫秒（ms），在指定延迟时间（当前时间之后）进行投递
 //            if (sendDateTime != null) {
 //                long producerTime = DateUtil.localDateTime2Timestamp(sendDateTime);
 //                mqProducerDataDTO.setStartDeliverTime(producerTime);
 //            }
         // 同步发送消息，只要不抛异常就是成功
-        Boolean result = streamBridge.send( "123",message, MediaType.APPLICATION_JSON);
 
-        log.info("MQ消息生产：{}",JsonUtil.tojson(message));
-        if (!result) {
-            log.error("MQ消息生产失败，{}", JsonUtil.tojson(mqProducerDataDTO));
-        }
+        SendResult sendResult = rocketMqTemplate.syncSend(mqProducerDataDTO.getTopic(), message);
+        log.info("MQ消息生产：{}", JsonUtil.tojson(message));
+        log.info("MQ消息生产成功,返回结果:{}", JsonUtil.tojson(sendResult));
 
-
-        return result;
+        return sendResult;
     }
 
 

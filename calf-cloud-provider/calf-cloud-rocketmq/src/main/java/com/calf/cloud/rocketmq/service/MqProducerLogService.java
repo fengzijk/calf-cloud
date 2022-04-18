@@ -21,7 +21,7 @@ public interface MqProducerLogService {
      * @author : fengzijk
      * @date : 2022-04-16 13:53
      */
-    Boolean saveMqProducerLog(SaveMqProducerLogDTO saveMqProducerLogDTO);
+    Long saveMqProducerLog(SaveMqProducerLogDTO saveMqProducerLogDTO);
 
     /**
      * 功能描述
