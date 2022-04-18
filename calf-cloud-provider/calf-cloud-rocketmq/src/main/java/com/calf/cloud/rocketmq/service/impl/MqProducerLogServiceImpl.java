@@ -27,11 +27,6 @@ public class MqProducerLogServiceImpl extends ServiceImpl<MqProducerLogMapper, M
     public Long  saveMqProducerLog(SaveMqProducerLogDTO saveMqProducerLogDTO) {
         MqProducerLogEntity mqProducerLog = ModelMapperUtil.map(saveMqProducerLogDTO, MqProducerLogEntity.class);
 
-        mqProducerLog.setCreateId(0L);
-
-        mqProducerLog.setUpdateId(0L);
-        mqProducerLog.setCreateTime(LocalDateTime.now());
-        mqProducerLog.setUpdateTime(LocalDateTime.now());
        mqProducerLogMapper.insert(mqProducerLog);
         return mqProducerLog.getId();
     }
@@ -41,7 +36,6 @@ public class MqProducerLogServiceImpl extends ServiceImpl<MqProducerLogMapper, M
         MqProducerLogEntity entity = ModelMapperUtil.map(updateMqProducerLogSendFlagDTO, MqProducerLogEntity.class);
         entity.setId(updateMqProducerLogSendFlagDTO.getId());
         entity.setUpdateId(0L);
-        entity.setUpdateTime(LocalDateTime.now());
         int result = mqProducerLogMapper.updateById (entity);
         return result>0;
     }
