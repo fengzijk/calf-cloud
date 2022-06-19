@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月05日 16时05分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-05 16:05:33    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:39    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -114,8 +114,8 @@ public class BaseConstant {
      * 基础查询语句
      */
     public static final String CLIENT_BASE = "select client_id, CONCAT('{noop}',client_secret) as client_secret, resource_ids, scope, " +
-      "authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity," +
-      "refresh_token_validity, additional_information, autoapprove from " + CLIENT_TABLE;
+            "authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity," +
+            "refresh_token_validity, additional_information, autoapprove from " + CLIENT_TABLE;
 
     public static final String FIND_CLIENT_DETAIL_SQL = CLIENT_BASE + " order by client_id";
 

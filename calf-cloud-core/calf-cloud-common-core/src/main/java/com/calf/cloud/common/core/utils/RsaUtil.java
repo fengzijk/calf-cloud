@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月03日 01时49分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-03 01:49:29    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:39    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -37,7 +37,6 @@ import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 /**
- * -------------------------------------------------
  * <p>
  * RSA公钥/私钥/签名工具包
  * </p>
@@ -52,7 +51,6 @@ import sun.misc.BASE64Encoder;
  *
  * @author : fengzijk
  * @date : 2021/10/3 1:49
- * --------------------------------------------------
  */
 @SuppressWarnings("AlibabaLowerCamelCaseVariableNaming")
 public class RsaUtil {
@@ -171,7 +169,7 @@ public class RsaUtil {
     /**
      * 用私钥对信息生成数字签名
      *
-     * @param data 加密数据
+     * @param data       加密数据
      * @param privateKey 私钥
      */
     public static String sign(byte[] data, String privateKey) throws Exception {
@@ -210,9 +208,9 @@ public class RsaUtil {
     /**
      * 校验数字签名
      *
-     * @param data 加密数据
+     * @param data      加密数据
      * @param publicKey 公钥
-     * @param sign 数字签名
+     * @param sign      数字签名
      * @return 校验成功返回true 失败返回false
      */
     public static boolean verify(byte[] data, String publicKey, String sign) throws Exception {
@@ -235,9 +233,9 @@ public class RsaUtil {
     /**
      * 校验数字签名
      *
-     * @param str 加密数据
+     * @param str       加密数据
      * @param publicKey 公钥
-     * @param sign 数字签名
+     * @param sign      数字签名
      * @return 校验成功返回true 失败返回false
      */
     public static boolean verify(String str, String publicKey, String sign) throws Exception {
@@ -267,7 +265,7 @@ public class RsaUtil {
      * <pre>私钥加密</pre>
      *
      * @param privateKey 私钥
-     * @param str 需要加密的字符串
+     * @param str        需要加密的字符串
      * @return java.lang.String 返回加密后的字符串
      * @author : fengzijk
      * @date : 2021/10/3 1:51
@@ -298,7 +296,7 @@ public class RsaUtil {
      * <pre>用公钥解密</pre>
      *
      * @param publicKey 公钥
-     * @param str 加密后的字符串
+     * @param str       加密后的字符串
      * @return java.lang.String 返回解密后的字符串
      * @author : fengzijk
      * @date : 2021/10/3 1:51

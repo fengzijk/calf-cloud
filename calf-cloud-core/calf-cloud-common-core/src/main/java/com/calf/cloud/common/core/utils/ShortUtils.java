@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月03日 01时57分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-03 01:57:15    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:39    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -22,12 +22,10 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 
 /**
- * -------------------------------------------------
  * <pre>短参数生成</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 1:57
- * --------------------------------------------------
  */
 public class ShortUtils {
 
@@ -37,11 +35,11 @@ public class ShortUtils {
         String key = "fengzijk";
         // 要使用生成 URL 的字符
         String[] chars = new String[]{"a", "b", "c", "d", "e", "f", "g", "h",
-          "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
-          "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5",
-          "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H",
-          "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
-          "U", "V", "W", "X", "Y", "Z"
+                "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
+                "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5",
+                "6", "7", "8", "9", "A", "B", "C", "D", "E", "F", "G", "H",
+                "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
+                "U", "V", "W", "X", "Y", "Z"
 
         };
         // 对传入网址进行 MD5 加密

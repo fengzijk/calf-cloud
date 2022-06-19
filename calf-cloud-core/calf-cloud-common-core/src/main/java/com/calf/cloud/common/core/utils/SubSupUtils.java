@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月03日 00时50分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-03 00:50:28    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:39    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -24,21 +24,18 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * -------------------------------------------------
  * <pre>角标处理工具类</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 0:50
- * --------------------------------------------------
  */
 public class SubSupUtils {
 
+    public static final Map<Character, Character> SUB_MAP = new HashMap<>();
+    public static final Map<Character, Character> SUP_MAP = new HashMap<>();
     private static final String THE_TEXT = "0 1 2 3 4 5 6 7 8 9 + - = ( ) l s t h";
     private static final String SUB_TEXT = "₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ₊ ₋ ₌ ₍ ₎ ₗ ₛ ₜ ₕ";
     private static final String SUP_TEXT = "⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ⁺ ⁻ ⁼ ⁽ ⁾ ˡ ˢ ᵗ ʰ";
-
-    public static final Map<Character, Character> SUB_MAP = new HashMap<>();
-    public static final Map<Character, Character> SUP_MAP = new HashMap<>();
 
     static {
         for (int i = 0; i < THE_TEXT.length(); i += 2) {

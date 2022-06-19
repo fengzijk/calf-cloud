@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月03日 00时42分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-03 00:42:27    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:39    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -28,12 +28,10 @@ import java.time.temporal.TemporalUnit;
 import java.util.Date;
 
 /**
- * -------------------------------------------------
  * <pre>时间处理工具类</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 0:49
- * --------------------------------------------------
  */
 public class DateUtil {
 
@@ -145,7 +143,7 @@ public class DateUtil {
     /**
      * 时间转为指定格式的字符串
      *
-     * @param time LocalDateTime 类型的参数
+     * @param time    LocalDateTime 类型的参数
      * @param pattern 需要转换的格式类型
      * @return 返回String类型
      * @author : fengzijk
@@ -159,7 +157,7 @@ public class DateUtil {
     /**
      * 时间转为指定格式的字符串
      *
-     * @param time LocalDateTime 类型的参数
+     * @param time    LocalDateTime 类型的参数
      * @param pattern 需要转换的格式类型
      * @return 返回String类型
      * @author : fengzijk
@@ -173,7 +171,7 @@ public class DateUtil {
      * 指定格式的字符串转为时间
      *
      * @param formatString 字符串
-     * @param pattern 需要转换的格式类型
+     * @param pattern      需要转换的格式类型
      * @return 返回  LocalDateTime 类型
      * @author : fengzijk
      * @date : 2019/5/7 17:04
@@ -186,7 +184,7 @@ public class DateUtil {
      * 指定格式的字符串转为时间
      *
      * @param formatString 字符串
-     * @param pattern 需要转换的格式类型
+     * @param pattern      需要转换的格式类型
      * @return 返回  LocalDateTime 类型
      * @author : fengzijk
      * @date : 2019/5/7 17:04
@@ -200,7 +198,7 @@ public class DateUtil {
      * 获取指定时间加另一个时间后的时间
      *
      * @param number 要加的数字
-     * @param unit 单位 eg:ChronoUnit.SECONDS
+     * @param unit   单位 eg:ChronoUnit.SECONDS
      * @return LocalDateTime LocalDateTime
      * @author lch
      * @date 2019-06-11
@@ -213,7 +211,7 @@ public class DateUtil {
      * 获取当前时间减去另一个时间后的时间
      *
      * @param number 要加的数字
-     * @param unit 单位 eg:ChronoUnit.SECONDS
+     * @param unit   单位 eg:ChronoUnit.SECONDS
      * @return LocalDateTime LocalDateTime
      * @author : fengzijk
      * @date : 2019/5/7 17:04

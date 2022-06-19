@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月03日 01时29分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-03 01:29:04    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:39    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -22,49 +22,84 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+
 /**
-*-------------------------------------------------
-* <pre>bean拷贝</pre>
-* @author : fengzijk
-* @date : 2021/10/3 1:54
-*--------------------------------------------------
-*/
+ * <pre>bean拷贝</pre>
+ *
+ * @author : fengzijk
+ * @date : 2021/10/3 1:54
+ */
 @Component
 public class ModelMapperUtil {
     private static ModelMapper modelMapper = SingletonModelMapper.getInstance();
 
+
+    public static <S, T> T map(final S source, Class<T> target) {
+        if (source == null) {
+            return null;
+        }
+        return map(source, target, (ConvertCallBack<S, T>) null);
+
+    }
+
+
     /**
      * 实体转换
      *
-     * @param entity   原始
-     * @param outClass 目标
+     * @param source 原始
+     * @param target 目标
      * @return 目标类型的实体
      */
-    public static <D, T> D map(final T entity, Class<D> outClass) {
-        if (entity == null) {
+    public static <S, T> T map(final S source, Class<T> target, ConvertCallBack<S, T> callBack) {
+        if (source == null) {
             return null;
         }
-        return modelMapper.map(entity, outClass);
+        T t = modelMapper.map(source, target);
+        if (callBack != null) {
+            callBack.callBack(source, t);
+        }
+        return t;
     }
 
     /**
      * 集合转换
      *
-     * @param entityList 原始集合
-     * @param d   目标集合类
+     * @param source 原始集合
+     * @param <T>
      * @return 目标类型的集合
      */
-    public static <D, T> List<D> mapList(final Collection<T> entityList, Class<D> d) {
-        if (entityList == null) {
+    public static <S, T> List<T> mapList(final Collection<S> source, Class<T> target, ConvertCallBack<S, T> callBack) {
+        if (source == null) {
             return null;
         }
-        return entityList.stream()
-                .map(entity -> map(entity, d))
+        return source.stream()
+                .map(entity -> map(entity, target, callBack))
                 .collect(Collectors.toList());
     }
 
-    public static <S, D> D map(final S source, D destination) {
-        modelMapper.map(source, destination);
-        return destination;
+
+    public static <S, T> T map(final S source, T target) {
+        map(source, target, null);
+        return target;
+    }
+
+
+    public static <S, T> T map(final S source, T target, ConvertCallBack<S, T> callBack) {
+        modelMapper.map(source, target);
+        if (callBack != null) {
+            callBack.callBack(source, target);
+        }
+        return target;
+    }
+
+    /**
+     * 回调接口
+     *
+     * @param <S> 源对象类型
+     * @param <T> 目标对象类型
+     */
+    @FunctionalInterface
+    public interface ConvertCallBack<S, T> {
+        void callBack(S t, T s);
     }
 }
