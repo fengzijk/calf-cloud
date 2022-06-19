@@ -21,12 +21,12 @@ package com.calf.cloud.common.core.base.tree;
 import java.util.List;
 
 /**
- * -------------------------------------------------
+
  * <pre>节点合并</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/5 19:04
- * --------------------------------------------------
+
  */
 public class ForestNodeMerger {
 

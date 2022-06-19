@@ -24,12 +24,12 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * -------------------------------------------------
+
  * <pre>角标处理工具类</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 0:50
- * --------------------------------------------------
+
  */
 public class SubSupUtils {
 

@@ -22,12 +22,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * -------------------------------------------------
+
  * <pre>森林节点管理</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/5 19:00
- * --------------------------------------------------
+
  */
 public class ForestNodeManager<T extends INode> {
 

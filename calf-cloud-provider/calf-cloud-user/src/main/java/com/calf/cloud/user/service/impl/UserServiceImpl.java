@@ -32,12 +32,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * -------------------------------------------------
+
  * <pre>y</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 18:09
- * --------------------------------------------------
+
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserInfoMapper, UserInfoEntity> implements UserService {

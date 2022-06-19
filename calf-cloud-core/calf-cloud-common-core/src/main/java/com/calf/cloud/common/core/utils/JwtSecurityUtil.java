@@ -23,12 +23,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- * -------------------------------------------------
+
  * <pre>iwt 安全工具</pre>
  *
  * @author : guozhifeng
  * @date : 2021/10/7 11:37
- * --------------------------------------------------
+
  */
 public class JwtSecurityUtil {
 

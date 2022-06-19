@@ -26,12 +26,12 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 
 /**
- * -------------------------------------------------
+
  * <pre>系统用户VO</pre>
  *
  * @author : guozhifeng
  * @date : 2021/10/6 0:11
- * --------------------------------------------------
+
  */
 @Getter
 @Setter

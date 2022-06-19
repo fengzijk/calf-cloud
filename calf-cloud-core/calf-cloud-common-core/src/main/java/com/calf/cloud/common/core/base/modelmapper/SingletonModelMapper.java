@@ -21,12 +21,12 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 
 /**
- * -------------------------------------------------
+
  * <pre>ModelMapper单例</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 1:56
- * --------------------------------------------------
+
  */
 public class SingletonModelMapper {
 

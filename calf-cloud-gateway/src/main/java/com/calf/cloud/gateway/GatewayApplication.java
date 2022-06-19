@@ -25,12 +25,12 @@ import org.springframework.context.annotation.FilterType;
 
 
 /**
- * -------------------------------------------------
+
  * <pre>网关启动类</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 0:17
- * --------------------------------------------------
+
  */
 @SpringBootApplication
 @EnableDiscoveryClient

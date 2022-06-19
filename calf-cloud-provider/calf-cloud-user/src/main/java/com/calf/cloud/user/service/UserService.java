@@ -20,12 +20,12 @@ package com.calf.cloud.user.service;
 import com.calf.cloud.user.pojo.vo.UserInfoVO;
 
 /**
- * -------------------------------------------------
+
  * <pre>用户信息</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 18:11
- * --------------------------------------------------
+
  */
 public interface UserService {
 

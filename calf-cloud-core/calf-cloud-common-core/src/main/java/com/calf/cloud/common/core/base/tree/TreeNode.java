@@ -26,12 +26,12 @@ import java.util.List;
 import lombok.Data;
 
 /**
- * -------------------------------------------------
+
  * <pre>树节点</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/5 19:01
- * --------------------------------------------------
+
  */
 @Data
 public class TreeNode implements INode {

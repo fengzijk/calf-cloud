@@ -24,12 +24,12 @@ import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 /**
- * -------------------------------------------------
+
  * <pre>RestTemplateConfig</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 19:11
- * --------------------------------------------------
+
  */
 @Configuration
 public class RestTemplateConfig {

@@ -19,12 +19,12 @@ package com.calf.cloud.common.core.base.dto;
 
 
 /**
- * -------------------------------------------------
+
  * <pre>用户基础信息封装</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 11:23
- * --------------------------------------------------
+
  */
 public class UserHolder {
 

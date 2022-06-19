@@ -24,12 +24,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 
 /**
- * -------------------------------------------------
+
  * <pre>用户服务启动类</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 0:16
- * --------------------------------------------------
+
  */
 
 @EnableFeignClients

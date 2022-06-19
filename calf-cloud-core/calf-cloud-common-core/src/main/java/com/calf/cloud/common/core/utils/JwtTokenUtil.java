@@ -23,12 +23,12 @@ import io.jsonwebtoken.Jwts;
 import java.util.Base64;
 
 /**
- * -------------------------------------------------
+
  * <pre>jwt Token工具</pre>
  *
  * @author : guozhifeng
  * @date : 2021/10/7 11:38
- * --------------------------------------------------
+
  */
 public class JwtTokenUtil {
 

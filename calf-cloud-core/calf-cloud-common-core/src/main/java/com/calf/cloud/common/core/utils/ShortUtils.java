@@ -22,12 +22,12 @@ import org.apache.commons.codec.digest.DigestUtils;
 
 
 /**
- * -------------------------------------------------
+
  * <pre>短参数生成</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 1:57
- * --------------------------------------------------
+
  */
 public class ShortUtils {
 

@@ -28,12 +28,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * -------------------------------------------------
+
  * <pre>Oauth</pre>
  *
  * @author : guozhifeng
  * @date : 2021/10/23 12:51
- * --------------------------------------------------
+
  */
 @RestController
 @RequestMapping("/test")

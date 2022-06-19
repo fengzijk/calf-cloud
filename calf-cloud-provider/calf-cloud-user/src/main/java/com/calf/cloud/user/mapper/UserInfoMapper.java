@@ -23,12 +23,12 @@ import com.calf.cloud.user.pojo.entity.UserInfoEntity;
 import org.springframework.stereotype.Repository;
 
 /**
- * -------------------------------------------------
+
  * <pre>用户信息</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 11:44
- * --------------------------------------------------
+
  */
 @Repository
 public interface UserInfoMapper extends BaseMapper<UserInfoEntity> {

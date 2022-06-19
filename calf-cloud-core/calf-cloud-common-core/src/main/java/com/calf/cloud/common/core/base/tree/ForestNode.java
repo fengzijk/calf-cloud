@@ -22,12 +22,12 @@ import lombok.EqualsAndHashCode;
 
 
 /**
- * -------------------------------------------------
+
  * <pre>森林节点</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/5 18:58
- * --------------------------------------------------
+
  */
 @Data
 @EqualsAndHashCode(callSuper = false)

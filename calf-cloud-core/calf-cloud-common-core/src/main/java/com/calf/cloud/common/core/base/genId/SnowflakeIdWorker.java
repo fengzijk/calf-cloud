@@ -20,12 +20,12 @@ package com.calf.cloud.common.core.base.genId;
 import com.calf.cloud.common.core.utils.IpUtils;
 
 /**
- * -------------------------------------------------
+
  * <pre>雪花算法生成id</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 2:04
- * --------------------------------------------------
+
  */
 public class SnowflakeIdWorker {
 
