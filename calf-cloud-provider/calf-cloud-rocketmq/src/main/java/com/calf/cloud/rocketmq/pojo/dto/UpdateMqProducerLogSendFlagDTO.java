@@ -23,6 +23,9 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 
+/**
+ * @author Timothy
+ */
 @Data
 @Accessors(chain = true)
 public class UpdateMqProducerLogSendFlagDTO implements Serializable {

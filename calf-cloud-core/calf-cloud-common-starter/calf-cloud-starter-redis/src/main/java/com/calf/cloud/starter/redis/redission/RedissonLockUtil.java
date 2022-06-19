@@ -22,10 +22,10 @@ import java.util.concurrent.TimeUnit;
 import org.redisson.api.RLock;
 
 /**
- * @Descprition : 分布式锁工具类
- * @Author : fengzijk
- * @email: guozhifengvip@163.com
- * @Time : 2019/3/23 10:57
+ * <pre>分布式锁工具类</pre>
+ *
+ * @author : guozhifeng
+ * @date : 2022/6/19 14:20
  */
 public class RedissonLockUtil {
     private static DistributedLocker redisLock;
