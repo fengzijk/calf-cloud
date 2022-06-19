@@ -22,11 +22,10 @@ import java.util.concurrent.TimeUnit;
 import org.redisson.api.RLock;
 
 /**
- * @ProjectName : redission-spring-boot-starter
- * @Descprition : 定义锁的接口
- * @Author : fengzijk
- * @email: guozhifengvip@163.com
- * @Time : 2019/3/23 10:54
+ * <pre>定义锁的接口</pre>
+ *
+ * @author : guozhifeng
+ * @date : 2022/6/19 14:11
  */
 public interface DistributedLocker {
 
@@ -46,8 +45,6 @@ public interface DistributedLocker {
      * @param lockKey redis的key
      * @param timeout 超时时间，单位为秒
      * @return RLock  返回 com.fengzijk.redisson.redlock对象
-     * @description : 带redisKey以及超时的锁
-     * @methodName :lock
      * @author : fengzijk
      * @date : 2019/4/24 13:56
      */
@@ -59,8 +56,6 @@ public interface DistributedLocker {
      * @param unit    时间单位（建议不要太长）
      * @param timeout 超时释放时间
      * @return RLock  返回 com.fengzijk.redisson.redlock对象
-     * @description :
-     * @methodName :
      * @author : fengzijk
      * @date : 2019/4/24 14:04
      */
@@ -75,17 +70,30 @@ public interface DistributedLocker {
      * @param waitTime  等待时间数值
      * @param leaseTime 经过多久释放的数值
      * @return boolean 加锁是否成功
-     * @methodName :tryLock
      * @author : fengzijk
      * @date : 2019/4/24 14:08
      */
-    boolean tryLock(String lockKey, TimeUnit unit, int waitTime, int leaseTime);
+
+
+    Boolean tryLock(String lockKey, TimeUnit unit, int waitTime, int leaseTime);
+
+    /**
+     * 加锁操作 支持过期解锁功能,最多等待多久就上锁leaseTime后以后自动解锁, 无需调用unlock方法手动解锁
+     *
+     * @param lockKey   redis key
+     * @param unit      时间单位
+     * @param waitTime  等待时间数值
+     * @param leaseTime 经过多久释放的数值
+     * @return boolean 加锁是否成功
+     * @author : fengzijk
+     * @date : 2019/4/24 14:08
+     */
+    RLock tryLockObj(String lockKey, TimeUnit unit, int waitTime, int leaseTime);
 
     /**
      * 通过redisKey 释放锁
      *
      * @param lockKey rediskey
-     * @return void
      * @author : fengzijk
      * @date : 2019/4/24 14:37
      */
@@ -95,7 +103,6 @@ public interface DistributedLocker {
      * 通过所对象释放锁
      *
      * @param lock
-     * @return void
      * @author : fengzijk
      * @date : 2019/4/24 14:44
      */

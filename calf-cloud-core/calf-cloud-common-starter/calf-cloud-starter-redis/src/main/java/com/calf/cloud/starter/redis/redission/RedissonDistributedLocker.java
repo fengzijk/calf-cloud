@@ -23,11 +23,12 @@ import java.util.concurrent.TimeUnit;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 
+
 /**
- * @Descprition : redLock 实现类
- * @Author : fengzijk
- * @email: guozhifengvip@163.com
- * @Time : 2019/3/23 10:55
+ * <pre>redLock 实现类</pre>
+ *
+ * @author : guozhifeng
+ * @date : 2022/6/19 14:13
  */
 public class RedissonDistributedLocker implements DistributedLocker {
     private RedissonClient redissonClient;
@@ -54,12 +55,25 @@ public class RedissonDistributedLocker implements DistributedLocker {
     }
 
     @Override
-    public boolean tryLock(String lockKey, TimeUnit unit, int waitTime, int leaseTime) {
+    public Boolean tryLock(String lockKey, TimeUnit unit, int waitTime, int leaseTime) {
         RLock lock = redissonClient.getLock(lockKey);
         try {
             return lock.tryLock(waitTime, leaseTime, unit);
         } catch (InterruptedException e) {
             return false;
+        }
+    }
+
+    @Override
+    public RLock tryLockObj(String lockKey, TimeUnit unit, int waitTime, int leaseTime) {
+        RLock lock = redissonClient.getLock(lockKey);
+        try {
+            if (lock.tryLock(waitTime, leaseTime, unit)) {
+                return lock;
+            }
+            return null;
+        } catch (InterruptedException e) {
+            return null;
         }
     }
 

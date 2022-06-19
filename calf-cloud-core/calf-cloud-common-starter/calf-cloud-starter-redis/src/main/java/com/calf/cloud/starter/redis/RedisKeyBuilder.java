@@ -17,11 +17,12 @@
 
 package com.calf.cloud.starter.redis;
 
+
 /**
- * @Descprition : RedisKeyBuilder 统一自定义生成redisKey
- * @Author : fengzijk
- * @email: guozhifengvip@163.com
- * @Time : 2019/3/23 13:41
+ * <pre> RedisKeyBuilder 统一自定义生成redisKey</pre>
+ *
+ * @author : guozhifeng
+ * @date : 2022/6/19 14:17
  */
 public class RedisKeyBuilder {
     /**
