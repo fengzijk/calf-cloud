@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月03日 11时16分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-03 11:16:15    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -27,12 +27,10 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.springframework.stereotype.Component;
 
 /**
-
  * <pre>功能描述:</pre>
  *
  * @author : fengzijk
  * @date : 2021/8/9 下午8:23
-
  */
 @Slf4j
 @Component

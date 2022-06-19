@@ -1,21 +1,36 @@
+/*
+ *   All rights Reserved, Designed By ZTE-ITS
+ *   Copyright:    Copyright(C) 2019-2025
+ *   Company       FENGZIJK LTD.
+ *   @Author:    fengzijk
+ *   @Email: guozhifengvip@gmail.com
+ *   @Version    V1.0
+ *   @Date:   2022年06月19日 13时33分
+ *   Modification       History:
+ *   ------------------------------------------------------------------------------------
+ *   Date                  Author        Version        Description
+ *   -----------------------------------------------------------------------------------
+ *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
+ *
+ *
+ */
+
 package com.calf.cloud.roketmq.dto;
 
 import com.calf.cloud.roketmq.enums.TagEnum;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 
 /**
-*-------------------------------------------------
-* <pre>功能描述:</pre>
-* @author : guozhifeng
-* @date : 2022-04-16 23:17
-*--------------------------------------------------
-*/
+ * <pre>功能描述:</pre>
+ *
+ * @author : guozhifeng
+ * @date : 2022-04-16 23:17
+ */
 @Data
 @Accessors(chain = true)
 @NoArgsConstructor
@@ -44,7 +59,6 @@ public class SendMqDTO implements Serializable {
      * 指定时间进行投递
      */
     private LocalDateTime sendDateTime;
-
 
 
 }

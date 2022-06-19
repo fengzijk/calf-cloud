@@ -1,17 +1,17 @@
 
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月03日 01时29分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-03 01:29:04    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -33,12 +33,10 @@ import org.springframework.data.redis.core.ZSetOperations.TypedTuple;
 
 
 /**
-
  * <pre>redis操作封装</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 1:02
-
  */
 
 
@@ -51,7 +49,7 @@ public class RedisAdapter {
     /**
      * 设置 String 类型 key-value
      *
-     * @param key 键
+     * @param key   键
      * @param value 值
      * @author : fengzijk
      * @date : 2021/10/3 1:11
@@ -106,9 +104,9 @@ public class RedisAdapter {
     /**
      * 设置 String 类型 key-value 并添加过期时间 (毫秒单位)
      *
-     * @param key 键
+     * @param key   键
      * @param value 值
-     * @param time 过期时间,毫秒单位
+     * @param time  过期时间,毫秒单位
      * @author : fengzijk
      * @date : 2021/10/3 1:14
      */
@@ -120,7 +118,7 @@ public class RedisAdapter {
     /**
      * 设置 String 类型 key-value 并添加过期时间 (分钟单位)
      *
-     * @param key 键
+     * @param key   键
      * @param value 值
      * @author : fengzijk
      * @date : 2021/10/3 1:14
@@ -133,9 +131,9 @@ public class RedisAdapter {
     /**
      * 设置 String 类型 key-value 并添加过期时间 (分钟单位)
      *
-     * @param key 键
+     * @param key   键
      * @param value 值
-     * @param time 过期时间,分钟单位
+     * @param time  过期时间,分钟单位
      * @author : fengzijk
      * @date : 2021/10/3 1:22
      */
@@ -147,7 +145,7 @@ public class RedisAdapter {
     /**
      * 如果 key 存在则覆盖,并返回旧值. 如果不存在,返回null 并添加
      *
-     * @param key 键
+     * @param key   键
      * @param value 值
      * @return java.lang.String
      * @author : fengzijk
@@ -190,7 +188,7 @@ public class RedisAdapter {
     /**
      * 对一个 key-value 的值进行加减操作,如果该 key 不存在 将创建一个key 并赋值该 number 如果 key 存在,但 value 不是长整型 ,将报错
      *
-     * @param key 键
+     * @param key    键
      * @param number 数字
      * @return java.lang.Long
      * @author : fengzijk
@@ -205,7 +203,7 @@ public class RedisAdapter {
      * 如果该 key 不存在 将创建一个key 并赋值该 number
      * 如果 key 存在,但 value 不是 纯数字 ,将报错
      *
-     * @param key 键
+     * @param key    键
      * @param number 数字
      * @return java.lang.Double
      * @author : fengzijk
@@ -219,7 +217,7 @@ public class RedisAdapter {
     /**
      * 给一个指定的 key 值附加过期时间
      *
-     * @param key 键
+     * @param key  键
      * @param time 时间
      * @param type 时间类型 TimeUnit
      * @return java.lang.Boolean
@@ -266,7 +264,7 @@ public class RedisAdapter {
     /**
      * 重命名key
      *
-     * @param key 键
+     * @param key    键
      * @param newKey 新key
      * @author : fengzijk
      * @date : 2021/10/3 1:39
@@ -288,9 +286,6 @@ public class RedisAdapter {
     public boolean delete(String key) {
         return redisTemplate.delete(key);
     }
-
-
-
 
 
     /**
@@ -564,7 +559,7 @@ public class RedisAdapter {
     /**
      * 将 key 右出栈,并左入栈到 key2
      *
-     * @param key 右出栈的列表
+     * @param key  右出栈的列表
      * @param key2 左入栈的列表
      * @return 操作的值
      */
@@ -735,7 +730,7 @@ public class RedisAdapter {
     /**
      * 返回 key 和 otherKeys 的并集
      *
-     * @param key redisKey
+     * @param key       redisKey
      * @param otherKeys key 的集合
      * @return key 和 otherKeys 的并集
      */
@@ -831,7 +826,7 @@ public class RedisAdapter {
     /**
      * 获取 key 中指定 value 的排名(从0开始,从小到大排序)
      *
-     * @param key .
+     * @param key   .
      * @param value .
      * @return
      */
@@ -842,7 +837,7 @@ public class RedisAdapter {
     /**
      * 获取 key 中指定 value 的排名(从0开始,从大到小排序)
      *
-     * @param key .
+     * @param key   .
      * @param value .
      * @return
      */
@@ -905,7 +900,7 @@ public class RedisAdapter {
      * @param min
      * @param max
      * @param offset 从指定下标开始
-     * @param count 输出指定元素数量
+     * @param count  输出指定元素数量
      * @return
      */
     public Set<Object> rangeByScore(String key, double min, double max, long offset, long count) {
@@ -919,7 +914,7 @@ public class RedisAdapter {
      * @param min
      * @param max
      * @param offset 从指定下标开始
-     * @param count 输出指定元素数量
+     * @param count  输出指定元素数量
      * @return
      */
     public Set<TypedTuple<Object>> rangeByScoreWithScores(String key, double min, double max, long offset, long count) {
@@ -981,7 +976,7 @@ public class RedisAdapter {
      * @param min
      * @param max
      * @param offset 从指定下标开始
-     * @param count 输出指定元素数量
+     * @param count  输出指定元素数量
      * @return
      */
     public Set<Object> reverseRangeByScore(String key, double min, double max, long offset, long count) {
@@ -995,7 +990,7 @@ public class RedisAdapter {
      * @param min
      * @param max
      * @param offset 从指定下标开始
-     * @param count 输出指定元素数量
+     * @param count  输出指定元素数量
      * @return
      */
     public Set<TypedTuple<Object>> reverseRangeByScoreWithScores(String key, double min, double max, long offset, long count) {

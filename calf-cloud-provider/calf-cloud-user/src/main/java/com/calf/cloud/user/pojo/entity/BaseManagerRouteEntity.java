@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月06日 00时03分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-06 00:03:09    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -35,30 +35,30 @@ import lombok.experimental.Accessors;
 @Getter
 @Setter
 @Accessors(chain = true)
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 @TableName("base_manager_route")
 public class BaseManagerRouteEntity extends BaseEntity {
 
-	
+
     /**
      * 服务名称
      */
-	private String name;
-	
+    private String name;
+
     /**
      * 服务前缀
      */
-	private String path;
-	
+    private String path;
+
     /**
      * 地址
      */
-	private String url;
-	
+    private String url;
+
     /**
      * 服务编码
      */
-	@TableField("service_id")
-	private String serviceId;
+    @TableField("service_id")
+    private String serviceId;
 
 }

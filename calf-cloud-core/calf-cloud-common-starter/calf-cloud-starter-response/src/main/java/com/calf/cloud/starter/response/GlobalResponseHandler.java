@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月04日 00时27分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-04 00:27:27    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -48,12 +48,10 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 /**
-
  * <pre>全局异常处理</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/3 19:15
-
  */
 @SuppressWarnings("NullableProblems")
 @RestControllerAdvice
@@ -98,7 +96,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
     @ExceptionHandler(value = BindException.class)
     public ResponseResult<?> bindExceptionHandler(BindException e) {
         log.warn("BindException,message={},Exception={}", e.getMessage(),
-          ExceptionUtils.getStackTrace(e));
+                ExceptionUtils.getStackTrace(e));
 
         // 实体参数注解校验提示格式 只返回第一个提示
         List<ObjectError> objectErrors = e.getBindingResult().getAllErrors();
@@ -183,7 +181,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ResponseResult<?> daoExceptionHandler(BusinessException e) {
         log.error("DaoException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
-        return ResponseResult.fail(e.getCode(),e.getMessage());
+        return ResponseResult.fail(e.getCode(), e.getMessage());
 
     }
 
@@ -196,9 +194,9 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object obj, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass,
-      ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
+                                  ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
 
-        if(serverHttpRequest.getHeaders().containsKey(globalResponseProperties.getFeignHeader())){
+        if (serverHttpRequest.getHeaders().containsKey(globalResponseProperties.getFeignHeader())) {
             return obj;
         }
 

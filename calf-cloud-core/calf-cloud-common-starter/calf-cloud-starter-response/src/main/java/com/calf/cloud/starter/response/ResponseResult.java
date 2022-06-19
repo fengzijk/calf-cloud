@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月04日 00时59分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-04 00:59:26    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -22,12 +22,10 @@ import lombok.Data;
 import lombok.experimental.Accessors;
 
 /**
-
  * <pre>统一返回结果</pre>
  *
  * @author : fengzijk
  * @date : 2021/10/4 1:01
-
  */
 
 @Data
@@ -40,12 +38,6 @@ public class ResponseResult<T> implements Serializable {
     private Long timestamp = System.currentTimeMillis();
     private boolean success;
 
-    public boolean isSuccess() {
-        this.success = this.code == 200;
-        return success;
-    }
-
-
     /**
      * 返回成功数据
      *
@@ -56,9 +48,9 @@ public class ResponseResult<T> implements Serializable {
      */
     public static <T> ResponseResult<T> success(T data) {
         return new ResponseResult<T>()
-          .setCode(ResponseStatusEnum.OK.getCode())
-          .setMsg(ResponseStatusEnum.OK.getMsg())
-          .setData(data);
+                .setCode(ResponseStatusEnum.OK.getCode())
+                .setMsg(ResponseStatusEnum.OK.getMsg())
+                .setData(data);
     }
 
     /**
@@ -71,11 +63,10 @@ public class ResponseResult<T> implements Serializable {
      */
     public static <T> ResponseResult<T> fail(T data, ResponseStatusEnum responseStatusEnum) {
         return new ResponseResult<T>()
-          .setCode(responseStatusEnum.getCode())
-          .setMsg(responseStatusEnum.getMsg())
-          .setData(data);
+                .setCode(responseStatusEnum.getCode())
+                .setMsg(responseStatusEnum.getMsg())
+                .setData(data);
     }
-
 
     /**
      * 返回失败数据
@@ -87,8 +78,8 @@ public class ResponseResult<T> implements Serializable {
      */
     public static <T> ResponseResult<T> fail(ResponseStatusEnum responseStatusEnum) {
         return new ResponseResult<T>()
-          .setCode(responseStatusEnum.getCode())
-          .setMsg(responseStatusEnum.getMsg());
+                .setCode(responseStatusEnum.getCode())
+                .setMsg(responseStatusEnum.getMsg());
     }
 
     /**
@@ -100,11 +91,9 @@ public class ResponseResult<T> implements Serializable {
      */
     public static <T> ResponseResult<T> fail(int code, String msg) {
         return new ResponseResult<T>()
-          .setCode(code)
-          .setMsg(msg);
+                .setCode(code)
+                .setMsg(msg);
     }
-
-
 
     /**
      * 返回失败数据
@@ -116,11 +105,10 @@ public class ResponseResult<T> implements Serializable {
      */
     public static <T> ResponseResult<T> fail(T data) {
         return new ResponseResult<T>()
-          .setCode(ResponseStatusEnum.BAD_REQUEST.getCode())
-          .setMsg(ResponseStatusEnum.BAD_REQUEST.getMsg())
-          .setData(data);
+                .setCode(ResponseStatusEnum.BAD_REQUEST.getCode())
+                .setMsg(ResponseStatusEnum.BAD_REQUEST.getMsg())
+                .setData(data);
     }
-
 
     /**
      * 根据Boolean值动态返回true或false
@@ -137,6 +125,10 @@ public class ResponseResult<T> implements Serializable {
         return fail(result);
     }
 
+    public boolean isSuccess() {
+        this.success = this.code == 200;
+        return success;
+    }
 
 
 }

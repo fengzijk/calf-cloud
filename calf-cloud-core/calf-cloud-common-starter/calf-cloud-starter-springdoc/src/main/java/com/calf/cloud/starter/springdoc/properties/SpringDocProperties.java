@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2022年04月10日 06时02分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2022-04-10 06:02:54    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -26,14 +26,12 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 
-
 /**
-*-------------------------------------------------
-* <pre>Springdoc配置类:</pre>
-* @author : guozhifeng
-* @date : 10/4/2022 上午6:19
-*--------------------------------------------------
-*/
+ * <pre>Springdoc配置类:</pre>
+ *
+ * @author : guozhifeng
+ * @date : 10/4/2022 上午6:19
+ */
 @Data
 @ConfigurationProperties(prefix = SpringDocProperties.PREFIX)
 public class SpringDocProperties {

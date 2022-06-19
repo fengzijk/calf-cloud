@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月05日 16时12分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-05 16:12:22    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -28,24 +28,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
-
  * <pre>Oauth</pre>
  *
  * @author : guozhifeng
  * @date : 2021/10/23 12:51
-
  */
 @RestController
 @RequestMapping("/test")
 @CrossOrigin
-@Tag(name = "test",description = "测试相关")
+@Tag(name = "test", description = "测试相关")
 public class TestController {
 
 
     @Operation(summary = "测试接口", description = "用户测试接口", method = "POST")
     @GetMapping(value = "/getTest")
     @ResponseBody
-    public String test( ) {
-        throw  new BusinessException(111,"11");
+    public String test() {
+        throw new BusinessException(111, "11");
     }
 }

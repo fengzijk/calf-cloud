@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2022年04月13日 19时16分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2022-04-13 19:16:09    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -35,8 +35,9 @@ import org.springframework.stereotype.Component;
 public class OpenFeignErrorDecoder implements ErrorDecoder {
     /**
      * Feign异常解析
+     *
      * @param methodKey 方法名
-     * @param response 响应体
+     * @param response  响应体
      * @return BizException
      */
     @Override
@@ -47,9 +48,9 @@ public class OpenFeignErrorDecoder implements ErrorDecoder {
 
             String body = Util.toString(response.body().asReader(Charset.defaultCharset()));
 
-            ResponseResult<?> resultData = JsonUtil.json2Bean(body,ResponseResult.class);
-            if(Objects.nonNull(resultData)&&!resultData.isSuccess()){
-                return new BusinessException(resultData.getCode(),resultData.getMsg());
+            ResponseResult<?> resultData = JsonUtil.json2Bean(body, ResponseResult.class);
+            if (Objects.nonNull(resultData) && !resultData.isSuccess()) {
+                return new BusinessException(resultData.getCode(), resultData.getMsg());
             }
 
         } catch (IOException e) {

@@ -4,14 +4,16 @@
  *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2019年04月24日 15时01分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2019-04-24 15:01:21    fengzijk         1.0         Why & What is modified: <修改原因描述>
+ *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
+ *
+ *
  */
 
 package com.calf.cloud.starter.redis.redission;
@@ -20,14 +22,11 @@ import java.util.concurrent.TimeUnit;
 import org.redisson.api.RLock;
 
 /**
-
- *
  * @ProjectName : redission-spring-boot-starter
  * @Descprition : 定义锁的接口
  * @Author : fengzijk
  * @email: guozhifengvip@163.com
  * @Time : 2019/3/23 10:54
-
  */
 public interface DistributedLocker {
 
@@ -57,7 +56,7 @@ public interface DistributedLocker {
 
     /**
      * @param lockKey key
-     * @param unit 时间单位（建议不要太长）
+     * @param unit    时间单位（建议不要太长）
      * @param timeout 超时释放时间
      * @return RLock  返回 com.fengzijk.redisson.redlock对象
      * @description :
@@ -71,9 +70,9 @@ public interface DistributedLocker {
     /**
      * 加锁操作 支持过期解锁功能,最多等待多久就上锁leaseTime后以后自动解锁, 无需调用unlock方法手动解锁
      *
-     * @param lockKey redis key
-     * @param unit 时间单位
-     * @param waitTime 等待时间数值
+     * @param lockKey   redis key
+     * @param unit      时间单位
+     * @param waitTime  等待时间数值
      * @param leaseTime 经过多久释放的数值
      * @return boolean 加锁是否成功
      * @methodName :tryLock

@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2021年10月05日 12时43分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2021-10-05 12:43:21    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -28,6 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.jsontype.impl.LaissezFaireSubTypeValidator;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import jodd.util.StringUtil;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
 import org.redisson.config.Config;
@@ -89,20 +90,20 @@ public class RedisAutoConfig {
     @Bean
     @ConditionalOnProperty(value = RedisProperties.PREFIX + ".enabled", havingValue = "true", matchIfMissing = true)
     RedissonClient redissonSingle(@Value("${spring.redis.host}") String host,
-      @Value("${spring.redis.port}") int port,
-   //   @Value("${spring.redis.password}") String password,
-      @Value("${spring.redis.database}") String database
+                                  @Value("${spring.redis.port}") int port,
+                                  @Value("${spring.redis.password}") String password,
+                                  @Value("${spring.redis.database}") String database
     ) {
         Config config = new Config();
         SingleServerConfig serverConfig = config.useSingleServer()
-          .setAddress("redis://" + host + ":" + port)
-          .setTimeout(3000)
-          .setConnectionPoolSize(32)
-          .setConnectionMinimumIdleSize(8);
+                .setAddress("redis://" + host + ":" + port)
+                .setTimeout(3000)
+                .setConnectionPoolSize(32)
+                .setConnectionMinimumIdleSize(8);
 
-//        if (StringUtil.isNotBlank(password)) {
-//            serverConfig.setPassword(password);
-//        }
+        if (StringUtil.isNotBlank(password)) {
+            serverConfig.setPassword(password);
+        }
 
         serverConfig.setDatabase(Integer.parseInt(database));
 
@@ -118,7 +119,8 @@ public class RedisAutoConfig {
 
 
     /**
-     *  装配locker类，并将实例注入到RedissonLockUtil中
+     * 装配locker类，并将实例注入到RedissonLockUtil中
+     *
      * @return com.calf.cloud.starter.redis.redisson.DistributedLocker
      * @author : fengzijk
      * @date : 2021/10/5 13:07

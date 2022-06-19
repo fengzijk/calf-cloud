@@ -1,16 +1,16 @@
 /*
  *   All rights Reserved, Designed By ZTE-ITS
- *   Copyright:    Copyright(C) 2021-2025
+ *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@163.com
+ *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2022年04月16日 15时51分
+ *   @Date:   2022年06月19日 13时33分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
- *   Date                  Author        Version        Discription
+ *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2022-04-16 15:51:01    fengzijk         1.0         Why & What is modified: 改原因描述>
+ *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -28,24 +28,12 @@ import com.calf.cloud.starter.response.json.JsonUtil;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Objects;
-
 import lombok.extern.slf4j.Slf4j;
-
-import lombok.val;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
-
 import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
-import org.apache.rocketmq.spring.support.RocketMQHeaders;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.stream.function.StreamBridge;
-import org.springframework.cloud.stream.messaging.Processor;
-import org.springframework.context.annotation.Lazy;
-import org.springframework.http.MediaType;
-import org.springframework.integration.annotation.ServiceActivator;
-
-import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
 
 
@@ -80,15 +68,15 @@ public class ProduceServiceImpl {
         SaveMqProducerLogDTO saveMqProducerLogDTO;
         try {
             saveMqProducerLogDTO = new SaveMqProducerLogDTO()
-              .setTopic(dto.getTopic())
-              .setRefNo(dto.getRefNo())
-              .setMessageData(dto.getMessageData());
+                    .setTopic(dto.getTopic())
+                    .setRefNo(dto.getRefNo())
+                    .setMessageData(dto.getMessageData());
             if (Objects.nonNull(tagEnum)) {
                 saveMqProducerLogDTO
-                  .setTag(tagEnum.getTag())
-                  .setFromService(tagEnum.getFromService())
-                  .setToService(tagEnum.getToService())
-                  .setTagName(tagEnum.getDesc());
+                        .setTag(tagEnum.getTag())
+                        .setFromService(tagEnum.getFromService())
+                        .setToService(tagEnum.getToService())
+                        .setTagName(tagEnum.getDesc());
             }
 
             Long id = mqProducerLogService.saveMqProducerLog(saveMqProducerLogDTO);
@@ -131,7 +119,7 @@ public class ProduceServiceImpl {
 //        }
 
         Message message = new Message(mqProducerDataDTO.getTopic(), mqProducerDataDTO.getTag().getTag(),
-          mqProducerDataDTO.getMessageData().getBytes(StandardCharsets.UTF_8));
+                mqProducerDataDTO.getMessageData().getBytes(StandardCharsets.UTF_8));
 
         //业务唯一标识
         //延时消息，单位毫秒（ms），在指定延迟时间（当前时间之后）进行投递

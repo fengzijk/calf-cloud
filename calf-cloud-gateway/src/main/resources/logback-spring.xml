@@ -1,3 +1,5 @@
+
+
 <configuration scan="true" scanPeriod="10 seconds">
     <!--    项目路径 -->
     <property name="APPDIR" value="@pom.artifactId@"/>
