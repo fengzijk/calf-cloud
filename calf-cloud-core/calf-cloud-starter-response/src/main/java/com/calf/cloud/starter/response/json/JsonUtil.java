@@ -30,11 +30,16 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Jackson工具类
@@ -45,13 +50,21 @@ public class JsonUtil {
 
     static {
         JavaTimeModule module = new JavaTimeModule();
-       // module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(DateUtil.DATE_TIME_PATTERN)));
         module.addSerializer(Long.class, ToStringSerializer.instance);
         module.addSerializer(Long.TYPE, ToStringSerializer.instance);
-        module.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer());
-        module.addSerializer(LocalDate.class, new LocalDateSerializer());
-        module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());
-        module.addDeserializer(LocalDate.class, new LocalDateDeserializer());
+
+        module.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
+        module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")));
+        module.addSerializer(LocalDate.class, new LocalDateSerializer(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
+        module.addDeserializer(LocalDate.class, new LocalDateDeserializer(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
+
+        /// java localdateTime 转毫秒数 序列化 反序列化
+///       module.addSerializer(LocalDateTime.class, new LocalDateTimeStampSerializer());
+///       module.addDeserializer(LocalDateTime.class, new LocalDateTimeStampDeserializer());
+///       module.addSerializer(LocalDate.class, new LocalDateStampSerializer());
+///       module.addDeserializer(LocalDate.class, new LocalDateStampDeserializer());
         OBJECT_MAPPER.registerModule(module);
         //对象的所有字段全部列入
         //Include.ALWAYS  是序列化对象所有属性
@@ -87,15 +100,14 @@ public class JsonUtil {
     }
 
 
-
     /**
      * localDateTime 序列化
      */
-    public static class LocalDateTimeSerializer extends JsonSerializer<LocalDateTime> {
+    public static class LocalDateTimeStampSerializer extends JsonSerializer<LocalDateTime> {
 
         @Override
         public void serialize(LocalDateTime localDateTime, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-            if (localDateTime!=null) {
+            if (localDateTime != null) {
                 ZoneId zone = ZoneId.systemDefault();
                 Instant instant = localDateTime.atZone(zone).toInstant();
                 jsonGenerator.writeNumber(instant.toEpochMilli());
@@ -106,7 +118,7 @@ public class JsonUtil {
     /**
      * localDateTime 反序列化
      */
-    public static class LocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
+    public static class LocalDateTimeStampDeserializer extends JsonDeserializer<LocalDateTime> {
 
         @Override
         public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
@@ -119,11 +131,11 @@ public class JsonUtil {
     /**
      * localDate 序列化
      */
-    public static class LocalDateSerializer extends JsonSerializer<LocalDate> {
+    public static class LocalDateStampSerializer extends JsonSerializer<LocalDate> {
 
         @Override
         public void serialize(LocalDate localDate, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-            if (localDate!=null) {
+            if (localDate != null) {
                 ZoneId zone = ZoneId.systemDefault();
                 Instant instant = localDate.atStartOfDay(zone).toInstant();
                 jsonGenerator.writeNumber(instant.toEpochMilli());
@@ -134,7 +146,7 @@ public class JsonUtil {
     /**
      * localDate 反序列化
      */
-    public static class LocalDateDeserializer extends JsonDeserializer<LocalDate> {
+    public static class LocalDateStampDeserializer extends JsonDeserializer<LocalDate> {
 
         @Override
         public LocalDate deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
