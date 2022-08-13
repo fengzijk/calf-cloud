@@ -33,6 +33,7 @@ import org.springframework.context.annotation.FilterType;
 @SpringBootApplication
 @EnableDiscoveryClient
 @ComponentScan(basePackages = "com.calf.cloud", excludeFilters = @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {
+
         DataSourceAutoConfiguration.class}))
 public class GatewayApplication {
 

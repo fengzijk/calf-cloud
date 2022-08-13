@@ -44,9 +44,9 @@ public class UserServiceImpl extends ServiceImpl<UserInfoMapper, UserInfoEntity>
     private BaseManagerService baseManagerService;
 
     @Override
-    public UserInfoVO getUserByUserName(String username) {
+    public UserInfoVO getUserByusername(String username) {
         LambdaQueryWrapper<UserInfoEntity> lambda3 = Wrappers.lambdaQuery();
-        lambda3.eq(UserInfoEntity::getUsername, username);
+        lambda3.eq(UserInfoEntity::getNickname, username);
         UserInfoEntity entity = super.baseMapper.selectOne(lambda3);
         UserInfoVO userInfoVO = ModelMapperUtil.map(entity, UserInfoVO.class);
         if (Objects.nonNull(entity)) {

@@ -29,5 +29,5 @@ import com.calf.cloud.user.pojo.vo.UserInfoVO;
  */
 public interface UserService {
 
-    UserInfoVO getUserByUserName(String userName);
+    UserInfoVO getUserByusername(String username);
 }

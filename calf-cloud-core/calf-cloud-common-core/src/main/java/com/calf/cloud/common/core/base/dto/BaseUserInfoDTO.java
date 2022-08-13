@@ -35,8 +35,15 @@ import lombok.experimental.Accessors;
 @ToString
 public class BaseUserInfoDTO implements Serializable {
 
+
+    /**
+     * 用户id
+     */
     private Long userId;
-    private String userName;
+    
+    
+    
+    private String username;
     /**
      * 手机号
      */

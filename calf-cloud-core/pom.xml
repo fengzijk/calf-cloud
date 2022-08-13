@@ -9,8 +9,11 @@
     <version>1.0.0</version>
     <modules>
         <module>calf-cloud-common-core</module>
-        <module>calf-cloud-common-starter</module>
-        <module>calf-cloud-client</module>
+        <module>calf-cloud-starter-database</module>
+        <module>calf-cloud-starter-redis</module>
+        <module>calf-cloud-starter-response</module>
+        <module>calf-cloud-starter-springdoc</module>
+        <module>calf-cloud-starter-rocketmq</module>
     </modules>
 
 

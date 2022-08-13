@@ -28,7 +28,7 @@ public enum TagEnum {
     /**
      *
      */
-    HELLO_WORLD("hello_world", "系统发布证书", "user", "user");
+    HELLO_WORLD("hello_world", "aa", "user", "user");
 
 
     /**

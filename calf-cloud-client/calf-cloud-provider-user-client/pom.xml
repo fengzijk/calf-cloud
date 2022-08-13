@@ -17,7 +17,7 @@
         <dependency>
             <groupId>com.fengzijk</groupId>
             <artifactId>calf-cloud-starter-response</artifactId>
-            <version>${calf-cloud.core.version}</version>
+            <version>1.0.0</version>
         </dependency>
         <!-- Feign是Netflix开发的声明式,模板化的HTTP客户端. -->
         <dependency>

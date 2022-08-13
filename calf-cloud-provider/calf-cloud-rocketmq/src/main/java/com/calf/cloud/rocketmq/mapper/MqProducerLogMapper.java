@@ -22,6 +22,9 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.calf.cloud.rocketmq.pojo.entity.MqProducerLogEntity;
 import org.springframework.stereotype.Repository;
 
+/**
+ * @author Timothy
+ */
 @Repository
 public interface MqProducerLogMapper extends BaseMapper<MqProducerLogEntity> {
 

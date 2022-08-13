@@ -18,6 +18,8 @@
 package com.calf.cloud.common.core.base.dto;
 
 
+import com.alibaba.ttl.TransmittableThreadLocal;
+
 /**
  * <pre>用户基础信息封装</pre>
  *
@@ -26,7 +28,7 @@ package com.calf.cloud.common.core.base.dto;
  */
 public class UserHolder {
 
-    private static final ThreadLocal<BaseUserInfoDTO> USER_HOLDER = new InheritableThreadLocal<>();
+    private static final TransmittableThreadLocal<BaseUserInfoDTO> USER_HOLDER = new TransmittableThreadLocal<>();
 
     public static void add(BaseUserInfoDTO loginInfo) {
         USER_HOLDER.set(loginInfo);

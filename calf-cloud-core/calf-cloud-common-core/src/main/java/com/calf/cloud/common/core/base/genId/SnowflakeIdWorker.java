@@ -190,23 +190,4 @@ public class SnowflakeIdWorker {
         return System.currentTimeMillis();
     }
 
-    /**
-     * 测试
-     */
-//    public static void main(String[] args) throws InterruptedException {
-//       /* Set<Long> set = new HashSet<>();
-//        System.out.println(System.currentTimeMillis());
-//        SnowflakeIdWorker idWorker = new SnowflakeIdWorker(1, 1);
-//        long startTime = System.nanoTime();
-//        for (int i = 0; i < 10; i++) {
-//            long courseId = idWorker.nextId();
-//            set.add(courseId);
-//            System.out.println(courseId);
-//        }
-//        System.out.println((System.nanoTime() - startTime) / 1000000 + "ms");
-//        System.out.println(set.size());*/
-//        // for (int i = 0; i < 10; i++) {
-//        System.out.println(SnowflakeIdWorker.genId());
-//        //}
-//    }
 }

@@ -144,7 +144,7 @@ public class BaseConstant {
     /**
      * 用户名
      */
-    public static final String USER_NAME = "userName";
+    public static final String USER_NAME = "username";
 
     /**
      * 用户头像

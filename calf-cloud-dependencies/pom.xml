@@ -47,6 +47,7 @@
         <redisson.version>3.10.5</redisson.version>
         <guava.version>30.0-jre</guava.version>
         <jsonweb.version>0.9.1</jsonweb.version>
+        <transmittable-thread-local.version>2.13.0</transmittable-thread-local.version>
     </properties>
 
 
@@ -141,8 +142,8 @@
             <!-- 数据库相关 -->
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>${druid.version}</version>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>1.2.11</version>
             </dependency>
 
             <dependency>
@@ -158,12 +159,6 @@
             </dependency>
 
 
-            <dependency>
-                <groupId>com.github.pagehelper</groupId>
-                <artifactId>pagehelper-spring-boot-starter</artifactId>
-                <version>${pagehelper.version}</version>
-            </dependency>
-
 
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -172,16 +167,17 @@
             </dependency>
 
             <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>transmittable-thread-local</artifactId>
+                <version>${transmittable-thread-local.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>commons-codec</groupId>
                 <artifactId>commons-codec</artifactId>
                 <version>${commons-codec.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections4</artifactId>
-                <version>${commons-collections4.version}</version>
-            </dependency>
 
 
 
