@@ -53,7 +53,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
  * @author : fengzijk
  * @date : 2021/10/3 19:15
  */
-@SuppressWarnings("NullableProblems")
+
 @RestControllerAdvice
 @Slf4j
 public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
@@ -81,7 +81,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
             return ResponseResult.fail(objectErrors.get(0).getDefaultMessage());
         }
 
-        return ResponseResult.fail(null);
+        return ResponseResult.fail(ResponseStatusEnum.BAD_REQUEST);
     }
 
 
@@ -104,7 +104,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
             ResponseResult.fail(objectErrors.get(0).getDefaultMessage());
         }
 
-        return ResponseResult.fail(null);
+        return ResponseResult.fail(ResponseStatusEnum.BAD_REQUEST);
     }
 
 
@@ -192,6 +192,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
         return this.filter(methodParameter);
     }
 
+    @SuppressWarnings("NullableProblems")
     @Override
     public Object beforeBodyWrite(Object obj, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass,
                                   ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {

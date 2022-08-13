@@ -19,6 +19,7 @@
 
 package com.calf.cloud.user.service;
 
+import com.calf.cloud.user.pojo.entity.UserInfoEntity;
 import com.calf.cloud.user.pojo.vo.UserInfoVO;
 
 /**
@@ -30,4 +31,7 @@ import com.calf.cloud.user.pojo.vo.UserInfoVO;
 public interface UserService {
 
     UserInfoVO getUserByusername(String username);
+
+
+    Boolean add(UserInfoEntity userInfoEntity);
 }

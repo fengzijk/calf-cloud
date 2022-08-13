@@ -57,4 +57,8 @@ public class UserServiceImpl extends ServiceImpl<UserInfoMapper, UserInfoEntity>
 
         return userInfoVO;
     }
+
+    public Boolean add(UserInfoEntity userInfoEntity) {
+        return super.save(userInfoEntity);
+    }
 }

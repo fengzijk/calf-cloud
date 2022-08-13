@@ -127,7 +127,7 @@ public class ResponseResult<T> implements Serializable {
 
     public boolean isSuccess() {
         this.success = this.code == 200;
-        return success;
+        return !success;
     }
 
 

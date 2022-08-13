@@ -44,15 +44,11 @@ public class OpenFeignErrorDecoder implements ErrorDecoder {
     public Exception decode(String methodKey, Response response) {
 
         try {
-
-
             String body = Util.toString(response.body().asReader(Charset.defaultCharset()));
-
             ResponseResult<?> resultData = JsonUtil.json2Bean(body, ResponseResult.class);
-            if (Objects.nonNull(resultData) && !resultData.isSuccess()) {
+            if (Objects.nonNull(resultData) && resultData.isSuccess()) {
                 return new BusinessException(resultData.getCode(), resultData.getMsg());
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
