@@ -21,8 +21,6 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import lombok.Data;
@@ -40,41 +38,47 @@ import lombok.experimental.Accessors;
 public class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = -9039853980855787753L;
+
     /**
      * 创建人ID
      */
     @TableField(value = "create_id", fill = FieldFill.INSERT)
     protected Long createId;
+
     /**
      * 更新人ID
      */
     @TableField(value = "update_id", fill = FieldFill.INSERT_UPDATE)
     protected Long updateId;
+
     /**
      * 创建时间
      */
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     protected LocalDateTime createTime;
+
     /**
      * 更新时间
      */
     @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     protected LocalDateTime updateTime;
+
     /**
      * 主键id
      */
-    @JsonSerialize(using = ToStringSerializer.class)
-
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @TableId(value = "id", type = IdType.NONE)
     private Long id;
-    /**
-     * 账户状态 1-已激活、0-未激活
-     */
-    private Boolean status;
+
     /**
      * 删除标记
      */
     @TableField("delete_flag")
     private Boolean deleteFlag;
+
+
+    /**
+     * 账户状态 1-已激活、0-未激活
+     */
+    private Boolean status;
 
 }

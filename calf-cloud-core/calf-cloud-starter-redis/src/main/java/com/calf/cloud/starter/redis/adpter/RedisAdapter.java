@@ -181,11 +181,6 @@ public class RedisAdapter {
     }
 
     /**
-     *
-
-     */
-
-    /**
      * 对一个 key-value 的值进行加减操作,如果该 key 不存在 将创建一个key 并赋值该 number 如果 key 存在,但 value 不是长整型 ,将报错
      *
      * @param key    键

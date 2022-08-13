@@ -15,7 +15,7 @@
  *
  */
 
-package com.calf.cloud.dal.metahandle;
+package com.calf.cloud.dal.mybatisplus;
 
 import com.baomidou.mybatisplus.core.handlers.MetaObjectHandler;
 import com.calf.cloud.common.core.base.dto.UserHolder;
