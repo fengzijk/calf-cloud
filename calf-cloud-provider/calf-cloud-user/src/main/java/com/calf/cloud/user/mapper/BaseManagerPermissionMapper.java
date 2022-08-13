@@ -29,7 +29,6 @@ import org.springframework.stereotype.Repository;
  * @author fengzijk
  * @date 2021-10-05
  */
-
 @Repository
 public interface BaseManagerPermissionMapper extends BaseMapper<BaseManagerPermissionEntity> {
 

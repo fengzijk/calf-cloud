@@ -3,14 +3,14 @@
  *   Copyright:    Copyright(C) 2019-2025
  *   Company       FENGZIJK LTD.
  *   @Author:    fengzijk
- *   @Email: guozhifengvip@gmail.com
+ *   @Email: guozhifengvip@163.com
  *   @Version    V1.0
- *   @Date:   2022年06月19日 13时33分
+ *   @Date:   2022年06月22日 21时31分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
  *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2022-06-19 13:33:40    fengzijk         1.0         Why & What is modified: <修改原因描述>
+ *  2022-06-22 21:31:04    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
@@ -18,40 +18,58 @@
 package com.calf.cloud.starter.response.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonDeserializer;
+import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
-import java.text.SimpleDateFormat;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.io.IOException;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 /**
  * Jackson工具类
  */
 public class JsonUtil {
 
-    /**
-     * 日起格式化
-     */
-    private static final String STANDARD_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    private static ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     static {
+        JavaTimeModule module = new JavaTimeModule();
+       // module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer(DateTimeFormatter.ofPattern(DateUtil.DATE_TIME_PATTERN)));
+        module.addSerializer(Long.class, ToStringSerializer.instance);
+        module.addSerializer(Long.TYPE, ToStringSerializer.instance);
+        module.addSerializer(LocalDateTime.class, new LocalDateTimeSerializer());
+        module.addSerializer(LocalDate.class, new LocalDateSerializer());
+        module.addDeserializer(LocalDateTime.class, new LocalDateTimeDeserializer());
+        module.addDeserializer(LocalDate.class, new LocalDateDeserializer());
+        OBJECT_MAPPER.registerModule(module);
         //对象的所有字段全部列入
-        mapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
+        //Include.ALWAYS  是序列化对象所有属性
+        //Include.NON_NULL 只有不为null的字段才被序列化
+        //Include.NON_EMPTY 如果为null或者空字符串和空集合都不会被序列化
+        OBJECT_MAPPER.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
         //取消默认转换timestamps形式
-        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
+        OBJECT_MAPPER.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, true);
         //忽略空Bean转json的错误
-        mapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
-        //所有的日期格式都统一为以下的样式，即yyyy-MM-dd HH:mm:ss
-        mapper.setDateFormat(new SimpleDateFormat(STANDARD_FORMAT));
+        OBJECT_MAPPER.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
         //忽略 在json字符串中存在，但是在java对象中不存在对应属性的情况。防止错误
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        OBJECT_MAPPER.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
     }
 
 
     public static String tojson(Object data) {
         try {
-            return mapper.writeValueAsString(data);
+            return OBJECT_MAPPER.writeValueAsString(data);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
@@ -60,7 +78,7 @@ public class JsonUtil {
 
     public static <T> T json2Bean(String jsonData, Class<T> beanType) {
         try {
-            return mapper.readValue(jsonData, beanType);
+            return OBJECT_MAPPER.readValue(jsonData, beanType);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -68,4 +86,62 @@ public class JsonUtil {
         return null;
     }
 
+
+
+    /**
+     * localDateTime 序列化
+     */
+    public static class LocalDateTimeSerializer extends JsonSerializer<LocalDateTime> {
+
+        @Override
+        public void serialize(LocalDateTime localDateTime, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+            if (localDateTime!=null) {
+                ZoneId zone = ZoneId.systemDefault();
+                Instant instant = localDateTime.atZone(zone).toInstant();
+                jsonGenerator.writeNumber(instant.toEpochMilli());
+            }
+        }
+    }
+
+    /**
+     * localDateTime 反序列化
+     */
+    public static class LocalDateTimeDeserializer extends JsonDeserializer<LocalDateTime> {
+
+        @Override
+        public LocalDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+            long timestamp = jsonParser.getValueAsLong();
+            Instant instant = Instant.ofEpochMilli(timestamp);
+            return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        }
+    }
+
+    /**
+     * localDate 序列化
+     */
+    public static class LocalDateSerializer extends JsonSerializer<LocalDate> {
+
+        @Override
+        public void serialize(LocalDate localDate, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+            if (localDate!=null) {
+                ZoneId zone = ZoneId.systemDefault();
+                Instant instant = localDate.atStartOfDay(zone).toInstant();
+                jsonGenerator.writeNumber(instant.toEpochMilli());
+            }
+        }
+    }
+
+    /**
+     * localDate 反序列化
+     */
+    public static class LocalDateDeserializer extends JsonDeserializer<LocalDate> {
+
+        @Override
+        public LocalDate deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+            long timestamp = jsonParser.getValueAsLong();
+            Instant instant = Instant.ofEpochMilli(timestamp);
+            return LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
+        }
+    }
 }
+

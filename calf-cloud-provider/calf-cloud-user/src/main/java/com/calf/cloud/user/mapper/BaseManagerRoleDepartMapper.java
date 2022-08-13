@@ -21,6 +21,7 @@ package com.calf.cloud.user.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.calf.cloud.user.pojo.entity.BaseManagerRoleDepartEntity;
+import org.springframework.stereotype.Repository;
 
 /**
  * 角色和部门关联表 Mapper 接口
@@ -28,6 +29,7 @@ import com.calf.cloud.user.pojo.entity.BaseManagerRoleDepartEntity;
  * @author fengzijk
  * @date 2021-10-05
  */
+@Repository
 public interface BaseManagerRoleDepartMapper extends BaseMapper<BaseManagerRoleDepartEntity> {
 
 
