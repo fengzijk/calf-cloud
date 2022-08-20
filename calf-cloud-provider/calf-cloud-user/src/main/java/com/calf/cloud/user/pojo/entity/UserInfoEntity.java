@@ -21,11 +21,12 @@ package com.calf.cloud.user.pojo.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.calf.cloud.dal.pojo.entity.BaseEntity;
-import java.time.LocalDateTime;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+
+import java.time.LocalDateTime;
 
 /**
  * 用户信息
@@ -122,4 +123,48 @@ public class UserInfoEntity extends BaseEntity {
     @TableField("sign_apple_id")
     private String signAppleId;
 
+
+    public static final String ID = "id";
+
+    public static final String PHONE = "phone";
+
+    public static final String EMAIL = "email";
+
+    public static final String USERNAME = "username";
+
+    public static final String NICKNAME = "nickname";
+
+    public static final String SEX = "sex";
+
+    public static final String SALT = "salt";
+
+    public static final String PASSWORD = "password";
+
+    public static final String AVATAR = "avatar";
+
+    public static final String IDENTITY_CARD = "identity_card";
+
+    public static final String UNION_ID = "union_id";
+
+    public static final String OPEN_ID = "open_id";
+
+    public static final String WX_NICKNAME = "wx_nickname";
+
+    public static final String BIRTHDAY = "birthday";
+
+    public static final String REGISTER_TIME = "register_time";
+
+    public static final String SIGN_APPLE_ID = "sign_apple_id";
+
+    public static final String STATUS = "status";
+
+    public static final String DELETE_FLAG = "delete_flag";
+
+    public static final String CREATE_TIME = "create_time";
+
+    public static final String UPDATE_TIME = "update_time";
+
+    public static final String CREATE_ID = "create_id";
+
+    public static final String UPDATE_ID = "update_id";
 }

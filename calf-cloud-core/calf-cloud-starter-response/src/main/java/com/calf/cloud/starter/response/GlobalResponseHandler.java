@@ -22,9 +22,6 @@ import com.calf.cloud.starter.response.annotation.IgnoreGlobalResponse;
 import com.calf.cloud.starter.response.exception.BusinessException;
 import com.calf.cloud.starter.response.json.JsonUtil;
 import com.calf.cloud.starter.response.properties.GlobalResponseProperties;
-import java.util.List;
-import java.util.Objects;
-import javax.xml.bind.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +43,15 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Path;
+import javax.xml.bind.ValidationException;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * <pre>全局异常处理</pre>
@@ -95,8 +101,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      */
     @ExceptionHandler(value = BindException.class)
     public ResponseResult<?> bindExceptionHandler(BindException e) {
-        log.warn("BindException,message={},Exception={}", e.getMessage(),
-                ExceptionUtils.getStackTrace(e));
+        log.warn("BindException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
 
         // 实体参数注解校验提示格式 只返回第一个提示
         List<ObjectError> objectErrors = e.getBindingResult().getAllErrors();
@@ -105,6 +110,14 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
         }
 
         return ResponseResult.fail(ResponseStatusEnum.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler(value = ConstraintViolationException.class)
+    public ResponseResult<?> ConstraintViolationExceptionHandler(ConstraintViolationException e) {
+        log.warn("ConstraintViolationException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
+        Map<Path, String> map = e.getConstraintViolations().stream().collect(Collectors.toMap(ConstraintViolation::getPropertyPath, ConstraintViolation::getMessage));
+        return ResponseResult.fail(map);
     }
 
 
@@ -194,8 +207,7 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
 
     @SuppressWarnings("NullableProblems")
     @Override
-    public Object beforeBodyWrite(Object obj, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass,
-                                  ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
+    public Object beforeBodyWrite(Object obj, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
 
         if (serverHttpRequest.getHeaders().containsKey(globalResponseProperties.getFeignHeader())) {
             return obj;

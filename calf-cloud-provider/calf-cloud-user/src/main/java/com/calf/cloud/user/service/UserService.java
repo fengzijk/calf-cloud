@@ -19,8 +19,12 @@
 
 package com.calf.cloud.user.service;
 
+import com.calf.cloud.user.pojo.dto.UserInfoDTO;
 import com.calf.cloud.user.pojo.entity.UserInfoEntity;
 import com.calf.cloud.user.pojo.vo.UserInfoVO;
+import org.springframework.validation.annotation.Validated;
+
+import javax.validation.Valid;
 
 /**
  * <pre>用户信息</pre>
@@ -28,10 +32,16 @@ import com.calf.cloud.user.pojo.vo.UserInfoVO;
  * @author : fengzijk
  * @date : 2021/10/3 18:11
  */
+@Validated(value = UserInfoDTO.addGroup.class)
 public interface UserService {
 
-    UserInfoVO getUserByusername(String username);
+    UserInfoVO getUserByUsername(String username);
 
 
     Boolean add(UserInfoEntity userInfoEntity);
+
+
+    Boolean save(@Valid UserInfoDTO infoDTO);
+
+    Boolean edit(@Valid UserInfoDTO infoDTO);
 }

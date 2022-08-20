@@ -22,14 +22,17 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.calf.cloud.common.core.base.modelmapper.ModelMapperUtil;
 import com.calf.cloud.user.mapper.UserInfoMapper;
+import com.calf.cloud.user.pojo.dto.UserInfoDTO;
 import com.calf.cloud.user.pojo.entity.UserInfoEntity;
 import com.calf.cloud.user.pojo.vo.UserInfoVO;
 import com.calf.cloud.user.service.BaseManagerService;
 import com.calf.cloud.user.service.UserService;
-import java.util.Arrays;
-import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
+import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * <pre>y</pre>
@@ -44,7 +47,7 @@ public class UserServiceImpl extends ServiceImpl<UserInfoMapper, UserInfoEntity>
     private BaseManagerService baseManagerService;
 
     @Override
-    public UserInfoVO getUserByusername(String username) {
+    public UserInfoVO getUserByUsername(String username) {
         LambdaQueryWrapper<UserInfoEntity> lambda3 = Wrappers.lambdaQuery();
         lambda3.eq(UserInfoEntity::getNickname, username);
         UserInfoEntity entity = super.baseMapper.selectOne(lambda3);
@@ -60,5 +63,16 @@ public class UserServiceImpl extends ServiceImpl<UserInfoMapper, UserInfoEntity>
 
     public Boolean add(UserInfoEntity userInfoEntity) {
         return super.save(userInfoEntity);
+    }
+
+    @Override
+    public Boolean save(@Validated UserInfoDTO infoDTO) {
+        System.out.println(11111);
+        return null;
+    }
+
+    @Override
+    public Boolean edit(UserInfoDTO infoDTO) {
+        return null;
     }
 }

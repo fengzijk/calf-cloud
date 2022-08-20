@@ -23,6 +23,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.calf.cloud.starter.response.json.JsonUtil;
 import com.calf.cloud.user.mapper.UserInfoMapper;
+import com.calf.cloud.user.pojo.dto.UserInfoDTO;
 import com.calf.cloud.user.pojo.entity.UserInfoEntity;
 import com.calf.cloud.user.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -110,5 +111,34 @@ public class UserServiceTest {
         new LambdaQueryChainWrapper<>(userInfoMapper).like(UserInfoEntity::getEmail, "test").list().forEach(a -> log.info("1111:{}", JsonUtil.tojson(a)));
 
 
+    }
+
+    @Test
+    public void save1() {
+        UserInfoDTO userInfoDTO = new UserInfoDTO();
+        userInfoDTO.setPhone("");
+        userInfoDTO.setEmail("");
+        userInfoDTO.setUsername("");
+        userInfoDTO.setNickname("");
+        userInfoDTO.setSex(false);
+        userInfoDTO.setSalt("");
+        userInfoDTO.setPassword("");
+        userInfoDTO.setAvatar("");
+        userInfoDTO.setIdentityCard("");
+        userInfoDTO.setUnionId("");
+        userInfoDTO.setOpenId("");
+        userInfoDTO.setWxNickname("");
+        userInfoDTO.setBirthday(LocalDateTime.now());
+        userInfoDTO.setRegisterTime(LocalDateTime.now());
+        userInfoDTO.setSignAppleId("");
+        userInfoDTO.setCreateId(0L);
+        userInfoDTO.setUpdateId(0L);
+        userInfoDTO.setCreateTime(LocalDateTime.now());
+        userInfoDTO.setUpdateTime(LocalDateTime.now());
+        userInfoDTO.setId(0L);
+        userInfoDTO.setDeleteFlag(false);
+        userInfoDTO.setStatus(false);
+
+        userService.save(userInfoDTO);
     }
 }
