@@ -17,11 +17,12 @@
 
 package com.calf.cloud.common.core.base.modelmapper;
 
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.modelmapper.ModelMapper;
-import org.springframework.stereotype.Component;
 
 /**
  * <pre>bean拷贝</pre>
@@ -31,14 +32,14 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ModelMapperUtil {
-    private static ModelMapper modelMapper = SingletonModelMapper.getInstance();
+    private static final ModelMapper modelMapper = SingletonModelMapper.getInstance();
 
 
     public static <S, T> T map(final S source, Class<T> target) {
         if (source == null) {
             return null;
         }
-        return map(source, target, (ConvertCallBack<S, T>) null);
+        return mapClass(source, target, null);
 
     }
 
@@ -50,7 +51,7 @@ public class ModelMapperUtil {
      * @param target 目标
      * @return 目标类型的实体
      */
-    public static <S, T> T map(final S source, Class<T> target, ConvertCallBack<S, T> callBack) {
+    public static <S, T> T mapClass(final S source, Class<T> target, ConvertCallBack<S, T> callBack) {
         if (source == null) {
             return null;
         }
@@ -73,14 +74,8 @@ public class ModelMapperUtil {
             return null;
         }
         return source.stream()
-                .map(entity -> map(entity, target, callBack))
+                .map(entity -> mapClass(entity, target, callBack))
                 .collect(Collectors.toList());
-    }
-
-
-    public static <S, T> T map(final S source, T target) {
-        map(source, target, null);
-        return target;
     }
 
 

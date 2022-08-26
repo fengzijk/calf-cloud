@@ -22,12 +22,12 @@ import com.calf.cloud.rocketmq.pojo.dto.MqProducerDataDTO;
 import com.calf.cloud.rocketmq.service.impl.ProduceServiceImpl;
 import com.calf.cloud.roketmq.dto.SendMqDTO;
 import com.calf.cloud.starter.response.ResponseResult;
-import io.swagger.v3.oas.annotations.Operation;
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 
 @RequiredArgsConstructor
@@ -38,10 +38,9 @@ public class MqController {
     private final ProduceServiceImpl produceService;
 
 
-    @Operation(summary = "发送MQ", description = "发送Mq", method = "POST")
     @PostMapping(value = "/send-to-mq")
     public ResponseResult<Boolean> sendToMq(@RequestBody @Valid SendMqDTO dto) {
-        MqProducerDataDTO dataDTO = ModelMapperUtil.map(dto, MqProducerDataDTO.class);
+        MqProducerDataDTO dataDTO = ModelMapperUtil.mapClass(dto, MqProducerDataDTO.class, (s, t) -> t.setMessageData(s.getMessageData()));
         return new ResponseResult<Boolean>().setData(produceService.sendMsgToMq(dataDTO));
     }
 
