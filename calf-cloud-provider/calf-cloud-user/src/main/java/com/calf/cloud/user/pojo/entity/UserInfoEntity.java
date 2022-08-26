@@ -18,9 +18,12 @@
 package com.calf.cloud.user.pojo.entity;
 
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.calf.cloud.dal.pojo.entity.BaseEntity;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -39,9 +42,50 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 @TableName("user_info")
-public class UserInfoEntity extends BaseEntity {
+public class UserInfoEntity extends Model<UserInfoEntity> {
 
 
+    /**
+     * 创建人ID
+     */
+    @TableField(value = "create_id", fill = FieldFill.INSERT)
+    protected Long createId;
+
+    /**
+     * 更新人ID
+     */
+    @TableField(value = "update_id", fill = FieldFill.INSERT_UPDATE)
+    protected Long updateId;
+
+    /**
+     * 创建时间
+     */
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
+    protected LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
+    protected LocalDateTime updateTime;
+
+    /**
+     * 主键id
+     */
+    @TableId(value = "id", type = IdType.NONE)
+    private Long id;
+
+    /**
+     * 删除标记
+     */
+    @TableField("delete_flag")
+    private Boolean deleteFlag;
+
+
+    /**
+     * 账户状态 1-已激活、0-未激活
+     */
+    private Boolean status;
     /**
      * 注册手机号
      */

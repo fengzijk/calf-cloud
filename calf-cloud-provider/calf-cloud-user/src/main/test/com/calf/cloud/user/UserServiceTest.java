@@ -72,6 +72,7 @@ public class UserServiceTest {
         userInfoEntity.setDeleteFlag(false);
         userInfoEntity.setStatus(false);
         userService.add(userInfoEntity);
+        log.info("22222" + userInfoEntity.updateById());
         log.info("1111:{}", JsonUtil.tojson(userInfoEntity));
     }
 
