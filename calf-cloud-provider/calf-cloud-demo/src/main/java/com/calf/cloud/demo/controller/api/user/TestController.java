@@ -18,6 +18,7 @@
 package com.calf.cloud.demo.controller.api.user;
 
 import com.calf.cloud.demo.handle.TestHandleChain;
+import com.calf.cloud.demo.strategy.TestStrategyContextFactory;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -44,12 +45,22 @@ public class TestController {
     @Autowired
     private TestHandleChain testHandleChain;
 
+    @Autowired
+    private TestStrategyContextFactory testStrategyContextFactory;
+
     @GetMapping(value = "/test-handle/{str}")
     public String testHandle(@PathVariable(value = "str") String str) {
         boolean b = testHandleChain.execute(str);
         if (b) {
             return "1111";
         }
+        return str;
+    }
+
+
+    @GetMapping(value = "/test-strategy/{str}")
+    public String testStrategy(@PathVariable(value = "str") String str) {
+        testStrategyContextFactory.get(str).search(str);
         return str;
     }
 
