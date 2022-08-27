@@ -32,7 +32,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @Order(2)
-public class GzfTestHandle implements TestHandle {
+public class TestHandleA implements TestHandle {
 
 
     @Autowired
@@ -41,13 +41,13 @@ public class GzfTestHandle implements TestHandle {
     @Override
     public Boolean execute(String str) {
 
-        if (StringUtils.contains(str, "gzf")) {
+        if (StringUtils.contains(str, "aaa")) {
             log.info(JsonUtil.toJson(userService.findByName(str)));
-            log.info("========GzfTestHandle========fz" + str);
+            log.info("========TestHandleA========aaa" + str);
             return Boolean.TRUE;
         }
-        if (StringUtils.contains(str, "gzf1")) {
-            log.info("========GzfTestHandle========fz" + str);
+        if (StringUtils.contains(str, "a1a")) {
+            log.info("========TestHandleA========a1a" + str);
             return Boolean.FALSE;
         }
         return null;

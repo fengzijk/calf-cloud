@@ -26,16 +26,16 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @Order(1)
-public class TestFzHandle implements TestHandle {
+public class TestHandleB implements TestHandle {
     @Override
     public Boolean execute(String str) {
 
-        if (StringUtils.contains(str, "fz")) {
-            log.info("========TestFzHandle========fz" + str);
+        if (StringUtils.contains(str, "bbb")) {
+            log.info("========TestHandleB========bbb" + str);
             return Boolean.TRUE;
         }
-        if (StringUtils.contains(str, "fz1")) {
-            log.info("========TestFzHandle========fz1" + str);
+        if (StringUtils.contains(str, "b1b")) {
+            log.info("========TestHandleB========b1b" + str);
             return Boolean.FALSE;
         }
         return null;
