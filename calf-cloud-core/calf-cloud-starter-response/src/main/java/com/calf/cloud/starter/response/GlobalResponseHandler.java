@@ -20,7 +20,6 @@ package com.calf.cloud.starter.response;
 
 import com.calf.cloud.starter.response.annotation.IgnoreGlobalResponse;
 import com.calf.cloud.starter.response.exception.BizException;
-import com.calf.cloud.starter.response.json.JsonUtil;
 import com.calf.cloud.starter.response.properties.GlobalResponseProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -213,16 +212,13 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
             return obj;
         }
 
-        //o is null -> return response
-        if (obj == null) {
-            return JsonUtil.toJson(ResponseResult.success(null));
-        }
+
         //当 obj 返回类型为ResultMsg(统一封装返回对象),则直接返回
         if (obj instanceof ResponseResult) {
             return obj;
         }
 
-        return JsonUtil.toJson(ResponseResult.success(obj));
+        return ResponseResult.success(obj);
     }
 
 
