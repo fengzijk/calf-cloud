@@ -73,7 +73,7 @@ public class UserServiceTest {
         userInfoEntity.setStatus(false);
         userService.add(userInfoEntity);
         log.info("22222" + userInfoEntity.updateById());
-        log.info("1111:{}", JsonUtil.tojson(userInfoEntity));
+        log.info("1111:{}", JsonUtil.toJson(userInfoEntity));
     }
 
 
@@ -82,7 +82,7 @@ public class UserServiceTest {
 
         LambdaQueryWrapper<UserInfoEntity> lambdaQuery = Wrappers.lambdaQuery();
         lambdaQuery.select(UserInfoEntity::getAvatar, UserInfoEntity::getEmail);
-        userInfoMapper.selectList(lambdaQuery).forEach(a -> log.info("1111:{}", JsonUtil.tojson(a)));
+        userInfoMapper.selectList(lambdaQuery).forEach(a -> log.info("1111:{}", JsonUtil.toJson(a)));
     }
 
 
@@ -91,25 +91,25 @@ public class UserServiceTest {
 
         LambdaQueryWrapper<UserInfoEntity> lambdaQuery = Wrappers.lambdaQuery();
         lambdaQuery.select(UserInfoEntity::getAvatar, UserInfoEntity::getEmail);
-        userInfoMapper.selectList(lambdaQuery).forEach(a -> log.info("1111:{}", JsonUtil.tojson(a)));
+        userInfoMapper.selectList(lambdaQuery).forEach(a -> log.info("1111:{}", JsonUtil.toJson(a)));
     }
 
 
     @Test
     void select11() {
 
-        userInfoMapper.selectList(new QueryWrapper<UserInfoEntity>().eq("password", "11")).forEach(a -> log.info("1111:{}", JsonUtil.tojson(a)));
+        userInfoMapper.selectList(new QueryWrapper<UserInfoEntity>().eq("password", "11")).forEach(a -> log.info("1111:{}", JsonUtil.toJson(a)));
     }
 
     @Test
     void select12() {
         //1、eq查询单条
-        JsonUtil.tojson(new LambdaQueryChainWrapper<>(userInfoMapper).eq(UserInfoEntity::getNickname, "1111").last("limit 1").one());
+        JsonUtil.toJson(new LambdaQueryChainWrapper<>(userInfoMapper).eq(UserInfoEntity::getNickname, "1111").last("limit 1").one());
 
-        new LambdaQueryChainWrapper<>(userInfoMapper).eq(UserInfoEntity::getNickname, "1111").list().forEach(a -> log.info("1111:{}", JsonUtil.tojson(a)));
+        new LambdaQueryChainWrapper<>(userInfoMapper).eq(UserInfoEntity::getNickname, "1111").list().forEach(a -> log.info("1111:{}", JsonUtil.toJson(a)));
 
         //3、模糊查询
-        new LambdaQueryChainWrapper<>(userInfoMapper).like(UserInfoEntity::getEmail, "test").list().forEach(a -> log.info("1111:{}", JsonUtil.tojson(a)));
+        new LambdaQueryChainWrapper<>(userInfoMapper).like(UserInfoEntity::getEmail, "test").list().forEach(a -> log.info("1111:{}", JsonUtil.toJson(a)));
 
 
     }

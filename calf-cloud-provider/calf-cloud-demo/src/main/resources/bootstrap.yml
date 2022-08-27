@@ -13,7 +13,7 @@ spring:
         group: @nacos.group@
         namespace: @nacos.namespace@
         extension-configs:
-          - dataId: calf-cloud-user-self.yml
+          - dataId: calf-cloud-demo-self.yml
             group: @nacos.group@
             refresh: true
           - dataId: calf-cloud-redis.yml

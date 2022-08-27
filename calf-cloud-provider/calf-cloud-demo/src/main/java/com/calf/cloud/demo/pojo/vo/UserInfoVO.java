@@ -21,7 +21,6 @@ package com.calf.cloud.demo.pojo.vo;
 import lombok.Data;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * <pre>用户信息封装</pre>
@@ -34,34 +33,39 @@ import java.util.List;
 public class UserInfoVO implements Serializable {
 
     private static final long serialVersionUID = -7657663783681647907L;
-
     /**
-     * 系统用户信息
+     * 注册手机号
      */
-    private BaseManagerVO baseManagervo;
+    private String phone;
 
     /**
-     * 系统权限标识组
+     * 注册邮箱
      */
-    private List<String> permissions;
+    private String email;
 
     /**
-     * 系统角色标识组
-     */
-
-    private List<String> roleIds;
-
-    /**
-     * 登录类型　1：用户名密码登录　2：手机号登录　3：社交登录
-     */
-    private int loginType;
-
-    /**
-     * 用户名
+     * 姓名
      */
     private String username;
 
-    private Long id;
+    /**
+     * 昵称
+     */
+    private String nickname;
 
-    private Integer status = 1;
+    /**
+     * 性别(1:男 2:女)
+     */
+    private Boolean sex;
+
+    /**
+     * 盐
+     */
+    private String salt;
+
+    /**
+     * 密码
+     */
+    private String password;
+
 }

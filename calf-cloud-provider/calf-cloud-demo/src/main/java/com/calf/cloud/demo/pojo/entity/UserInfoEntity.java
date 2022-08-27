@@ -18,18 +18,14 @@
 package com.calf.cloud.demo.pojo.entity;
 
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.calf.cloud.dal.pojo.entity.BaseEntity;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
 
-import java.time.LocalDateTime;
+import java.io.Serializable;
 
 /**
  * 用户信息
@@ -42,65 +38,10 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
 @TableName("user_info")
-public class UserInfoEntity extends Model<UserInfoEntity> {
+public class UserInfoEntity extends BaseEntity<UserInfoEntity> implements Serializable {
 
 
-    public static final String ID = "id";
-    public static final String PHONE = "phone";
-    public static final String EMAIL = "email";
-    public static final String USERNAME = "username";
-    public static final String NICKNAME = "nickname";
-    public static final String SEX = "sex";
-    public static final String SALT = "salt";
-    public static final String PASSWORD = "password";
-    public static final String AVATAR = "avatar";
-    public static final String IDENTITY_CARD = "identity_card";
-    public static final String UNION_ID = "union_id";
-    public static final String OPEN_ID = "open_id";
-    public static final String WX_NICKNAME = "wx_nickname";
-    public static final String BIRTHDAY = "birthday";
-    public static final String REGISTER_TIME = "register_time";
-    public static final String SIGN_APPLE_ID = "sign_apple_id";
-    public static final String STATUS = "status";
-    public static final String DELETE_FLAG = "delete_flag";
-    public static final String CREATE_TIME = "create_time";
-    public static final String UPDATE_TIME = "update_time";
-    public static final String CREATE_ID = "create_id";
-    public static final String UPDATE_ID = "update_id";
-    /**
-     * 创建人ID
-     */
-    @TableField(value = "create_id", fill = FieldFill.INSERT)
-    protected Long createId;
-    /**
-     * 更新人ID
-     */
-    @TableField(value = "update_id", fill = FieldFill.INSERT_UPDATE)
-    protected Long updateId;
-    /**
-     * 创建时间
-     */
-    @TableField(value = "create_time", fill = FieldFill.INSERT)
-    protected LocalDateTime createTime;
-    /**
-     * 更新时间
-     */
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
-    protected LocalDateTime updateTime;
-    /**
-     * 主键id
-     */
-    @TableId(value = "id", type = IdType.NONE)
-    private Long id;
-    /**
-     * 删除标记
-     */
-    @TableField("delete_flag")
-    private Boolean deleteFlag;
-    /**
-     * 账户状态 1-已激活、0-未激活
-     */
-    private Boolean status;
+    private static final long serialVersionUID = -1326342179997501698L;
     /**
      * 注册手机号
      */
@@ -129,42 +70,4 @@ public class UserInfoEntity extends Model<UserInfoEntity> {
      * 密码
      */
     private String password;
-    /**
-     * 头像地址
-     */
-    private String avatar;
-    /**
-     * 身份证号
-     */
-    @TableField("identity_card")
-    private String identityCard;
-    /**
-     * 微信唯一标识
-     */
-    @TableField("union_id")
-    private String unionId;
-    /**
-     * 微信openID
-     */
-    @TableField("open_id")
-    private String openId;
-    /**
-     * 用户绑定微信的昵称，不可修改，用户换绑页面展示
-     */
-    @TableField("wx_nickname")
-    private String wxNickname;
-    /**
-     * 出生日期
-     */
-    private LocalDateTime birthday;
-    /**
-     * 注册时间
-     */
-    @TableField("register_time")
-    private LocalDateTime registerTime;
-    /**
-     * 苹果登陆唯一标识
-     */
-    @TableField("sign_apple_id")
-    private String signAppleId;
 }

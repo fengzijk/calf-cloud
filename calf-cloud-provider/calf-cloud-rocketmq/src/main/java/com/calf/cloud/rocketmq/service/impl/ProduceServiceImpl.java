@@ -92,7 +92,7 @@ public class ProduceServiceImpl {
             updateMqProducerLogSendFlagDTO.setId(saveMqProducerLogDTO.getId());
             updateMqProducerLogSendFlagDTO.setSendFlag(true);
             updateMqProducerLogSendFlagDTO.setExecuteTime(LocalDateTime.now());
-            updateMqProducerLogSendFlagDTO.setExecuteResult(JsonUtil.tojson(sendResult));
+            updateMqProducerLogSendFlagDTO.setExecuteResult(JsonUtil.toJson(sendResult));
             mqProducerLogService.updateMqProducerLog(updateMqProducerLogSendFlagDTO);
         }
         log.info("MQ消息生产结束,耗时:{}ms", System.currentTimeMillis() - start);
@@ -127,8 +127,8 @@ public class ProduceServiceImpl {
         // 同步发送消息，只要不抛异常就是成功
 
         SendResult sendResult = rocketMqTemplate.syncSend(mqProducerDataDTO.getTopic(), message);
-        log.info("MQ消息生产：{}", JsonUtil.tojson(message));
-        log.info("MQ消息生产成功,返回结果:{}", JsonUtil.tojson(sendResult));
+        log.info("MQ消息生产：{}", JsonUtil.toJson(message));
+        log.info("MQ消息生产成功,返回结果:{}", JsonUtil.toJson(sendResult));
 
         return sendResult;
     }

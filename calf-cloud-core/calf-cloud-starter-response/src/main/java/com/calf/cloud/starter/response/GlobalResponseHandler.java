@@ -215,14 +215,14 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
 
         //o is null -> return response
         if (obj == null) {
-            return JsonUtil.tojson(ResponseResult.success(null));
+            return JsonUtil.toJson(ResponseResult.success(null));
         }
         //当 obj 返回类型为ResultMsg(统一封装返回对象),则直接返回
         if (obj instanceof ResponseResult) {
             return obj;
         }
 
-        return JsonUtil.tojson(ResponseResult.success(obj));
+        return JsonUtil.toJson(ResponseResult.success(obj));
     }
 
 

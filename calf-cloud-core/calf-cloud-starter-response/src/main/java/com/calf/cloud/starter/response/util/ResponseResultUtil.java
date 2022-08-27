@@ -19,14 +19,15 @@ package com.calf.cloud.starter.response.util;
 
 import com.calf.cloud.starter.response.ResponseResult;
 import com.calf.cloud.starter.response.json.JsonUtil;
-import java.io.IOException;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import reactor.core.publisher.Mono;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * <pre>Response响应工具类</pre>
@@ -52,7 +53,7 @@ public class ResponseResultUtil {
                                       int status, Object value) throws IOException {
         response.setContentType(contentType);
         response.setStatus(status);
-        response.getOutputStream().write(JsonUtil.tojson(value).getBytes());
+        response.getOutputStream().write(JsonUtil.toJson(value).getBytes());
     }
 
 
@@ -72,7 +73,7 @@ public class ResponseResultUtil {
         response.getHeaders().add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
         ResponseResult<String> result = new ResponseResult<String>().setCode(status.value())
                 .setMsg(value.toString());
-        DataBuffer dataBuffer = response.bufferFactory().wrap(JsonUtil.tojson(result).getBytes());
+        DataBuffer dataBuffer = response.bufferFactory().wrap(JsonUtil.toJson(result).getBytes());
         return response.writeWith(Mono.just(dataBuffer));
     }
 }

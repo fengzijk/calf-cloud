@@ -76,9 +76,9 @@ public class AsyncThreadPoolConfig implements AsyncConfigurer {
         return (ex, method, params) -> {
             boolean flag = ex instanceof BizException || ex.getCause() != null && ex.getCause() instanceof BizException;
             if (flag) {
-                log.warn("async method:{}, params:{}, \ne:{} ", JsonUtil.tojson(method), JsonUtil.tojson(params), ExceptionUtils.getStackTrace(ex));
+                log.warn("async method:{}, params:{}, \ne:{} ", JsonUtil.toJson(method), JsonUtil.toJson(params), ExceptionUtils.getStackTrace(ex));
             } else {
-                log.error("async method:{}, params:{}, \ne:{} ", JsonUtil.tojson(method), JsonUtil.tojson(params), ExceptionUtils.getStackTrace(ex));
+                log.error("async method:{}, params:{}, \ne:{} ", JsonUtil.toJson(method), JsonUtil.toJson(params), ExceptionUtils.getStackTrace(ex));
             }
 
         };

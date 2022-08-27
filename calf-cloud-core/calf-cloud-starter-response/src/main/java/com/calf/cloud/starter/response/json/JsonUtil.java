@@ -34,6 +34,7 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
 import java.io.IOException;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -80,7 +81,7 @@ public class JsonUtil {
     }
 
 
-    public static String tojson(Object data) {
+    public static String toJson(Object data) {
         try {
             return OBJECT_MAPPER.writeValueAsString(data);
         } catch (JsonProcessingException e) {

@@ -17,7 +17,6 @@
 
 package com.calf.cloud.demo.pojo.dto;
 
-import com.calf.cloud.dal.pojo.entity.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -25,10 +24,13 @@ import lombok.experimental.Accessors;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
+/**
+ * @author Timothy
+ */
 @Data
 @Accessors(chain = true)
 @EqualsAndHashCode(callSuper = false)
-public class UserInfoDTO extends BaseEntity {
+public class UserInfoDTO {
 
 
     /**

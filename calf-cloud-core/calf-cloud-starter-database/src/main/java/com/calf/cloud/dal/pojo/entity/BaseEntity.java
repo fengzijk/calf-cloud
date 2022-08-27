@@ -18,13 +18,17 @@
 package com.calf.cloud.dal.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import lombok.Data;
-import lombok.experimental.Accessors;
 
 
 /**
@@ -34,15 +38,16 @@ import lombok.experimental.Accessors;
  * @date : 2021/10/3 11:05
  */
 @Data
+@EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity<T extends BaseEntity<?>> extends Model<T> implements Serializable {
 
     private static final long serialVersionUID = -9039853980855787753L;
 
     /**
      * 创建人ID
      */
-    @TableField(value = "create_id", fill = FieldFill.INSERT)
+    @TableField(value = "create_id", fill = FieldFill.INSERT, insertStrategy = FieldStrategy.NOT_NULL)
     protected Long createId;
 
     /**
