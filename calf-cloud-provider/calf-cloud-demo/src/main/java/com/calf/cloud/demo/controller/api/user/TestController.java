@@ -17,12 +17,14 @@
 
 package com.calf.cloud.demo.controller.api.user;
 
-import com.calf.cloud.starter.response.exception.BizException;
+import com.calf.cloud.demo.handle.TestHandleChain;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,12 +43,15 @@ import org.springframework.web.bind.annotation.RestController;
 public class TestController {
 
 
+    @Autowired
+    private TestHandleChain testHandleChain;
+
     @Operation(summary = "测试接口", description = "用户测试接口", method = "POST")
-    @GetMapping(value = "/getTest")
+    @GetMapping(value = "/getTest/{str}")
     @ResponseBody
-    public String test() {
-        async();
-        throw new BizException(111, "11");
+    public String test(@PathVariable(value = "str") String str) {
+        testHandleChain.execute(str);
+        return str;
     }
 
 

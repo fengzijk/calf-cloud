@@ -24,6 +24,7 @@ import com.calf.cloud.demo.pojo.entity.UserInfoEntity;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * <pre>用户信息</pre>
@@ -41,4 +42,6 @@ public interface UserService {
     Boolean save(@Valid UserInfoDTO infoDTO);
 
     Boolean edit(@Valid UserInfoDTO infoDTO);
+
+    List<UserInfoEntity> findByName(String name);
 }

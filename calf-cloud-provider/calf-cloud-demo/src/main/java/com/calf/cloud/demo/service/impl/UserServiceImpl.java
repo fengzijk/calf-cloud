@@ -17,13 +17,17 @@
 
 package com.calf.cloud.demo.service.impl;
 
+import com.baomidou.mybatisplus.extension.conditions.query.LambdaQueryChainWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.calf.cloud.demo.mapper.UserInfoMapper;
 import com.calf.cloud.demo.pojo.dto.UserInfoDTO;
 import com.calf.cloud.demo.pojo.entity.UserInfoEntity;
 import com.calf.cloud.demo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
+
+import java.util.List;
 
 /**
  * <pre></pre>
@@ -34,6 +38,9 @@ import org.springframework.validation.annotation.Validated;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserInfoMapper, UserInfoEntity> implements UserService {
 
+
+    @Autowired
+    private UserInfoMapper userInfoMapper;
 
     public Boolean add(UserInfoEntity userInfoEntity) {
         return super.save(userInfoEntity);
@@ -48,5 +55,10 @@ public class UserServiceImpl extends ServiceImpl<UserInfoMapper, UserInfoEntity>
     @Override
     public Boolean edit(UserInfoDTO infoDTO) {
         return null;
+    }
+
+    @Override
+    public List<UserInfoEntity> findByName(String name) {
+        return new LambdaQueryChainWrapper<>(userInfoMapper).eq(UserInfoEntity::getNickname, name).list();
     }
 }
