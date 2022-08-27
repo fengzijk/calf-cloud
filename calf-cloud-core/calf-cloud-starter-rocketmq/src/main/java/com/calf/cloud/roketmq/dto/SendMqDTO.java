@@ -17,12 +17,12 @@
 
 package com.calf.cloud.roketmq.dto;
 
-import com.calf.cloud.roketmq.enums.TagEnum;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 
 /**
@@ -46,13 +46,13 @@ public class SendMqDTO implements Serializable {
     /**
      * 消息的唯一业务标记，用作幂等处理，一般是业务ID或者业务唯一编码
      */
-    private String refNo;
+    private String BizId;
 
 
     /**
      * 标记，用作业务逻辑分类
      */
-    private TagEnum tag;
+    private String tag;
 
 
     /**

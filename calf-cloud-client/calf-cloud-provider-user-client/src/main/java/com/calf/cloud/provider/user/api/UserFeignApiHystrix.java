@@ -17,19 +17,16 @@
 
 package com.calf.cloud.provider.user.api;
 
-import com.calf.cloud.starter.response.exception.BusinessException;
+import com.calf.cloud.starter.response.exception.BizException;
 import org.springframework.cloud.openfeign.FallbackFactory;
 
 public class UserFeignApiHystrix implements FallbackFactory<UserFeignApi> {
 
     @Override
     public UserFeignApi create(Throwable cause) {
-        return new UserFeignApi() {
-            @Override
-            public String getTest() {
+        return () -> {
 
-                throw new BusinessException(1112, "User服务不可用");
-            }
+            throw new BizException(1112, "User服务不可用");
         };
     }
 }

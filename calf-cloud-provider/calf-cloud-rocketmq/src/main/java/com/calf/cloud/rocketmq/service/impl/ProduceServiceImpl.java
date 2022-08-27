@@ -22,12 +22,8 @@ import com.calf.cloud.rocketmq.pojo.dto.MqProducerDataDTO;
 import com.calf.cloud.rocketmq.pojo.dto.SaveMqProducerLogDTO;
 import com.calf.cloud.rocketmq.pojo.dto.UpdateMqProducerLogSendFlagDTO;
 import com.calf.cloud.rocketmq.service.MqProducerLogService;
-import com.calf.cloud.roketmq.enums.TagEnum;
-import com.calf.cloud.starter.response.exception.BusinessException;
+import com.calf.cloud.starter.response.exception.BizException;
 import com.calf.cloud.starter.response.json.JsonUtil;
-import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
-import java.util.Objects;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.client.producer.SendStatus;
@@ -35,6 +31,10 @@ import org.apache.rocketmq.common.message.Message;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.util.Objects;
 
 
 /**
@@ -58,10 +58,10 @@ public class ProduceServiceImpl {
      */
     public Boolean sendMsgToMq(MqProducerDataDTO dto) {
         long start = System.currentTimeMillis();
-        dto.setTag(TagEnum.HELLO_WORLD);
+        dto.setTag("111");
         log.info("MQ开始生产:{}", dto);
 
-        TagEnum tagEnum = dto.getTag();
+        String tag = dto.getTag();
         //校验基础参数
 
         //将数据保存到Mysql，用于消息补偿达到消息100%到达MQ Broker
@@ -71,12 +71,9 @@ public class ProduceServiceImpl {
                     .setTopic(dto.getTopic())
                     .setRefNo(dto.getRefNo())
                     .setMessageData(dto.getMessageData());
-            if (Objects.nonNull(tagEnum)) {
+            if (Objects.nonNull(tag)) {
                 saveMqProducerLogDTO
-                        .setTag(tagEnum.getTag())
-                        .setFromService(tagEnum.getFromService())
-                        .setToService(tagEnum.getToService())
-                        .setTagName(tagEnum.getDesc());
+                        .setTag(tag);
             }
 
             Long id = mqProducerLogService.saveMqProducerLog(saveMqProducerLogDTO);
@@ -84,7 +81,7 @@ public class ProduceServiceImpl {
         } catch (Exception e) {
             log.error("MQ消息保存失败,异常信息:{}", e.getMessage(), e);
             //一定要保证异常抛出，进而使业务代码回滚
-            throw new BusinessException("MQ发送失败");
+            throw new BizException("MQ发送失败");
         }
 
         SendResult sendResult = sendMq(dto);
@@ -118,7 +115,7 @@ public class ProduceServiceImpl {
 //            }
 //        }
 
-        Message message = new Message(mqProducerDataDTO.getTopic(), mqProducerDataDTO.getTag().getTag(),
+        Message message = new Message(mqProducerDataDTO.getTopic(), mqProducerDataDTO.getTag(),
                 mqProducerDataDTO.getMessageData().getBytes(StandardCharsets.UTF_8));
 
         //业务唯一标识

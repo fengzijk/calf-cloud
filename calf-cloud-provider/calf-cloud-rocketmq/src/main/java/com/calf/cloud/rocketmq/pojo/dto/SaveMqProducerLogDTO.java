@@ -18,10 +18,11 @@
 package com.calf.cloud.rocketmq.pojo.dto;
 
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <pre>功能描述:</pre>
@@ -45,10 +46,6 @@ public class SaveMqProducerLogDTO implements Serializable {
      * 标记，用作业务逻辑分类
      */
     private String tag;
-    /**
-     * tag名称
-     */
-    private String tagName;
     /**
      * 源服务
      */

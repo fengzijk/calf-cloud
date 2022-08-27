@@ -19,7 +19,7 @@ package com.calf.cloud.starter.response;
 
 
 import com.calf.cloud.starter.response.annotation.IgnoreGlobalResponse;
-import com.calf.cloud.starter.response.exception.BusinessException;
+import com.calf.cloud.starter.response.exception.BizException;
 import com.calf.cloud.starter.response.json.JsonUtil;
 import com.calf.cloud.starter.response.properties.GlobalResponseProperties;
 import lombok.extern.slf4j.Slf4j;
@@ -190,9 +190,9 @@ public class GlobalResponseHandler implements ResponseBodyAdvice<Object> {
      * @author : fengzijk
      * @date : 2021/10/4 2:20
      */
-    @ExceptionHandler(value = BusinessException.class)
+    @ExceptionHandler(value = BizException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ResponseResult<?> daoExceptionHandler(BusinessException e) {
+    public ResponseResult<?> daoExceptionHandler(BizException e) {
         log.error("DaoException,message={},Exception={}", e.getMessage(), ExceptionUtils.getStackTrace(e));
         return ResponseResult.fail(e.getCode(), e.getMessage());
 

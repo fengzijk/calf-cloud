@@ -5,17 +5,17 @@
  *   @Author:    fengzijk
  *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2022年08月13日 23时44分
+ *   @Date:   2022年08月27日 21时03分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
  *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2022-08-13 23:44:50    fengzijk         1.0         Why & What is modified: <修改原因描述>
+ *  2022-08-27 21:03:44    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
 
-package com.calf.cloud.user.config;
+package com.calf.cloud.demo.config;
 
 import com.calf.cloud.starter.response.exception.BizException;
 import com.calf.cloud.starter.response.json.JsonUtil;

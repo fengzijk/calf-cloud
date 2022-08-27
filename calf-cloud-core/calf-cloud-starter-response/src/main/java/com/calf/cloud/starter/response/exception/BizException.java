@@ -24,19 +24,19 @@ package com.calf.cloud.starter.response.exception;
  * @date : 2021/10/3 19:17
  */
 
-public class BusinessException extends RuntimeException {
+public class BizException extends RuntimeException {
 
     private int code;
 
-    public BusinessException() {
+    public BizException() {
         super();
     }
 
-    public BusinessException(String msg) {
+    public BizException(String msg) {
         super(msg);
     }
 
-    public BusinessException(int code, String msg) {
+    public BizException(int code, String msg) {
         super(msg);
         this.code = code;
     }

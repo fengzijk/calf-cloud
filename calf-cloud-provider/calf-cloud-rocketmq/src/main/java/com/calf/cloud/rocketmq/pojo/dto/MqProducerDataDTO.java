@@ -17,11 +17,11 @@
 
 package com.calf.cloud.rocketmq.pojo.dto;
 
-import com.calf.cloud.roketmq.enums.TagEnum;
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 
 @Data
@@ -44,7 +44,7 @@ public class MqProducerDataDTO implements Serializable {
     /**
      * 标记，用作业务逻辑分类
      */
-    private TagEnum tag;
+    private String tag;
 
 
     /**

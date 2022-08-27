@@ -5,20 +5,20 @@
  *   @Author:    fengzijk
  *   @Email: guozhifengvip@gmail.com
  *   @Version    V1.0
- *   @Date:   2022年08月13日 23时53分
+ *   @Date:   2022年08月27日 21时03分
  *   Modification       History:
  *   ------------------------------------------------------------------------------------
  *   Date                  Author        Version        Description
  *   -----------------------------------------------------------------------------------
- *  2022-08-13 23:53:52    fengzijk         1.0         Why & What is modified: <修改原因描述>
+ *  2022-08-27 21:03:44    fengzijk         1.0         Why & What is modified: <修改原因描述>
  *
  *
  */
 
-package com.calf.cloud.user.config.nacos;
+package com.calf.cloud.demo.config.nacos;
 
+import com.calf.cloud.demo.config.MdcThreadPoolTaskScheduler;
 import com.calf.cloud.starter.response.exception.BizException;
-import com.calf.cloud.user.config.MdcThreadPoolTaskScheduler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.context.annotation.Bean;
